@@ -1,0 +1,43 @@
+{
+  "name": "IpeaSurvey",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "author": {
+    "name": "Ipea - Instituto de Pesquisa Econômica Aplicada",
+    "email": "vagner.silva@ipea.gov.br",
+    "url": "http://www.ipea.gov.br"
+  },
+  "contributors": [
+    {
+      "name": "Denise dos Santos Silva",
+      "email": "dssilva.2689@gmail.com"
+    },
+    {
+      "name": "Vagner Praia",
+      "email": "vagnerpraia@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-native": "^0.40.0",
+    "react-native-dropdown": "0.0.6",
+    "react-native-side-menu": "^0.20.1",
+    "react-navigation": "^1.0.0-beta.5",
+    "react-native-vector-icons": "^4.0.0",
+    "native-base": "^0.5.22",
+    "react-native-simple-radio-button": "^2.5.0-alpha.1"
+  },
+  "devDependencies": {
+    "babel-jest": "18.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "18.1.0",
+    "react-test-renderer": "15.4.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

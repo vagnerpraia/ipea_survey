@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import NavigatorApp from './app/components/NavigatorApp';
+import NavigatorApp from './app/NavigatorApp';
 
 export default class IpeaSurvey extends Component {
     render() {

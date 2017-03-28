@@ -58,9 +58,9 @@ export default class Quiz extends Component {
                                                 <TextInput
                                                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                                                     onChangeText={(value) => {
-                                                        model.quiz['question' + item.id] = value;
+                                                        model.quiz['nome_aplicador'] = value;
                                                     }}
-                                                    value={model.quiz['question' + item.id.nome_aplicador]}
+                                                    value={model.quiz['nome_aplicador']}
                                                 />
                                             </View>
                                         )}

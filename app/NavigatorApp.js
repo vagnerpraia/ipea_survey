@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navigator } from 'react-native';
 
+import Config from './config/Config';
 import Main from './main/Main';
 import Quiz from './quiz/Quiz';
 
@@ -19,7 +20,7 @@ export default class NavigatorApp extends Component {
 
             case 'config':
                 console.log('TESTE');
-                return <Quiz navigator={navigator} model={model} />
+                return <Config navigator={navigator} model={model} />
                 break;
 
             default:

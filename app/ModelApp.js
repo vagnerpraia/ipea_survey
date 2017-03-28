@@ -1,7 +1,9 @@
 //var fs = require('fs');
 
 export var model = {
-    quiz: null,
+    quiz: {
+        nome_aplicador: ''
+    },
     readFile: readFile,
     deleteFile: deleteFile,
     saveFile: saveFile

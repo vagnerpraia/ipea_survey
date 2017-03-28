@@ -6,7 +6,6 @@ import { exitApp } from './Util';
 
 export default class HeaderApp extends Component {
     render() {
-        console.log(this.props);
         if(this.props.navigator != null){
             return (
                 <Header>

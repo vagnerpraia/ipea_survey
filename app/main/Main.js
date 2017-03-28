@@ -30,35 +30,41 @@ export default class Main extends Component {
                                 <Text style={styles.text}>Novo</Text>
                                 <Text note style={styles.note}>Abrir novo questionário</Text>
                             </ListItem>
+
+                            <ListItem iconLeft>
+                                <Icon name='md-create' style={styles.icon} />
+                                <Text style={styles.text}>Editar</Text>
+                                <Text note style={styles.note}>Editar questionário</Text>
+                            </ListItem>
+
                             <ListItem iconLeft onPress={() => {
                                 this.props.navigator.push({
                                     name: 'config'
                                 });
                             }}>
-                                <Icon name='md-create' style={styles.icon} />
-                                <Text style={styles.text}>Editar</Text>
-                                <Text note style={styles.note}>Editar questionário</Text>
-                            </ListItem>
-                            <ListItem iconLeft>
                                 <Icon name='md-settings' style={styles.icon} />
                                 <Text style={styles.text}>Configurações</Text>
                                 <Text note style={styles.note}>Configurações do aplicativo</Text>
                             </ListItem>
+
                             <ListItem iconLeft>
                                 <Icon name='md-stats' style={styles.icon} />
                                 <Text style={styles.text}>Estatísticas</Text>
                                 <Text note style={styles.note}>Estatística dos questionários</Text>
                             </ListItem>
+
                             <ListItem iconLeft>
                                 <Icon name='md-help-circle' style={styles.icon} />
                                 <Text style={styles.text}>Instruções</Text>
                                 <Text note style={styles.note}>Instruções sobre o questionário</Text>
                             </ListItem>
+
                             <ListItem iconLeft>
                                 <Icon name='md-information-circle' style={styles.icon} />
                                 <Text style={styles.text}>Sobre</Text>
                                 <Text note style={styles.note}>Informações sobre o aplicativo</Text>
                             </ListItem>
+
                             <ListItem iconLeft onPress={exitApp}>
                                 <Icon name='md-exit' style={styles.icon} />
                                 <Text style={styles.text}>Sair</Text>

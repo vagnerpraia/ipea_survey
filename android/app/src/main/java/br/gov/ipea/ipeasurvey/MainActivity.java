@@ -1,4 +1,4 @@
-package com.ipeasurvey;
+package br.gov.ipea.ipeasurvey;
 
 import com.facebook.react.ReactActivity;
 

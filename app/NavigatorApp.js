@@ -17,6 +17,11 @@ export default class NavigatorApp extends Component {
                 return <Quiz navigator={navigator} model={model} />
                 break;
 
+            case 'config':
+                console.log('TESTE');
+                return <Quiz navigator={navigator} model={model} />
+                break;
+
             default:
                 return <Main navigator={navigator} model={model} />
                 break;

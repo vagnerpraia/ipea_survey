@@ -30,7 +30,11 @@ export default class Main extends Component {
                                 <Text style={styles.text}>Novo</Text>
                                 <Text note style={styles.note}>Abrir novo questionário</Text>
                             </ListItem>
-                            <ListItem iconLeft>
+                            <ListItem iconLeft onPress={() => {
+                                this.props.navigator.push({
+                                    name: 'config'
+                                });
+                            }}>
                                 <Icon name='md-create' style={styles.icon} />
                                 <Text style={styles.text}>Editar</Text>
                                 <Text note style={styles.note}>Editar questionário</Text>

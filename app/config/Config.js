@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Container, Content, Header, Icon, Text, Title } from 'native-base';
 
-import HeaderApp from '../HeaderApp';
 import { exitApp } from '../Util';
 
 export default class Config extends Component {

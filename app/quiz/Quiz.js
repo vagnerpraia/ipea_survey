@@ -3,7 +3,6 @@ import { StyleSheet, TouchableOpacity, TextInput, View } from 'react-native';
 import { Button, Card, CardItem, Container, DeckSwiper, Header, Icon, Text, Title } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button';
 
-import HeaderApp from '../HeaderApp';
 import { questions } from './Questions';
 import { exitApp } from '../Util';
 

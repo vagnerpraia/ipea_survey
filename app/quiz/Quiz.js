@@ -76,8 +76,7 @@ export default class Quiz extends Component {
                                             buttonSize={10}
                                             labelStyle={styles.radioLabel}
                                             onPress={(value) => {
-                                                model.quiz['question' + item.id] = value;
-                                                model.saveFile('test', model)
+                                                model.saveFile('teste', 'question' + item.id, value)
                                             }}
                                             style={styles.radioForm}
                                         />

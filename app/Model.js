@@ -1,41 +1,35 @@
-//var fs = require('fs');
+import { AsyncStorage } from 'react-native';
+
+var readFile = (key) => {
+    try {
+        const value = AsyncStorage.getItem(key);
+        if (value !== null){
+            model.quiz = value;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+var deleteFile = (filename) => {
+};
+
+var saveFile = (key, attr, value) => {
+    try {
+        model.quiz[attr] = value;
+        AsyncStorage.setItem(key, model.quiz);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+var quiz = {
+    nome_aplicador: ''
+};
 
 export var model = {
-    quiz: {
-        nome_aplicador: ''
-    },
+    quiz: quiz,
     readFile: readFile,
     deleteFile: deleteFile,
     saveFile: saveFile
-}
-
-var readFile = (filename, content) => {
-}
-
-var deleteFile = (filename) => {
-    /*
-    path = RNFS.DocumentDirectoryPath + '/' + filename + '.json';
-
-    return RNFS.unlink(path)
-        .then(() => {
-            console.log('FILE DELETED');
-        })
-        .catch((err) => {
-            console.log(err.message);
-        });
-    */
-};
-
-var saveFile = (filename, content) => {
-    /*
-    fs.mkdir('/hello', function(err) {
-    	if (err) throw err;
-    	fs.writeFile('/hello/world.txt', 'world', function(err) {
-    		if (err) throw err;
-    		fs.readFile('/hello/world.txt', 'utf-8', function(err, data) {
-    			console.log(data);
-    		});
-    	});
-    });
-    */
 };

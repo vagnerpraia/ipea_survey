@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navigator } from 'react-native';
 
 import Config from './config/Config';
+import Edit from './edit/Edit';
 import Main from './main/Main';
 import Quiz from './quiz/Quiz';
 
@@ -16,6 +17,10 @@ export default class Routes extends Component {
 
             case 'quiz':
                 return <Quiz navigator={navigator} model={model} />
+                break;
+
+            case 'edit':
+                return <Edit navigator={navigator} model={model} />
                 break;
 
             case 'config':

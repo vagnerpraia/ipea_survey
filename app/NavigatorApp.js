@@ -19,7 +19,6 @@ export default class NavigatorApp extends Component {
                 break;
 
             case 'config':
-                console.log('TESTE');
                 return <Config navigator={navigator} model={model} />
                 break;
 

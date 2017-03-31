@@ -47,6 +47,7 @@
 		02D5C315F35241AEBA6AF308 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 628F8BB64BFB42EDA1D868D8 /* SimpleLineIcons.ttf */; };
 		949B38286FF346EEABF85472 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70F7073AA4D44112B144A920 /* Zocial.ttf */; };
 		A437C06EE08E422F9B49E9AC /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA33C80028C4EC8BD962E78 /* libRNFS.a */; };
+		C8B40414287C425EB221EBA4 /* libSQLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5828F993F9FC4B44BB3BF50F /* libSQLite.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,6 +284,8 @@
 		70F7073AA4D44112B144A920 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8EA5E0F1DE1547568FFDA497 /* RNFS.xcodeproj */ = {isa = PBXFileReference; name = "RNFS.xcodeproj"; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		8AA33C80028C4EC8BD962E78 /* libRNFS.a */ = {isa = PBXFileReference; name = "libRNFS.a"; path = "libRNFS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6595B35991AC4F898A1B345A /* SQLite.xcodeproj */ = {isa = PBXFileReference; name = "SQLite.xcodeproj"; path = "../node_modules/react-native-sqlite-storage/src/ios/SQLite.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		5828F993F9FC4B44BB3BF50F /* libSQLite.a */ = {isa = PBXFileReference; name = "libSQLite.a"; path = "libSQLite.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +314,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				3BC781B7C4F54DAE907352E2 /* libRNVectorIcons.a in Frameworks */,
 				A437C06EE08E422F9B49E9AC /* libRNFS.a in Frameworks */,
+				C8B40414287C425EB221EBA4 /* libSQLite.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +461,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				3C5152D076104DE4AB23BA2B /* RNVectorIcons.xcodeproj */,
 				8EA5E0F1DE1547568FFDA497 /* RNFS.xcodeproj */,
+				6595B35991AC4F898A1B345A /* SQLite.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -933,6 +938,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IpeaSurvey.app/IpeaSurvey";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -949,6 +955,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IpeaSurvey.app/IpeaSurvey";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;

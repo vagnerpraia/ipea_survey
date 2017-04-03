@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navigator, StyleSheet } from 'react-native';
 import { Button, Container, Content, Header, List, ListItem, Text, Icon, Title } from 'native-base';
 
+import { model } from '../Model';
 import { exitApp } from '../Util';
 
 export default class Main extends Component {
@@ -25,7 +26,7 @@ export default class Main extends Component {
                             this.props.navigator.push({
                                 name: 'quiz',
                                 id: null,
-                                model: null,
+                                model: model,
                                 questao: 0
                             });
                         }}>

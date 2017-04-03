@@ -221,7 +221,6 @@ var saveFile = (id, quiz) => {
 
 var deleteFile = (id) => {
     var file_path = dir_file + id + '.json';
-
     fs.unlink(file_path).then(() => {
         console.log('Arquivo deletado');
     }).catch((error) => {

@@ -18,7 +18,7 @@ export default class Routes extends Component {
                 break;
 
             case 'edit':
-                return <Edit navigator={navigator} />
+                return <Edit navigator={navigator} model={route.model} questao={route.questao} id={route.id} />
                 break;
 
             case 'config':

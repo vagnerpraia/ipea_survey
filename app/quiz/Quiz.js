@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, TextInput, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, TextInput, ToastAndroid, View } from 'react-native';
 import { Button, Card, CardItem, Container, Content, DeckSwiper, Footer, FooterTab, Header, Icon, Text, Title } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
@@ -18,16 +18,16 @@ export default class Quiz extends Component {
         var questaoApp = this.props.questao;
         var idApp = this.props.id;
 
+        console.log(modelApp);
+        console.log(questaoApp);
+        console.log(idApp);
+
         function renderIf(condition, content) {
             if (condition) {
                 return content;
             } else {
                 return null;
             }
-        }
-
-        if(modelApp == null){
-            modelApp = model;
         }
 
         if(idApp == null){
@@ -42,7 +42,12 @@ export default class Quiz extends Component {
             <Container style={styles.container}>
                 <Header>
                     <Button transparent onPress={() => {
-                        this.props.navigator.pop();
+                        if(questaoApp === 0){
+                            modelApp.deleteFile(idApp);
+                        };
+                        this.props.navigator.replacePreviousAndPop({
+                            name: 'main'
+                        });
                     }}>
                         <Icon name='ios-arrow-back' />
                     </Button>
@@ -95,7 +100,6 @@ export default class Quiz extends Component {
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
                                             modelApp.quiz['questao_' + questao.id] = value;
-                                            modelApp.saveFile(idApp, modelApp.quiz);
                                         }}
                                         style={styles.radioForm}
                                     />
@@ -118,7 +122,6 @@ export default class Quiz extends Component {
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
                                             modelApp.quiz['questao_' + questao.id] = value;
-                                            modelApp.saveFile(id, modelApp.quiz);
                                         }}
                                         style={styles.radioForm}
                                     />
@@ -132,7 +135,6 @@ export default class Quiz extends Component {
                                         keyboardType = 'numeric'
                                         onChangeText = {(value) => {
                                             modelApp.quiz['questao_' + questao.id] = value;
-                                            modelApp.saveFile(idApp, modelApp.quiz);
                                         }}
                                         value = {null}
                                         maxLength = {2}
@@ -150,23 +152,41 @@ export default class Quiz extends Component {
                 </Content>
                 <Footer>
                     <FooterTab>
+                        {renderIf(questaoApp == 0,
+                            <Button transparent onPress={()=> {
+                                ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                            }}>
+                                <Icon name='ios-arrow-back' />
+                            </Button>
+                        )}
+
+                        {renderIf(questaoApp != 0,
+                            <Button transparent onPress={() => {
+                                modelApp.saveFile(idApp, modelApp.quiz);
+                                this.props.navigator.replacePreviousAndPop({
+                                    name: 'quiz',
+                                    id: idApp,
+                                    model: modelApp,
+                                    questao: Number(questaoApp) - 1
+                                });
+                            }}>
+                                <Icon name='ios-arrow-back' />
+                            </Button>
+                        )}
+
                         <Button transparent onPress={() => {
-                            this.props.navigator.push({
-                                name: 'quiz',
-                                id: idApp,
-                                model: modelApp,
-                                questao: Number(questaoApp) - 1
-                            });
-                        }}>
-                            <Icon name='ios-arrow-back' />
-                        </Button>
-                        <Button transparent onPress={() => {
-                            this.props.navigator.push({
-                                name: 'quiz',
-                                id: idApp,
-                                model: modelApp,
-                                questao: Number(questaoApp) + 1
-                            });
+                            if(modelApp.quiz['questao_' + questao.id] != null){
+                                modelApp.saveFile(idApp, modelApp.quiz);
+
+                                this.props.navigator.push({
+                                    name: 'quiz',
+                                    id: idApp,
+                                    model: modelApp,
+                                    questao: Number(questaoApp) + 1
+                                });
+                            }else{
+                                ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                            }
                         }}>
                             <Icon name='ios-arrow-forward' />
                         </Button>

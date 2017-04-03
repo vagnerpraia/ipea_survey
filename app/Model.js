@@ -211,15 +211,11 @@ var readFile = (id, callback) => {
     });
 };
 
-var saveFile = (id, attr, value) => {
+var saveFile = (id, quiz) => {
     var file_path = dir_file + id + '.json';
-
-    readFile(id, (json) => {
-        json[attr] = value;
-        var data = JSON.stringify(json);
-        fs.writeFile(file_path, data, 'utf8').then(() => {
-            console.log('Arquivo atualizado');
-        });
+    var data = JSON.stringify(json);
+    fs.writeFile(file_path, data, 'utf8').then(() => {
+        console.log('Arquivo atualizado');
     });
 };
 

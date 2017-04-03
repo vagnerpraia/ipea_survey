@@ -23,7 +23,10 @@ export default class Main extends Component {
                     <List>
                         <ListItem iconLeft onPress={() => {
                             this.props.navigator.push({
-                                name: 'quiz'
+                                name: 'quiz',
+                                id: null,
+                                model: null,
+                                questao: 1
                             });
                         }}>
                             <Icon name='md-document' style={styles.icon} />
@@ -85,4 +88,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#F5FCFF',
     },
+    button_footer: {
+        fontSize: 20
+    }
 });

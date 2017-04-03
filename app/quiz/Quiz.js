@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, TextInput, View } from 'react-native';
-import { Button, Card, CardItem, Container, DeckSwiper, Header, Icon, Text, Title } from 'native-base';
+import { Button, Card, CardItem, Container, Content, DeckSwiper, Footer, FooterTab, Header, Icon, Text, Title } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
 
+import { model } from '../Model';
 import { questions } from './Questions';
 import { exitApp } from '../Util';
 
@@ -13,8 +14,9 @@ export default class Quiz extends Component {
     }
 
     render() {
-        var model = this.props.model;
-        var id;
+        var modelApp = this.props.model;
+        var questaoApp = this.props.questao;
+        var idApp = this.props.id;
 
         function renderIf(condition, content) {
             if (condition) {
@@ -24,109 +26,150 @@ export default class Quiz extends Component {
             }
         }
 
-        model.createFile((result) => {
-            id = result;
-        });
+        if(modelApp == null){
+            modelApp = model;
+        }
+
+        if(idApp == null){
+            modelApp.createFile((result) => {
+                idApp = result;
+            });
+        }
+
+        var questao;
+        for (i = 0; i < questions.length; i++) {
+            if(questions[i].id == questaoApp){
+                console.log(questions[i]);
+                questao = questions[i];
+            }
+        }
 
         return (
             <Container style={styles.container}>
                 <Header>
-                    <Button transparent onPress={() => { this.props.navigator.pop(); }}>
+                    <Button transparent onPress={() => {
+                        this.props.navigator.pop();
+                    }}>
                         <Icon name='ios-arrow-back' />
                     </Button>
 
                     <Title>Questionário</Title>
 
-                    <Button transparent onPress={exitApp}>
+                    <Button transparent onPress={
+                        exitApp
+                    }>
                         <Icon name='ios-close' />
                     </Button>
                 </Header>
-                <View>
-                    <DeckSwiper
-                        dataSource={questions}
-                        renderItem={item =>
-                            <Card style={styles.card}>
-                                {renderIf(item.id !== 'id',
-                                    <CardItem>
-                                        <Text>{item.id + '. ' + item.pergunta}</Text>
-                                        <Text note>{item.observacao_pergunta}</Text>
-                                    </CardItem>
-                                )}
+                <Content>
+                    <Card style={styles.card}>
+                        {renderIf(questions.id !== 'id',
+                            <CardItem>
+                                <Text>{questao.id + '. ' + questao.pergunta}</Text>
+                                <Text note>{questao.observacao_pergunta}</Text>
+                            </CardItem>
+                        )}
 
-                                <CardItem cardBody style={styles.cardItem}>
-                                    {renderIf(item.pergunta_secundaria !== '',
-                                        <View style={styles.pergunta_secundaria}>
-                                            <Text>{item.pergunta_secundaria.id + ') ' + item.pergunta_secundaria.pergunta}</Text>
-                                            <Text note>{item.pergunta_secundaria.observacao_pergunta}</Text>
-                                        </View>
-                                    )}
+                        <CardItem cardBody style={styles.cardItem}>
+                            {renderIf(questao.pergunta_secundaria !== '',
+                                <View style={styles.pergunta_secundaria}>
+                                    <Text>{questao.pergunta_secundaria.id + ') ' + questao.pergunta_secundaria.pergunta}</Text>
+                                    <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
+                                </View>
+                            )}
 
-                                    {renderIf(item.tipo === 'quiz_id',
-                                        <View>
-                                            <Text>Nome do aplicador</Text>
-                                            <TextInput
-                                                style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                                                onChangeText={(value) => {
-                                                    model.quiz['nome_aplicador'] = value;
-                                                }}
-                                                value={model.quiz['nome_aplicador']}
-                                            />
-                                        </View>
-                                    )}
+                            {renderIf(questao.tipo === 'quiz_id',
+                                <View>
+                                    <Text>Nome do aplicador</Text>
+                                    <TextInput
+                                        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                                        onChangeText={(value) => {
+                                            modelApp.quiz['nome_aplicador'] = value;
+                                        }}
+                                        value={modelApp.quiz['nome_aplicador']}
+                                    />
+                                </View>
+                            )}
 
-                                    {renderIf(item.tipo === 'radio',
-                                        <RadioForm
-                                            radio_props={item.opcoes}
-                                            initial={model.quiz['questao_' + item.id]}
-                                            buttonColor={'#000000'}
-                                            buttonSize={10}
-                                            labelStyle={styles.radioLabel}
-                                            onPress={(value) => {
-                                                model.saveFile(id, 'questao_' + item.id, value)
-                                            }}
-                                            style={styles.radioForm}
-                                        />
-                                    )}
+                            {renderIf(questao.tipo === 'radio',
+                                <RadioForm
+                                    radio_props={questao.opcoes}
+                                    initial={modelApp.quiz['questao_' + questao.id]}
+                                    buttonColor={'#000000'}
+                                    buttonSize={10}
+                                    labelStyle={styles.radioLabel}
+                                    onPress={(value) => {
+                                        modelApp.quiz['questao_' + questao.id] = value;
+                                        modelApp.saveFile(idApp, modelApp.quiz);
+                                    }}
+                                    style={styles.radioForm}
+                                />
+                            )}
 
-                                    {renderIf(item.tipo === 'select',
-                                        <Text>model.quiz['questao_' + item.id]</Text>
-                                    )}
+                            {renderIf(questao.tipo === 'select',
+                                <Text>modelApp.quiz['questao_' + questao.id]</Text>
+                            )}
 
-                                    {renderIf(item.tipo === 'multiple',
-                                        <RadioForm
-                                            radio_props={item.opcoes}
-                                            initial={model.quiz['questao_' + item.id]}
-                                            buttonColor={'#000000'}
-                                            buttonSize={10}
-                                            labelStyle={styles.radioLabel}
-                                            onPress={(value) => {
-                                                model.quiz['questao_' + item.id] = value;
-                                                model.saveFile('test', model)
-                                            }}
-                                            style={styles.radioForm}
-                                        />
-                                    )}
+                            {renderIf(questao.tipo === 'multiple',
+                                <RadioForm
+                                    radio_props={questao.opcoes}
+                                    initial={modelApp.quiz['questao_' + questao.id]}
+                                    buttonColor={'#000000'}
+                                    buttonSize={10}
+                                    labelStyle={styles.radioLabel}
+                                    onPress={(value) => {
+                                        modelApp.quiz['questao_' + questao.id] = value;
+                                        modelApp.saveFile(id, modelApp.quiz);
+                                    }}
+                                    style={styles.radioForm}
+                                />
+                            )}
 
-                                    {renderIf(item.tipo === 'input_numeric',
-                                        <TextInput
-                                            style={styles.textInputNumeric}
-                                            keyboardType = 'numeric'
-                                            onChangeText = {(value) => {this.setState({questao_: value})}}
-                                            value = {null}
-                                            maxLength = {2}
-                                        />
-                                    )}
-                                </CardItem>
+                            {renderIf(questao.tipo === 'input_numeric',
+                                <TextInput
+                                    style={styles.textInputNumeric}
+                                    keyboardType = 'numeric'
+                                    onChangeText = {(value) => {
+                                        modelApp.quiz['questao_' + questao.id] = value;
+                                        modelApp.saveFile(idApp, modelApp.quiz);
+                                    }}
+                                    value = {null}
+                                    maxLength = {2}
+                                />
+                            )}
+                        </CardItem>
 
-                                {renderIf(item.id !== 'id',
-                                    <CardItem>
-                                        <Text>{item.observacao_opcoes}</Text>
-                                    </CardItem>
-                                )}
-                            </Card>
-                        }
-                    />
-                </View>
+                        {renderIf(questao.id !== 'id',
+                            <CardItem>
+                                <Text>{questao.observacao_opcoes}</Text>
+                            </CardItem>
+                        )}
+                    </Card>
+                </Content>
+                <Footer>
+                    <FooterTab>
+                        <Button transparent onPress={() => {
+                            this.props.navigator.push({
+                                name: 'quiz',
+                                id: idApp,
+                                model: modelApp,
+                                questao: Number(questaoApp) - 1
+                            });
+                        }}>
+                            <Icon name='ios-arrow-back' />
+                        </Button>
+                        <Button transparent onPress={() => {
+                            this.props.navigator.push({
+                                name: 'quiz',
+                                id: idApp,
+                                model: modelApp,
+                                questao: Number(questaoApp) + 1
+                            });
+                        }}>
+                            <Icon name='ios-arrow-forward' />
+                        </Button>
+                    </FooterTab>
+                </Footer>
             </Container>
         );
     }

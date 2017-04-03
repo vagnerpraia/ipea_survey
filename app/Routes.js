@@ -6,29 +6,27 @@ import Edit from './edit/Edit';
 import Main from './main/Main';
 import Quiz from './quiz/Quiz';
 
-import { model } from './Model';
-
 export default class Routes extends Component {
     renderScene (route, navigator) {
         switch (route.name) {
             case 'main':
-                return <Main navigator={navigator} model={model} />
+                return <Main navigator={navigator} />
                 break;
 
             case 'quiz':
-                return <Quiz navigator={navigator} model={model} />
+                return <Quiz navigator={navigator} model={route.model} questao={route.questao} id={route.id} />
                 break;
 
             case 'edit':
-                return <Edit navigator={navigator} model={model} />
+                return <Edit navigator={navigator} />
                 break;
 
             case 'config':
-                return <Config navigator={navigator} model={model} />
+                return <Config navigator={navigator} />
                 break;
 
             default:
-                return <Main navigator={navigator} model={model} />
+                return <Main navigator={navigator} />
                 break;
         }
     }

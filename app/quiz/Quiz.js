@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, TextInput, View } from 'react-native';
 import { Button, Card, CardItem, Container, DeckSwiper, Header, Icon, Text, Title } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button';
+import RNFetchBlob from 'react-native-fetch-blob';
 
 import { questions } from './Questions';
 import { exitApp } from '../Util';
@@ -13,6 +14,7 @@ export default class Quiz extends Component {
 
     render() {
         var model = this.props.model;
+        var id;
 
         function renderIf(condition, content) {
             if (condition) {
@@ -21,6 +23,10 @@ export default class Quiz extends Component {
                 return null;
             }
         }
+
+        model.createFile((result) => {
+            id = result;
+        });
 
         return (
             <Container style={styles.container}>
@@ -71,30 +77,30 @@ export default class Quiz extends Component {
                                     {renderIf(item.tipo === 'radio',
                                         <RadioForm
                                             radio_props={item.opcoes}
-                                            initial={model.quiz['question' + item.id]}
+                                            initial={model.quiz['questao_' + item.id]}
                                             buttonColor={'#000000'}
                                             buttonSize={10}
                                             labelStyle={styles.radioLabel}
                                             onPress={(value) => {
-                                                model.saveFile('teste', 'question' + item.id, value)
+                                                model.saveFile(id, 'questao_' + item.id, value)
                                             }}
                                             style={styles.radioForm}
                                         />
                                     )}
 
                                     {renderIf(item.tipo === 'select',
-                                        <Text>model.quiz['question' + item.id]</Text>
+                                        <Text>model.quiz['questao_' + item.id]</Text>
                                     )}
 
                                     {renderIf(item.tipo === 'multiple',
                                         <RadioForm
                                             radio_props={item.opcoes}
-                                            initial={model.quiz['question' + item.id]}
+                                            initial={model.quiz['questao_' + item.id]}
                                             buttonColor={'#000000'}
                                             buttonSize={10}
                                             labelStyle={styles.radioLabel}
                                             onPress={(value) => {
-                                                model.quiz['question' + item.id] = value;
+                                                model.quiz['questao_' + item.id] = value;
                                                 model.saveFile('test', model)
                                             }}
                                             style={styles.radioForm}
@@ -105,7 +111,7 @@ export default class Quiz extends Component {
                                         <TextInput
                                             style={styles.textInputNumeric}
                                             keyboardType = 'numeric'
-                                            onChangeText = {(value) => {this.setState({question: value})}}
+                                            onChangeText = {(value) => {this.setState({questao_: value})}}
                                             value = {null}
                                             maxLength = {2}
                                         />

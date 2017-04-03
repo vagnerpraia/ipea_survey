@@ -18,10 +18,6 @@ export default class Quiz extends Component {
         var questaoApp = this.props.questao;
         var idApp = this.props.id;
 
-        console.log(modelApp);
-        console.log(questaoApp);
-        console.log(idApp);
-
         function renderIf(condition, content) {
             if (condition) {
                 return content;
@@ -45,7 +41,7 @@ export default class Quiz extends Component {
                         if(questaoApp === 0){
                             modelApp.deleteFile(idApp);
                         };
-                        delete modelApp;
+
                         this.props.navigator.replacePreviousAndPop({
                             name: 'main'
                         });

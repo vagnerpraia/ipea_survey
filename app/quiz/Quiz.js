@@ -45,6 +45,7 @@ export default class Quiz extends Component {
                         if(questaoApp === 0){
                             modelApp.deleteFile(idApp);
                         };
+                        delete modelApp;
                         this.props.navigator.replacePreviousAndPop({
                             name: 'main'
                         });

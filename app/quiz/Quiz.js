@@ -36,13 +36,7 @@ export default class Quiz extends Component {
             });
         }
 
-        var questao;
-        for (i = 0; i < questions.length; i++) {
-            if(questions[i].id == questaoApp){
-                console.log(questions[i]);
-                questao = questions[i];
-            }
-        }
+        var questao = questions[questaoApp];
 
         return (
             <Container style={styles.container}>
@@ -92,50 +86,58 @@ export default class Quiz extends Component {
                             )}
 
                             {renderIf(questao.tipo === 'radio',
-                                <RadioForm
-                                    radio_props={questao.opcoes}
-                                    initial={modelApp.quiz['questao_' + questao.id]}
-                                    buttonColor={'#000000'}
-                                    buttonSize={10}
-                                    labelStyle={styles.radioLabel}
-                                    onPress={(value) => {
-                                        modelApp.quiz['questao_' + questao.id] = value;
-                                        modelApp.saveFile(idApp, modelApp.quiz);
-                                    }}
-                                    style={styles.radioForm}
-                                />
+                                <View>
+                                    <RadioForm
+                                        radio_props={questao.opcoes}
+                                        initial={modelApp.quiz['questao_' + questao.id]}
+                                        buttonColor={'#000000'}
+                                        buttonSize={10}
+                                        labelStyle={styles.radioLabel}
+                                        onPress={(value) => {
+                                            modelApp.quiz['questao_' + questao.id] = value;
+                                            modelApp.saveFile(idApp, modelApp.quiz);
+                                        }}
+                                        style={styles.radioForm}
+                                    />
+                                </View>
                             )}
 
                             {renderIf(questao.tipo === 'select',
-                                <Text>modelApp.quiz['questao_' + questao.id]</Text>
+                                <View>
+                                    <Text>modelApp.quiz['questao_' + questao.id]</Text>
+                                </View>
                             )}
 
                             {renderIf(questao.tipo === 'multiple',
-                                <RadioForm
-                                    radio_props={questao.opcoes}
-                                    initial={modelApp.quiz['questao_' + questao.id]}
-                                    buttonColor={'#000000'}
-                                    buttonSize={10}
-                                    labelStyle={styles.radioLabel}
-                                    onPress={(value) => {
-                                        modelApp.quiz['questao_' + questao.id] = value;
-                                        modelApp.saveFile(id, modelApp.quiz);
-                                    }}
-                                    style={styles.radioForm}
-                                />
+                                <View>
+                                    <RadioForm
+                                        radio_props={questao.opcoes}
+                                        initial={modelApp.quiz['questao_' + questao.id]}
+                                        buttonColor={'#000000'}
+                                        buttonSize={10}
+                                        labelStyle={styles.radioLabel}
+                                        onPress={(value) => {
+                                            modelApp.quiz['questao_' + questao.id] = value;
+                                            modelApp.saveFile(id, modelApp.quiz);
+                                        }}
+                                        style={styles.radioForm}
+                                    />
+                                </View>
                             )}
 
                             {renderIf(questao.tipo === 'input_numeric',
-                                <TextInput
-                                    style={styles.textInputNumeric}
-                                    keyboardType = 'numeric'
-                                    onChangeText = {(value) => {
-                                        modelApp.quiz['questao_' + questao.id] = value;
-                                        modelApp.saveFile(idApp, modelApp.quiz);
-                                    }}
-                                    value = {null}
-                                    maxLength = {2}
-                                />
+                                <View>
+                                    <TextInput
+                                        style={styles.textInputNumeric}
+                                        keyboardType = 'numeric'
+                                        onChangeText = {(value) => {
+                                            modelApp.quiz['questao_' + questao.id] = value;
+                                            modelApp.saveFile(idApp, modelApp.quiz);
+                                        }}
+                                        value = {null}
+                                        maxLength = {2}
+                                    />
+                                </View>
                             )}
                         </CardItem>
 
@@ -188,9 +190,8 @@ const styles = StyleSheet.create({
     },
     cardItem:{
         flex:1,
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center'
+        flexDirection:'column',
+        justifyContent:'center',
     },
     label: {
         fontSize: 14,

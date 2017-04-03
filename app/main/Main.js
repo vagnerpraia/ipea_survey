@@ -26,7 +26,7 @@ export default class Main extends Component {
                                 name: 'quiz',
                                 id: null,
                                 model: null,
-                                questao: 1
+                                questao: 0
                             });
                         }}>
                             <Icon name='md-document' style={styles.icon} />

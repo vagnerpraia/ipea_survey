@@ -73,11 +73,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '5a',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'A',
             pergunta: 'Área industrial',
             observacao_pergunta: '',
         },
@@ -90,11 +89,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '5b',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'B',
             pergunta: 'Estrada de grande circulação de veículos',
             observacao_pergunta: '',
         },
@@ -107,11 +105,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '5c',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'C',
             pergunta: 'Estrada de ferro em uso',
             observacao_pergunta: '',
         },
@@ -124,11 +121,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '5d',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'D',
             pergunta: 'Encosta ou área sujeita a deslizamento',
             observacao_pergunta: '',
         },
@@ -141,11 +137,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '5e',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'E',
             pergunta: 'Esgoto a céu aberto ou valão',
             observacao_pergunta: '',
         },
@@ -158,11 +153,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '5f',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'F',
             pergunta: 'Lixão ou depósito de lixo tóxico ou perigoso',
             observacao_pergunta: '',
         },
@@ -175,11 +169,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '5g',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'G',
             pergunta: 'Rio, baía, lago, açude ou represa poluídos',
             observacao_pergunta: '',
         },
@@ -192,11 +185,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '5h',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'H',
             pergunta: 'Gasoduto ou oleoduto (rede ou depósito)',
             observacao_pergunta: '',
         },
@@ -209,11 +201,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '5i',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'I',
             pergunta: 'Passagem de fios de alta tensão',
             observacao_pergunta: '',
         },
@@ -285,11 +276,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9a',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'A',
             pergunta: 'Fogão a gás e/ou elétrico',
             observacao_pergunta: '',
         },
@@ -302,11 +292,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9b',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'B',
             pergunta: 'Ferro elétrico de passar roupa',
             observacao_pergunta: '',
         },
@@ -319,11 +308,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9c',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'C',
             pergunta: 'Geladeira',
             observacao_pergunta: '',
         },
@@ -336,11 +324,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9d',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'D',
             pergunta: 'Freezer',
             observacao_pergunta: '',
         },
@@ -353,11 +340,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9e',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'E',
             pergunta: 'TV',
             observacao_pergunta: '',
         },
@@ -370,11 +356,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9f',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'F',
             pergunta: 'Aparelho de vídeo/DVD',
             observacao_pergunta: '',
         },
@@ -387,11 +372,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9g',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'G',
             pergunta: 'Rádio',
             observacao_pergunta: '',
         },
@@ -404,11 +388,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9h',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'H',
             pergunta: 'Chuveiro elétrico',
             observacao_pergunta: '',
         },
@@ -421,11 +404,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9i',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'I',
             pergunta: 'Liquidificador',
             observacao_pergunta: '',
         },
@@ -438,11 +420,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9j',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'J',
             pergunta: 'Máquina de lavar roupa',
             observacao_pergunta: '',
         },
@@ -455,11 +436,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9k',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'K',
             pergunta: 'Tanquinho',
             observacao_pergunta: '',
         },
@@ -472,11 +452,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9l',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'L',
             pergunta: 'Automóvel',
             observacao_pergunta: '',
         },
@@ -489,11 +468,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9m',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'M',
             pergunta: 'Motocicleta',
             observacao_pergunta: '',
         },
@@ -506,11 +484,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9n',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'N',
             pergunta: 'Bicicleta',
             observacao_pergunta: '',
         },
@@ -523,11 +500,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9o',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'O',
             pergunta: 'Canoa',
             observacao_pergunta: '',
         },
@@ -540,11 +516,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9p',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'P',
             pergunta: 'Barco (Rabeta, Voadeira)',
             observacao_pergunta: '',
         },
@@ -557,11 +532,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9q',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'Q',
             pergunta: 'Telefone fixo',
             observacao_pergunta: '',
         },
@@ -574,11 +548,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9r',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'R',
             pergunta: 'Celular',
             observacao_pergunta: '',
         },
@@ -591,11 +564,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9s',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'S',
             pergunta: 'Antena parabólica',
             observacao_pergunta: '',
         },
@@ -608,11 +580,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9t',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'T',
             pergunta: 'Computador',
             observacao_pergunta: '',
         },
@@ -625,11 +596,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '9u',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'U',
             pergunta: 'Internet',
             observacao_pergunta: '',
         },
@@ -930,11 +900,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '30',
+        id: '30a',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'A',
             pergunta: 'Acesso à escola (distância, transporte)',
             observacao_pergunta: '',
         },
@@ -950,11 +919,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '30',
+        id: '30b',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'B',
             pergunta: 'Estado geral da escola (infraestrutura, qualidade e tamanho das salas de aula, carteiras suficientes, água, luz, etc.)',
             observacao_pergunta: '',
         },
@@ -970,11 +938,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '30',
+        id: '30c',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'C',
             pergunta: 'Quantidade de professores',
             observacao_pergunta: '',
         },
@@ -990,11 +957,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '30',
+        id: '30d',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'D',
             pergunta: 'Qualidade dos professores',
             observacao_pergunta: '',
         },
@@ -1010,11 +976,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '30',
+        id: '30e',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'E',
             pergunta: 'Quantidade da merenda escolar servida',
             observacao_pergunta: '',
         },
@@ -1030,11 +995,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '30',
+        id: '30f',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'F',
             pergunta: ' Qualidade da merenda escolar servida',
             observacao_pergunta: '',
         },
@@ -1152,11 +1116,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '38',
+        id: '38a',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'A',
             pergunta: 'Acesso a hospital, posto de saúde ou UPAs (distância, transporte etc.)',
             observacao_pergunta: '',
         },
@@ -1172,11 +1135,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '38',
+        id: '38b',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'B',
             pergunta: ' Acesso a consultas médicas no hospital ou posto de saúde (tempo de espera, disponibilidade de médicos) ',
             observacao_pergunta: '',
         },
@@ -1192,11 +1154,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '38',
+        id: '38c',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'C',
             pergunta: 'Acesso a atendimentos mais simples (curativos, pontos, “tirar” pressão)',
             observacao_pergunta: '',
         },
@@ -1212,11 +1173,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '38',
+        id: '38d',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'D',
             pergunta: 'Acesso a atendimentos mais complexos (ortopedia, cardiologia, cirurgia, internação)',
             observacao_pergunta: '',
         },
@@ -1232,11 +1192,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '38',
+        id: '38e',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'E',
             pergunta: 'Disponibilidade de medicamentos no hospital ou posto de saúde.',
             observacao_pergunta: '',
         },
@@ -1409,11 +1368,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '49',
+        id: '49a',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'A',
             pergunta: 'Vizinhos/amigos',
             observacao_pergunta: '',
         },
@@ -1429,11 +1387,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '49',
+        id: '49b',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'B',
             pergunta: 'Local de trabalho atual',
             observacao_pergunta: '',
         },
@@ -1449,11 +1406,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '49',
+        id: '49c',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'C',
             pergunta: 'A cidade mais próxima',
             observacao_pergunta: '',
         },
@@ -1469,11 +1425,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '49',
+        id: '49d',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'D',
             pergunta: 'O posto de saúde',
             observacao_pergunta: '',
         },
@@ -1489,11 +1444,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '49',
+        id: '49e',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'E',
             pergunta: 'A escola',
             observacao_pergunta: '',
         },
@@ -1509,11 +1463,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '49',
+        id: '49f',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'F',
             pergunta: 'A igreja',
             observacao_pergunta: '',
         },
@@ -1529,11 +1482,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '49',
+        id: '49g',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'G',
             pergunta: 'O rio',
             observacao_pergunta: '',
         },
@@ -1549,11 +1501,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '49',
+        id: '49h',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'H',
             pergunta: 'O ponto de ônibus',
             observacao_pergunta: '',
         },
@@ -1590,11 +1541,10 @@ export const questions = [
         tipo: 'multiple'
     },
     {
-        id: '51',
+        id: '51a',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
-            id: 'A',
             pergunta: 'Casa para moradia da família',
             observacao_pergunta: '',
         },
@@ -1607,11 +1557,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '51',
+        id: '51b',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
-            id: 'B',
             pergunta: 'Energia elétrica',
             observacao_pergunta: '',
         },
@@ -1624,11 +1573,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '51',
+        id: '51c',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
-            id: 'C',
             pergunta: 'Água encanada suficiente para consumo e produção',
             observacao_pergunta: '',
         },
@@ -1641,11 +1589,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '51',
+        id: '51d',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
-            id: 'D',
             pergunta: 'Galpão e instalações necessárias ao trabalho (benfeitorias)',
             observacao_pergunta: '',
         },
@@ -1658,11 +1605,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '51',
+        id: '51e',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
-            id: 'E',
             pergunta: 'Estrada de acesso em boas condições',
             observacao_pergunta: '',
         },
@@ -1675,11 +1621,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '51',
+        id: '51f',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
-            id: 'F',
             pergunta: 'Área de plantio ou pasto preparado',
             observacao_pergunta: '',
         },
@@ -1692,11 +1637,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '51',
+        id: '51g',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
-            id: 'G',
             pergunta: 'Recursos para manutenção durante o período inicial da transição da produção (até a primeira colheita)',
             observacao_pergunta: '',
         },
@@ -1709,11 +1653,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '51',
+        id: '51h',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
-            id: 'H',
             pergunta: 'Assistência técnica',
             observacao_pergunta: '',
         },
@@ -1759,11 +1702,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '55',
+        id: '55a',
         pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'após responder passar para questão 57',
         pergunta_secundaria: {
-            id: 'A',
             pergunta: 'Casa para moradia',
             observacao_pergunta: '',
         },
@@ -1776,11 +1718,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '55',
+        id: '55b',
         pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'após responder passar para questão 57',
         pergunta_secundaria: {
-            id: 'B',
             pergunta: 'Energia elétrica',
             observacao_pergunta: '',
         },
@@ -1793,11 +1734,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '55',
+        id: '55c',
         pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'após responder passar para questão 57',
         pergunta_secundaria: {
-            id: 'C',
             pergunta: 'Água encanada suficiente para consumo e produção',
             observacao_pergunta: '',
         },
@@ -1810,11 +1750,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '55',
+        id: '55d',
         pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'após responder passar para questão 57',
         pergunta_secundaria: {
-            id: 'D',
             pergunta: 'Galpão e instalações necessárias ao trabalho (benfeitorias) ',
             observacao_pergunta: '',
         },
@@ -1827,11 +1766,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '55',
+        id: '55e',
         pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'após responder passar para questão 57',
         pergunta_secundaria: {
-            id: 'E',
             pergunta: 'Estrada de acesso em boas condições',
             observacao_pergunta: '',
         },
@@ -1844,11 +1782,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '55',
+        id: '55f',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'após responder passar para questão 57',
         pergunta_secundaria: {
-            id: 'F',
             pergunta: 'Área de plantio ou pasto preparado',
             observacao_pergunta: '',
         },
@@ -1966,11 +1903,10 @@ export const questions = [
         tipo: 'input_numeric'
     },
     {
-        id: '62',
+        id: '62a',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'A',
             pergunta: 'Tamanho do lote (área útil)',
             observacao_pergunta: '',
         },
@@ -1987,11 +1923,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62b',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'B',
             pergunta: 'Fertilidade do solo',
             observacao_pergunta: '',
         },
@@ -2008,11 +1943,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62c',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'C',
             pergunta: 'Quantidade de água disponível',
             observacao_pergunta: '',
         },
@@ -2029,11 +1963,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62d',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'D',
             pergunta: 'Disponibilidade de maquinário e equipamentos produtivos',
             observacao_pergunta: '',
         },
@@ -2050,11 +1983,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62e',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'E',
             pergunta: 'Disponibilidade de mão de obra',
             observacao_pergunta: '',
         },
@@ -2071,11 +2003,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62f',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'F',
             pergunta: 'Disponibilidade de crédito',
             observacao_pergunta: '',
         },
@@ -2092,11 +2023,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62g',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'G',
             pergunta: 'Conhecimentos das técnicas de produção',
             observacao_pergunta: '',
         },
@@ -2113,11 +2043,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62h',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'H',
             pergunta: 'Assistência técnica',
             observacao_pergunta: '',
         },
@@ -2134,11 +2063,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62i',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'I',
             pergunta: 'Preço recebido pelos produtos vendidos',
             observacao_pergunta: '',
         },
@@ -2155,11 +2083,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62j',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'J',
             pergunta: 'Meios para transportar a produção',
             observacao_pergunta: '',
         },
@@ -2176,11 +2103,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '62',
+        id: '62k',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'K',
             pergunta: 'Meios de comercializar a produção',
             observacao_pergunta: '',
         },
@@ -2197,11 +2123,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '63',
+        id: '63a',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'A',
             pergunta: 'Trator',
             observacao_pergunta: '',
         },
@@ -2214,11 +2139,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '63',
+        id: '63b',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'B',
             pergunta: 'Carreta agrícola ',
             observacao_pergunta: '',
         },
@@ -2231,11 +2155,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '63',
+        id: '63c',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'C',
             pergunta: 'Arado/grade aradora/roçadeira',
             observacao_pergunta: '',
         },
@@ -2248,11 +2171,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '63',
+        id: '63d',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'D',
             pergunta: 'Plantadeira/adubadeira',
             observacao_pergunta: '',
         },
@@ -2265,11 +2187,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '63',
+        id: '63e',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'E',
             pergunta: 'Picadeira/forrageira/triturador',
             observacao_pergunta: '',
         },
@@ -2282,11 +2203,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '63',
+        id: '63f',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'F',
             pergunta: 'Carroça/carro de boi',
             observacao_pergunta: '',
         },
@@ -2299,11 +2219,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '63',
+        id: '63g',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'G',
             pergunta: 'Equipamentos de irrigação ',
             observacao_pergunta: '',
         },
@@ -2316,11 +2235,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '63',
+        id: '63h',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'H',
             pergunta: 'Barco/canoa',
             observacao_pergunta: '',
         },
@@ -2333,11 +2251,10 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '63',
+        id: '63i',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
-            id: 'I',
             pergunta: 'Motosserra',
             observacao_pergunta: '',
         },

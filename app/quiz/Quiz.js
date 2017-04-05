@@ -65,7 +65,7 @@ export default class Quiz extends Component {
                     <Card style={styles.card}>
                         {renderIf(questions.id !== 'id',
                             <CardItem>
-                                <Text>{questao.id + '. ' + questao.pergunta}</Text>
+                                <Text>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
                                 <Text note>{questao.observacao_pergunta}</Text>
                             </CardItem>
                         )}
@@ -73,7 +73,7 @@ export default class Quiz extends Component {
                         <CardItem cardBody style={styles.cardItem}>
                             {renderIf(questao.pergunta_secundaria !== '',
                                 <View style={styles.pergunta_secundaria}>
-                                    <Text>{questao.pergunta_secundaria.id + ') ' + questao.pergunta_secundaria.pergunta}</Text>
+                                    <Text>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
                                     <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
                                 </View>
                             )}

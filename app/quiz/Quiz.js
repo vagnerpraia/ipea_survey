@@ -8,16 +8,26 @@ import { model } from '../Model';
 import { questions } from './Questions';
 import { exitApp } from '../Util';
 
+var modelQuiz;
+var questaoQuiz;
+var idQuiz;
+
 export default class Quiz extends Component {
     constructor(props) {
         super(props);
+
+        modelQuiz = this.props.model;
+        questaoQuiz = this.props.questao;
+        idQuiz = this.props.id;
+
+        if(questaoQuiz == 0){
+            modelQuiz.createFile((result) => {
+                idQuiz = result;
+            });
+        }
     }
 
     render() {
-        var modelApp = this.props.model;
-        var questaoApp = this.props.questao;
-        var idApp = this.props.id;
-
         function renderIf(condition, content) {
             if (condition) {
                 return content;
@@ -26,20 +36,14 @@ export default class Quiz extends Component {
             }
         }
 
-        if(idApp == null){
-            modelApp.createFile((result) => {
-                idApp = result;
-            });
-        }
-
-        var questao = questions[questaoApp];
+        var questao = questions[questaoQuiz];
 
         return (
             <Container style={styles.container}>
                 <Header>
                     <Button transparent onPress={() => {
-                        if(questaoApp === 0){
-                            modelApp.deleteFile(idApp);
+                        if(questaoQuiz === 0){
+                            modelQuiz.deleteFile(idQuiz);
                         };
 
                         this.props.navigator.replacePreviousAndPop({
@@ -80,9 +84,9 @@ export default class Quiz extends Component {
                                     <TextInput
                                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                                         onChangeText={(value) => {
-                                            modelApp.quiz['nome_aplicador'] = value;
+                                            modelQuiz.quiz['nome_aplicador'] = value;
                                         }}
-                                        value={modelApp.quiz['nome_aplicador']}
+                                        value={modelQuiz.quiz['nome_aplicador']}
                                     />
                                 </View>
                             )}
@@ -91,12 +95,12 @@ export default class Quiz extends Component {
                                 <View>
                                     <RadioForm
                                         radio_props={questao.opcoes}
-                                        initial={modelApp.quiz['questao_' + questao.id]}
+                                        initial={modelQuiz.quiz['questao_' + questao.id]}
                                         buttonColor={'#000000'}
                                         buttonSize={10}
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
-                                            modelApp.quiz['questao_' + questao.id] = value;
+                                            modelQuiz.quiz['questao_' + questao.id] = value;
                                         }}
                                         style={styles.radioForm}
                                     />
@@ -105,7 +109,7 @@ export default class Quiz extends Component {
 
                             {renderIf(questao.tipo === 'select',
                                 <View>
-                                    <Text>modelApp.quiz['questao_' + questao.id]</Text>
+                                    <Text>modelQuiz.quiz['questao_' + questao.id]</Text>
                                 </View>
                             )}
 
@@ -113,12 +117,12 @@ export default class Quiz extends Component {
                                 <View>
                                     <RadioForm
                                         radio_props={questao.opcoes}
-                                        initial={modelApp.quiz['questao_' + questao.id]}
+                                        initial={modelQuiz.quiz['questao_' + questao.id]}
                                         buttonColor={'#000000'}
                                         buttonSize={10}
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
-                                            modelApp.quiz['questao_' + questao.id] = value;
+                                            modelQuiz.quiz['questao_' + questao.id] = value;
                                         }}
                                         style={styles.radioForm}
                                     />
@@ -131,7 +135,7 @@ export default class Quiz extends Component {
                                         style={styles.textInputNumeric}
                                         keyboardType = 'numeric'
                                         onChangeText = {(value) => {
-                                            modelApp.quiz['questao_' + questao.id] = value;
+                                            modelQuiz.quiz['questao_' + questao.id] = value;
                                         }}
                                         value = {null}
                                         maxLength = {2}
@@ -149,7 +153,7 @@ export default class Quiz extends Component {
                 </Content>
                 <Footer>
                     <FooterTab>
-                        {renderIf(questaoApp == 0,
+                        {renderIf(questaoQuiz == 0,
                             <Button transparent onPress={()=> {
                                 ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
                             }}>
@@ -157,14 +161,14 @@ export default class Quiz extends Component {
                             </Button>
                         )}
 
-                        {renderIf(questaoApp != 0,
+                        {renderIf(questaoQuiz != 0,
                             <Button transparent onPress={() => {
-                                modelApp.saveFile(idApp, modelApp.quiz);
+                                modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
                                 this.props.navigator.replacePreviousAndPop({
                                     name: 'quiz',
-                                    id: idApp,
-                                    model: modelApp,
-                                    questao: Number(questaoApp) - 1
+                                    id: idQuiz,
+                                    model: modelQuiz,
+                                    questao: Number(questaoQuiz) - 1
                                 });
                             }}>
                                 <Icon name='ios-arrow-back' />
@@ -172,14 +176,14 @@ export default class Quiz extends Component {
                         )}
 
                         <Button transparent onPress={() => {
-                            if(modelApp.quiz['questao_' + questao.id] != null){
-                                modelApp.saveFile(idApp, modelApp.quiz);
+                            if(modelQuiz.quiz['questao_' + questao.id] != null){
+                                modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
 
                                 this.props.navigator.push({
                                     name: 'quiz',
-                                    id: idApp,
-                                    model: modelApp,
-                                    questao: Number(questaoApp) + 1
+                                    id: idQuiz,
+                                    model: modelQuiz,
+                                    questao: Number(questaoQuiz) + 1
                                 });
                             }else{
                                 ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);

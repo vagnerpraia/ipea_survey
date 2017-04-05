@@ -234,5 +234,6 @@ export var model = {
     createFile: createFile,
     readFile: readFile,
     saveFile: saveFile,
-    deleteFile: deleteFile
+    deleteFile: deleteFile,
+    maxQuestion: 0
 };

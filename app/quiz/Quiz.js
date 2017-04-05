@@ -10,9 +10,10 @@ import { model } from '../Model';
 import { questions } from './Questions';
 import { exitApp } from '../Util';
 
-var modelQuiz;
-var questaoQuiz;
-var idQuiz;
+let modelQuiz;
+let questaoQuiz;
+let idQuiz;
+let idQuestao;
 
 export default class Quiz extends Component {
     constructor(props) {
@@ -21,6 +22,38 @@ export default class Quiz extends Component {
         modelQuiz = this.props.model;
         questaoQuiz = this.props.questao;
         idQuiz = this.props.id;
+
+        idQuestao = questions[questaoQuiz].id.replace(/\D/g,'');
+    }
+
+    componentDidMount(){
+        if(idQuestao > modelQuiz.maxQuestion){
+            modelQuiz.notice = 'Responda a questão';
+            this.props.navigator.replacePreviousAndPop({
+                name: 'quiz',
+                id: idQuiz,
+                model: modelQuiz,
+                novo: false,
+                questao: Number(questaoQuiz) - 1
+            });
+        }else{
+            if(modelQuiz.quiz['questao_3'] == 1 && idQuestao == '4'){
+                modelQuiz.notice = 'Necessário passar para a questão 5';
+                this.props.navigator.push({
+                    name: 'quiz',
+                    id: idQuiz,
+                    model: modelQuiz,
+                    novo: false,
+                    questao: Number(questaoQuiz) + 1
+                });
+            }
+            else{
+                if(modelQuiz.notice !== ''){
+                    ToastAndroid.showWithGravity(modelQuiz.notice, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                }
+                modelQuiz.notice = '';
+            }
+        }
 
         if(this.props.novo === true){
             for(key in modelQuiz.quiz){
@@ -106,6 +139,19 @@ export default class Quiz extends Component {
                                         buttonSize={10}
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
+                                            if(idQuestao == 3){
+                                                if(value == 1){
+                                                    modelQuiz.quiz['questao_4'] = null;
+                                                    modelQuiz.maxQuestion = 5;
+                                                }
+                                                else{
+                                                    modelQuiz.maxQuestion ++;
+                                                }
+                                            }
+                                            else{
+                                                modelQuiz.maxQuestion ++
+                                            };
+
                                             modelQuiz.quiz['questao_' + questao.id] = value;
                                         }}
                                         style={styles.radioForm}
@@ -128,6 +174,9 @@ export default class Quiz extends Component {
                                         buttonSize={10}
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
+                                            if(questao.id.replace(/\D/g,'') === '3'){
+                                                modelQuiz.maxQuestion = 5;
+                                            };
                                             modelQuiz.quiz['questao_' + questao.id] = value;
                                         }}
                                         style={styles.radioForm}
@@ -160,8 +209,8 @@ export default class Quiz extends Component {
                                     iconColor={'black'}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
-                                    labelStyle={{fontSize: 14, color: '#000000'}}
-                                    inputStyle={{fontSize: 14, color: '#000000'}}
+                                    labelStyle={styles.textInput}
+                                    inputStyle={styles.textInput}
                                 />
                             </CardItem>
                         )}
@@ -257,7 +306,11 @@ const styles = StyleSheet.create({
     pergunta_secundaria: {
         paddingBottom: 10,
     },
+    textInput: {
+        fontSize: 14,
+        color: '#000000'
+    },
     textInputNumeric: {
         width: 50,
-    }
+    },
 });

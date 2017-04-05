@@ -1,29 +1,4 @@
 export const questions = [
-{
-    id: '58',
-    pergunta: 'A reparação mais importante que ainda é necessária é:',
-    observacao_pergunta: 'marcar apenas uma alternativa',
-    pergunta_secundaria: '',
-    opcoes: [
-      {label: 'Casa', value: 0},
-      {label: 'Só o terreno em área urbana', value: 1},
-      {label: 'Terra em área rural (reassentamento com casa, água, luz, benfeitorias)', value: 2},
-      {label: 'Indenização de benfeitorias ou de produção perdida', value: 3},
-      {label: 'Benfeitorias e infraestrutura para viabilizar a produção (meio rural, inclusive pesca)', value: 4},
-      {label: 'Recursos, assistência técnica e equipamentos para retomar a produção', value: 5},
-      {label: 'Recursos para retomar ou ter o próprio negócio (comércio, serviços ou indústria)', value: 6},
-      {label: 'Escritura do imóvel', value: 7},
-      {label: 'Emprego', value: 8},
-      {label: 'Outra', value: 9},
-      {label: 'Não sabe', value: 10},
-    ],
-    pergunta_extensao: {
-        pergunta: 'Se outra, indique qual:',
-        referencia: 9
-    },
-    observacao_opcoes: 'Não ler a última opção',
-    tipo: 'radio'
-},
     {
         id: '1',
         pergunta: 'Tipo de domicílio:',
@@ -71,7 +46,7 @@ export const questions = [
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Sim', value: 0},
-            {label: 'Não', value: 1},
+            {label: 'Não (passe para a questão 5)', value: 1},
             {label: 'Não sabe', value: 2},
         ],
         pergunta_extensao: '',
@@ -1978,7 +1953,7 @@ export const questions = [
     {
         id: '58',
         pergunta: 'A reparação mais importante que ainda é necessária é:',
-        observacao_pergunta: 'marcar apenas uma alternativa',
+        observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
           {label: 'Casa', value: 0},

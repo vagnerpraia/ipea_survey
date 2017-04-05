@@ -3,6 +3,8 @@ import { StyleSheet, TouchableOpacity, TextInput, ToastAndroid, View } from 'rea
 import { Button, Card, CardItem, Container, Content, DeckSwiper, Footer, FooterTab, Header, Icon, Text, Title } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Sae } from 'react-native-textinput-effects';
 
 import { model } from '../Model';
 import { questions } from './Questions';
@@ -20,7 +22,11 @@ export default class Quiz extends Component {
         questaoQuiz = this.props.questao;
         idQuiz = this.props.id;
 
-        if(questaoQuiz == 0){
+        if(this.props.novo === true){
+            for(key in modelQuiz.quiz){
+                modelQuiz.quiz[key] = null;
+            }
+
             modelQuiz.createFile((result) => {
                 idQuiz = result;
             });
@@ -144,6 +150,22 @@ export default class Quiz extends Component {
                             )}
                         </CardItem>
 
+                        {renderIf(questao.pergunta_extensao !== '',
+                            <CardItem>
+                                <Sae
+                                    label={questao.pergunta_extensao.pergunta}
+                                    defaultValue={modelQuiz.quiz['questao_' + questao.id + '_secundaria']}
+                                    iconClass={FontAwesomeIcon}
+                                    iconName={'pencil'}
+                                    iconColor={'black'}
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    labelStyle={{fontSize: 14, color: '#000000'}}
+                                    inputStyle={{fontSize: 14, color: '#000000'}}
+                                />
+                            </CardItem>
+                        )}
+
                         {renderIf(questao.id !== 'id',
                             <CardItem>
                                 <Text>{questao.observacao_opcoes}</Text>
@@ -168,6 +190,7 @@ export default class Quiz extends Component {
                                     name: 'quiz',
                                     id: idQuiz,
                                     model: modelQuiz,
+                                    novo: false,
                                     questao: Number(questaoQuiz) - 1
                                 });
                             }}>
@@ -183,6 +206,7 @@ export default class Quiz extends Component {
                                     name: 'quiz',
                                     id: idQuiz,
                                     model: modelQuiz,
+                                    novo: false,
                                     questao: Number(questaoQuiz) + 1
                                 });
                             }else{
@@ -228,7 +252,7 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
     },
     radioForm: {
-        paddingLeft: 10,
+        paddingLeft: 0,
     },
     pergunta_secundaria: {
         paddingBottom: 10,

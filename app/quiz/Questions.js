@@ -1,4 +1,29 @@
 export const questions = [
+{
+    id: '58',
+    pergunta: 'A reparação mais importante que ainda é necessária é:',
+    observacao_pergunta: 'marcar apenas uma alternativa',
+    pergunta_secundaria: '',
+    opcoes: [
+      {label: 'Casa', value: 0},
+      {label: 'Só o terreno em área urbana', value: 1},
+      {label: 'Terra em área rural (reassentamento com casa, água, luz, benfeitorias)', value: 2},
+      {label: 'Indenização de benfeitorias ou de produção perdida', value: 3},
+      {label: 'Benfeitorias e infraestrutura para viabilizar a produção (meio rural, inclusive pesca)', value: 4},
+      {label: 'Recursos, assistência técnica e equipamentos para retomar a produção', value: 5},
+      {label: 'Recursos para retomar ou ter o próprio negócio (comércio, serviços ou indústria)', value: 6},
+      {label: 'Escritura do imóvel', value: 7},
+      {label: 'Emprego', value: 8},
+      {label: 'Outra', value: 9},
+      {label: 'Não sabe', value: 10},
+    ],
+    pergunta_extensao: {
+        pergunta: 'Se outra, indique qual:',
+        referencia: 9
+    },
+    observacao_opcoes: 'Não ler a última opção',
+    tipo: 'radio'
+},
     {
         id: '1',
         pergunta: 'Tipo de domicílio:',
@@ -16,6 +41,7 @@ export const questions = [
             {label: 'Outro', value: 8},
             {label: 'Não sabe', value: 9},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -34,6 +60,7 @@ export const questions = [
             {label: 'Outro', value: 6},
             {label: 'Não sabe', value: 7},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -47,6 +74,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -69,6 +97,7 @@ export const questions = [
             {label: 'Outro', value: 10},
             {label: 'Não sabe', value: 11},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -85,6 +114,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -101,6 +131,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -117,6 +148,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -133,6 +165,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -149,6 +182,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -165,6 +199,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -181,6 +216,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -197,6 +233,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -213,6 +250,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -235,6 +273,7 @@ export const questions = [
             {label: 'Sem parede (para setores de terras indígenas)', value: 10},
             {label: 'Não sabe', value: 11},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -254,6 +293,7 @@ export const questions = [
             {label: 'Outro material', value: 7},
             {label: 'Não sabe', value: 8},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -272,6 +312,7 @@ export const questions = [
             {label: 'Outro material', value: 6},
             {label: 'Não sabe', value: 7},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -288,6 +329,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -304,6 +346,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -320,6 +363,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -336,6 +380,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -352,6 +397,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -368,6 +414,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -384,6 +431,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -400,6 +448,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -416,6 +465,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -432,6 +482,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -448,6 +499,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -464,6 +516,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -480,6 +533,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -496,6 +550,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -512,6 +567,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -528,6 +584,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -544,6 +601,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -560,6 +618,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -576,6 +635,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -592,6 +652,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -608,6 +669,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -617,6 +679,7 @@ export const questions = [
         observacao_pergunta: 'Incluir banheiro e cozinha e não considerar corredor, varanda aberta e garagem',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'input_numeric'
     },
@@ -626,6 +689,7 @@ export const questions = [
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'input_numeric'
     },
@@ -635,6 +699,7 @@ export const questions = [
         observacao_pergunta: 'Inclusive os localizados no terreno ou na propriedade',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: 'Se 9 ou mais de 9, registre 9. Se não existir registre 0 (zero)',
         tipo: 'input_numeric'
     },
@@ -652,6 +717,7 @@ export const questions = [
             {label: 'Outra forma', value: 5},
             {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -671,6 +737,7 @@ export const questions = [
             {label: 'Tem outro destino (passe para a questão 16)', value: 7},
             {label: 'Não sabe (passe para a questão 16)', value: 8},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -686,6 +753,7 @@ export const questions = [
             {label: 'A cada quinze dias', value: 3},
             {label: 'Não sabe', value: 4},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -707,6 +775,7 @@ export const questions = [
             {label: 'Outra', value: 9},
             {label: 'Não sabe', value: 10},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -721,6 +790,7 @@ export const questions = [
             {label: 'Não', value: 2},
             {label: 'Não sabe', value: 3},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -737,6 +807,7 @@ export const questions = [
             {label: 'Muito ruim', value: 4},
             {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -750,6 +821,7 @@ export const questions = [
             {label: 'Não', value: 1},
             {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -764,6 +836,7 @@ export const questions = [
             {label: 'Não', value: 2},
             {label: 'Não sabe', value: 3},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -776,6 +849,7 @@ export const questions = [
             {label: 'Sim', value: 0},
             {label: 'Não (passe para a questão 27)', value: 1},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'radio'
     },
@@ -794,6 +868,7 @@ export const questions = [
           {label: 'Outra', value: 6},
           {label: 'Não sabe', value: 7},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -808,6 +883,7 @@ export const questions = [
           {label: 'A energia é suficiente só para algumas horas do dia e/ou para algum aparelho/equipamento elétrico específico', value: 2},
           {label: 'Não sabe', value: 3},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -821,6 +897,7 @@ export const questions = [
           {label: 'Não (passe para a questão 27)', value: 1},
           {label: 'Não sabe (passe para a questão 27)', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -837,6 +914,7 @@ export const questions = [
           {label: 'Muito baixo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -846,6 +924,7 @@ export const questions = [
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'input_money'
     },
@@ -863,6 +942,7 @@ export const questions = [
           {label: 'Não possui transporte coletivo', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -879,6 +959,7 @@ export const questions = [
           {label: 'Mais de 60 minutos (1 hora)', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -896,6 +977,7 @@ export const questions = [
           {label: 'Utiliza o rio', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -915,6 +997,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -934,6 +1017,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -953,6 +1037,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -972,6 +1057,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -991,6 +1077,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1010,6 +1097,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1023,6 +1111,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1036,6 +1125,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1053,6 +1143,7 @@ export const questions = [
           {label: 'Nunca foi a um posto de saúde ou hospital', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1066,6 +1157,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1079,6 +1171,7 @@ export const questions = [
           {label: 'Não (passe para a questão 38)', value: 1},
           {label: 'Não sabe (passe para a questão 38)', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1096,6 +1189,7 @@ export const questions = [
           {label: 'Duas vezes por ano ou menos', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1112,6 +1206,7 @@ export const questions = [
           {label: 'Muito ruim', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1131,6 +1226,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1150,6 +1246,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1169,6 +1266,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1188,6 +1286,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1207,6 +1306,7 @@ export const questions = [
           {label: 'Péssimo', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1220,6 +1320,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1233,6 +1334,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1242,14 +1344,15 @@ export const questions = [
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: 'No caso de menos de 1 (um) ano de moradia, marque “00”',
         tipo: 'input_numeric'
     },
     {
         id: '42',
         pergunta: 'Com a construção da barragem, de que forma você e sua família foram atingidos?',
-        observacao_pergunta: 'não ler as opções. Após a primeira resposta, perguntar: E o que mais? (permite mais de uma opção)',
-        pergunta_secundaria: ' Qual?',
+        observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar: E o que mais? (permite mais de uma opção)',
+        pergunta_secundaria: '',
         opcoes: [
           {label: 'Perderam a propriedade ou a posse de área rural (passe para a questão 44)', value: 0},
           {label: 'Perderam a propriedade ou a posse de área urbana (passe para a questão 44)', value: 1},
@@ -1263,19 +1366,22 @@ export const questions = [
           {label: 'Houve diminuição ou perderam acesso a outras áreas onde coletavam produtos para o próprio consumo da família (inclusive lenha) (passe para a questão 44)', value: 9},
           {label: 'Tiveram estabelecimento comercial, de serviços ou industrial inviabilizado (passe para a questão 44)', value: 10},
           {label: 'Tiveram diminuição de renda (passe para a questão 44)', value: 11},
-          {label: 'Outra. (passe para a questão 44)', value: 12},
+          {label: 'Outra (passe para a questão 44)', value: 12},
           {label: 'Não foram atingidos (passe para a questão 47)', value: 13},
           {label: 'Não sabe (passe para a questão 47)', value: 14},
         ],
-        opcoes_secundaria: '13',
+        pergunta_extensao: {
+            pergunta: 'Se outra, indique qual:',
+            referencia: 13
+        },
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'multiple'
     },
     {
         id: '43',
         pergunta: 'Em relação à pesca, após a construção da barragem, quais as maiores dificuldades encontradas?',
-        observacao_pergunta: 'não ler as opções. Após a primeira resposta, perguntar: E o que mais? (permite mais de uma opção)',
-        pergunta_secundaria: 'Qual?',
+        observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar: E o que mais? (permite mais de uma opção)',
+        pergunta_secundaria: '',
         opcoes: [
           {label: 'Diminuiu a quantidade de peixes', value: 0},
           {label: 'Diminuiu a qualidade dos peixes', value: 1},
@@ -1284,10 +1390,13 @@ export const questions = [
           {label: 'Alterou-se a temperatura das águas', value: 4},
           {label: 'Aumentou ou foram criadas dificuldades na comercialização', value: 5},
           {label: 'Perdeu acesso a áreas de pesca', value: 6},
-          {label: 'Outra.', value: 7},
+          {label: 'Outra', value: 7},
           {label: 'Não sabe', value: 8},
         ],
-        opcoes_secundaria: '8',
+        pergunta_extensao: {
+            pergunta: 'Se outra, indique qual:',
+            referencia: 7
+        },
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'multiple'
     },
@@ -1302,6 +1411,7 @@ export const questions = [
           {label: 'Não (passe para a questão 47)', value: 2},
           {label: 'Não sabe (passe para a questão 47)', value: 3},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1316,6 +1426,7 @@ export const questions = [
           {label: 'Depois que o lago encheu', value: 2},
           {label: 'Não sabe', value: 3},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1330,6 +1441,7 @@ export const questions = [
           {label: 'Por ação da justiça (sistema judiciário)', value: 2},
           {label: 'Não sabe', value: 3},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1347,6 +1459,7 @@ export const questions = [
           {label: 'Sim, mudamos da cidade para uma área rural', value: 5},
           {label: 'Não sabe (passe para a questão 49)', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1364,6 +1477,7 @@ export const questions = [
           {label: 'É barraca de acampamento', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1383,6 +1497,7 @@ export const questions = [
           {label: 'Diminuiu Muito', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1402,6 +1517,7 @@ export const questions = [
           {label: 'Diminuiu Muito', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1421,6 +1537,7 @@ export const questions = [
           {label: 'Diminuiu Muito', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1440,6 +1557,7 @@ export const questions = [
           {label: 'Diminuiu Muito', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1459,6 +1577,7 @@ export const questions = [
           {label: 'Diminuiu Muito', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1478,6 +1597,7 @@ export const questions = [
           {label: 'Diminuiu Muito', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1497,6 +1617,7 @@ export const questions = [
           {label: 'Diminuiu Muito', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1516,6 +1637,7 @@ export const questions = [
           {label: 'Diminuiu Muito', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1523,7 +1645,7 @@ export const questions = [
         id: '50',
         pergunta: '. Com a construção da barragem, as formas de reparação recebida pela família foram:',
         observacao_pergunta: 'permite mais de uma opção',
-        pergunta_secundaria: 'Qual?',
+        pergunta_secundaria: '',
         opcoes: [
           {label: 'Reassentamento em área rural', value: 0},
           {label: 'Realocação da moradia em área urbana (passe para a questão 56)', value: 1},
@@ -1533,10 +1655,13 @@ export const questions = [
           {label: 'Reparação em bens (passe para a questão 57)', value: 5},
           {label: 'Ainda em negociação (passe para a questão 57)', value: 6},
           {label: 'Não recebeu nenhuma reparação (passe para a questão 57)', value: 7},
-          {label: 'Outra. (passe para a questão 57)', value: 8},
+          {label: 'Outra (passe para a questão 57)', value: 8},
           {label: 'Não sabe (passe para a questão 57)', value: 9},
         ],
-        opcoes_secundaria: '9',
+        pergunta_extensao: {
+            pergunta: 'Se outra, indique qual:',
+            referencia: 8
+        },
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'multiple'
     },
@@ -1553,6 +1678,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1569,6 +1695,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1585,6 +1712,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1601,6 +1729,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1617,6 +1746,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1633,6 +1763,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1649,6 +1780,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1665,6 +1797,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1674,6 +1807,7 @@ export const questions = [
         observacao_pergunta: '(registrar o valor de acordo com a moeda que o entrevistado informar – real, cruzado, cruzado novo, cruzeiro etc.',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'input_money'
     },
@@ -1683,6 +1817,7 @@ export const questions = [
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'input_numeric'
     },
@@ -1698,13 +1833,14 @@ export const questions = [
           {label: 'Não comprou imóvel (passe para a questão 57)', value: 3},
           {label: 'Não sabe (passe para a questão 57)', value: 4},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
     {
         id: '55a',
-        pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
-        observacao_pergunta: 'após responder passar para questão 57',
+        pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
+        observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
             pergunta: 'Casa para moradia',
             observacao_pergunta: '',
@@ -1714,12 +1850,13 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
     {
         id: '55b',
-        pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
+        pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'após responder passar para questão 57',
         pergunta_secundaria: {
             pergunta: 'Energia elétrica',
@@ -1730,13 +1867,14 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
     {
         id: '55c',
-        pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
-        observacao_pergunta: 'após responder passar para questão 57',
+        pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
+        observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
             pergunta: 'Água encanada suficiente para consumo e produção',
             observacao_pergunta: '',
@@ -1746,13 +1884,14 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
     {
         id: '55d',
-        pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
-        observacao_pergunta: 'após responder passar para questão 57',
+        pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
+        observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
             pergunta: 'Galpão e instalações necessárias ao trabalho (benfeitorias) ',
             observacao_pergunta: '',
@@ -1762,13 +1901,14 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
     {
         id: '55e',
-        pergunta: '. Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
-        observacao_pergunta: 'após responder passar para questão 57',
+        pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
+        observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
             pergunta: 'Estrada de acesso em boas condições',
             observacao_pergunta: '',
@@ -1778,13 +1918,14 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
     {
         id: '55f',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
-        observacao_pergunta: 'após responder passar para questão 57',
+        observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
             pergunta: 'Área de plantio ou pasto preparado',
             observacao_pergunta: '',
@@ -1794,6 +1935,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1807,6 +1949,7 @@ export const questions = [
           {label: 'Indicado pela empresa', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1828,6 +1971,7 @@ export const questions = [
           {label: '9', value: 9},
           {label: '10', value: 10},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'passe para a questão 59',
         tipo: 'radio'
     },
@@ -1835,7 +1979,7 @@ export const questions = [
         id: '58',
         pergunta: 'A reparação mais importante que ainda é necessária é:',
         observacao_pergunta: 'marcar apenas uma alternativa',
-        pergunta_secundaria: 'Qual?',
+        pergunta_secundaria: '',
         opcoes: [
           {label: 'Casa', value: 0},
           {label: 'Só o terreno em área urbana', value: 1},
@@ -1846,10 +1990,13 @@ export const questions = [
           {label: 'Recursos para retomar ou ter o próprio negócio (comércio, serviços ou indústria)', value: 6},
           {label: 'Escritura do imóvel', value: 7},
           {label: 'Emprego', value: 8},
-          {label: 'Outra:', value: 9},
+          {label: 'Outra', value: 9},
           {label: 'Não sabe', value: 10},
         ],
-        opcoes_secundaria: '10',
+        pergunta_extensao: {
+            pergunta: 'Se outra, indique qual:',
+            referencia: 9
+        },
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1868,6 +2015,7 @@ export const questions = [
           {label: 'Não ou somente como complemento, horta caseira, galinhas para consumo próprio, pesca eventual etc. (passe para a Lista de moradores do domicílio)', value: 6},
           {label: 'Não sabe (passe para a Lista de moradores do domicílio)', value: 7},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'multiple'
     },
@@ -1890,6 +2038,7 @@ export const questions = [
           {label: 'Outro (passe para a questão 62)', value: 10},
           {label: 'Não sabe (passe para a questão 62)', value: 11},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1899,6 +2048,7 @@ export const questions = [
         observacao_pergunta: 'registrar a medida do tamanho que o informante disser para depois fazer a conversão conforme orientação no Manual',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'input_numeric'
     },
@@ -1919,6 +2069,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1939,6 +2090,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1959,6 +2111,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1979,6 +2132,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -1999,6 +2153,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2019,6 +2174,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2039,6 +2195,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2059,6 +2216,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2079,6 +2237,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2099,6 +2258,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2119,6 +2279,7 @@ export const questions = [
           {label: 'Não se aplica', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2135,6 +2296,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2151,6 +2313,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2167,6 +2330,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2183,6 +2347,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2199,6 +2364,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2215,6 +2381,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2231,6 +2398,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2247,6 +2415,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2263,6 +2432,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2283,6 +2453,7 @@ export const questions = [
           {label: 'Outras', value: 8},
           {label: 'Não sabe (passe para a questão 68)', value: 9},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2305,6 +2476,7 @@ export const questions = [
           {label: 'Outras', value: 10},
           {label: 'Não sabe', value: 11},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2321,6 +2493,7 @@ export const questions = [
           {label: 'Nunca (passe para a questão 68)', value: 4},
           {label: 'Não sabe (passe para a questão 68)', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2343,6 +2516,7 @@ export const questions = [
           {label: 'Outro', value: 10},
           {label: 'Não sabe', value: 11},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2352,6 +2526,7 @@ export const questions = [
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'input_money'
     },
@@ -2381,6 +2556,7 @@ export const questions = [
           {label: 'Individual em domicilio coletivo', value: 17},
           {label: 'Não sabe', value: 18},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2390,6 +2566,7 @@ export const questions = [
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'input_numeric'
     },
@@ -2407,6 +2584,7 @@ export const questions = [
           {label: 'Separado/desquitado/a', value: 5},
           {label: 'Não sabe', value: 6},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2423,6 +2601,7 @@ export const questions = [
           {label: 'Indígena', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2448,6 +2627,7 @@ export const questions = [
           {label: 'Não tem religião', value: 13},
           {label: 'Não sabe', value: 14},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2461,6 +2641,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2476,6 +2657,7 @@ export const questions = [
           {label: 'Não, nunca frequentou (passe para a questão 85)', value: 3},
           {label: 'Não sabe (passe para a questão 85)', value: 4},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2500,6 +2682,7 @@ export const questions = [
           {label: 'Doutorado (passe para a questão 79)', value: 12},
           {label: 'Não soube informar (passe para a questão 79)', value: 13},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2521,6 +2704,7 @@ export const questions = [
           {label: 'Curso não seriado', value: 9},
           {label: 'Não sabe', value: 10},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2537,6 +2721,7 @@ export const questions = [
           {label: 'Curso não seriado', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2550,6 +2735,7 @@ export const questions = [
           {label: 'Urbana', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2573,6 +2759,7 @@ export const questions = [
           {label: 'Outro', value: 11},
           {label: 'Não sabe', value: 12},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2582,6 +2769,7 @@ export const questions = [
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: '',
+        pergunta_extensao: '',
         observacao_opcoes: '',
         tipo: 'input_time'
     },
@@ -2598,6 +2786,7 @@ export const questions = [
           {label: 'Muito próximo ', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2623,6 +2812,7 @@ export const questions = [
           {label: 'Mestrado ou doutorado (passe para a questão 85)', value: 13},
           {label: 'Não sabe  (passe para a questão 85)', value: 14},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2645,6 +2835,7 @@ export const questions = [
           {label: 'Nenhuma', value: 10},
           {label: 'Não sabe', value: 11},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2658,6 +2849,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2671,6 +2863,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2684,6 +2877,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2697,6 +2891,7 @@ export const questions = [
           {label: 'Não (passe para a questão 91)', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2716,6 +2911,7 @@ export const questions = [
           {label: 'Empregador s(passe para a questão 90)', value: 7},
           {label: 'Não sabe (passe para a questão 92)', value: 8},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2732,6 +2928,7 @@ export const questions = [
           {label: '11 ou mais pessoas', value: 4},
           {label: 'Não sabe', value: 5},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2745,6 +2942,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2758,6 +2956,7 @@ export const questions = [
           {label: 'Não', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'
     },
@@ -2771,6 +2970,7 @@ export const questions = [
           {label: 'Não tem renda', value: 1},
           {label: 'Não sabe', value: 2},
         ],
+        pergunta_extensao: '',
         opcoes_secundaria: '1',
         observacao_opcoes: 'Não ler a última opção',
         tipo: 'radio'

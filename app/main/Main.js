@@ -27,6 +27,7 @@ export default class Main extends Component {
                                 name: 'quiz',
                                 id: null,
                                 model: model,
+                                novo: true,
                                 questao: 0
                             });
                         }}>
@@ -37,7 +38,11 @@ export default class Main extends Component {
 
                         <ListItem iconLeft onPress={() => {
                             this.props.navigator.push({
-                                name: 'edit'
+                                name: 'quiz',
+                                id: null,
+                                model: model,
+                                novo: false,
+                                questao: 0
                             });
                         }}>
                             <Icon name='md-create' style={styles.icon} />

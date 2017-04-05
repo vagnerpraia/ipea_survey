@@ -150,7 +150,7 @@ var quiz = {
     "questao_66": null,
     "questao_67": null,
     "questao_68": null,
-    "moradores": []
+    "moradores": null
 };
 
 var morador = {
@@ -213,7 +213,7 @@ var readFile = (id, callback) => {
 
 var saveFile = (id, quiz) => {
     var file_path = dir_file + id + '.json';
-    var data = JSON.stringify(json);
+    var data = JSON.stringify(quiz);
     fs.writeFile(file_path, data, 'utf8').then(() => {
         console.log('Arquivo atualizado');
     });

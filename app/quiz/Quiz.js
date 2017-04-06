@@ -45,19 +45,19 @@ export default class Quiz extends Component {
                         id: idQuiz,
                         model: modelQuiz,
                         novo: false,
-                        questao: Number(questaoQuiz) - 1
+                        questao: modelQuiz.maxQuestion
                     });
                 }
-            }else{
-                if(modelQuiz.notice !== ''){
-                    ToastAndroid.showWithGravity(modelQuiz.notice, ToastAndroid.SHORT, ToastAndroid.CENTER);
-                }
-                modelQuiz.notice = '';
             }
         }
     }
 
     render() {
+        if(modelQuiz.notice !== ''){
+            ToastAndroid.showWithGravity(modelQuiz.notice, ToastAndroid.SHORT, ToastAndroid.CENTER);
+            modelQuiz.notice = '';
+        }
+
         function renderIf(condition, content) {
             if (condition) {
                 return content;

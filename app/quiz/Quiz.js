@@ -7,6 +7,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
 import { model } from '../Model';
+import { block } from '../Block';
 import { questions } from './Questions';
 import { exitApp } from '../Util';
 
@@ -27,34 +28,6 @@ export default class Quiz extends Component {
     }
 
     componentDidMount(){
-        if(idQuestao > modelQuiz.maxQuestion){
-            modelQuiz.notice = 'Responda a questão';
-            this.props.navigator.replacePreviousAndPop({
-                name: 'quiz',
-                id: idQuiz,
-                model: modelQuiz,
-                novo: false,
-                questao: Number(questaoQuiz) - 1
-            });
-        }else{
-            if(modelQuiz.quiz['questao_3'] == 1 && idQuestao == '4'){
-                modelQuiz.notice = 'Necessário passar para a questão 5';
-                this.props.navigator.push({
-                    name: 'quiz',
-                    id: idQuiz,
-                    model: modelQuiz,
-                    novo: false,
-                    questao: Number(questaoQuiz) + 1
-                });
-            }
-            else{
-                if(modelQuiz.notice !== ''){
-                    ToastAndroid.showWithGravity(modelQuiz.notice, ToastAndroid.SHORT, ToastAndroid.CENTER);
-                }
-                modelQuiz.notice = '';
-            }
-        }
-
         if(this.props.novo === true){
             for(key in modelQuiz.quiz){
                 modelQuiz.quiz[key] = null;
@@ -63,6 +36,24 @@ export default class Quiz extends Component {
             modelQuiz.createFile((result) => {
                 idQuiz = result;
             });
+        }else{
+            if(idQuestao > modelQuiz.maxQuestion){
+                if((Number(questaoQuiz) - 1) >= 0){
+                    modelQuiz.notice = 'Responda a questão';
+                    this.props.navigator.replacePreviousAndPop({
+                        name: 'quiz',
+                        id: idQuiz,
+                        model: modelQuiz,
+                        novo: false,
+                        questao: Number(questaoQuiz) - 1
+                    });
+                }
+            }else{
+                if(modelQuiz.notice !== ''){
+                    ToastAndroid.showWithGravity(modelQuiz.notice, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                }
+                modelQuiz.notice = '';
+            }
         }
     }
 
@@ -139,19 +130,18 @@ export default class Quiz extends Component {
                                         buttonSize={10}
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
-                                            if(idQuestao == 3){
-                                                if(value == 1){
-                                                    modelQuiz.quiz['questao_4'] = null;
-                                                    modelQuiz.maxQuestion = 5;
-                                                }
-                                                else{
-                                                    modelQuiz.maxQuestion ++;
+                                            modelQuiz.maxQuestion = Number(idQuestao) + 1;
+                                            for(key in block){
+                                                let item = block[key];
+                                                if(item){
+                                                    if(idQuestao == item.questao){
+                                                        if(item.opcao.indexOf(value) >= 0){
+                                                            modelQuiz.block.push(item.bloqueio);
+                                                            modelQuiz.maxQuestion = item.passe;
+                                                        }
+                                                    }
                                                 }
                                             }
-                                            else{
-                                                modelQuiz.maxQuestion ++
-                                            };
-
                                             modelQuiz.quiz['questao_' + questao.id] = value;
                                         }}
                                         style={styles.radioForm}
@@ -174,9 +164,18 @@ export default class Quiz extends Component {
                                         buttonSize={10}
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
-                                            if(questao.id.replace(/\D/g,'') === '3'){
-                                                modelQuiz.maxQuestion = 5;
-                                            };
+                                            modelQuiz.maxQuestion = Number(idQuestao) + 1;
+                                            for(key in block){
+                                                let item = block[key];
+                                                if(item){
+                                                    if(idQuestao == item.questao){
+                                                        if(item.opcao.indexOf(value) >= 0){
+                                                            modelQuiz.block.push(item.bloqueio);
+                                                            modelQuiz.maxQuestion = item.passe;
+                                                        }
+                                                    }
+                                                }
+                                            }
                                             modelQuiz.quiz['questao_' + questao.id] = value;
                                         }}
                                         style={styles.radioForm}
@@ -248,19 +247,15 @@ export default class Quiz extends Component {
                         )}
 
                         <Button transparent onPress={() => {
-                            if(modelQuiz.quiz['questao_' + questao.id] != null){
-                                modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
+                            modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
 
-                                this.props.navigator.push({
-                                    name: 'quiz',
-                                    id: idQuiz,
-                                    model: modelQuiz,
-                                    novo: false,
-                                    questao: Number(questaoQuiz) + 1
-                                });
-                            }else{
-                                ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                            }
+                            this.props.navigator.push({
+                                name: 'quiz',
+                                id: idQuiz,
+                                model: modelQuiz,
+                                novo: false,
+                                questao: Number(questaoQuiz) + 1
+                            });
                         }}>
                             <Icon name='ios-arrow-forward' />
                         </Button>

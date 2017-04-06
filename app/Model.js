@@ -236,5 +236,6 @@ export var model = {
     saveFile: saveFile,
     deleteFile: deleteFile,
     maxQuestion: 1,
+    block: [],
     notice: '',
 };

@@ -27,7 +27,7 @@ export default class Quiz extends Component {
         idQuestao = questions[questaoQuiz].id.replace(/\D/g,'');
     }
 
-    componentDidMount(){
+    componentWillMount(){
         if(this.props.novo === true){
             for(key in modelQuiz.quiz){
                 modelQuiz.quiz[key] = null;
@@ -36,28 +36,29 @@ export default class Quiz extends Component {
             modelQuiz.createFile((result) => {
                 idQuiz = result;
             });
-        }else{
+        }
+
+        if(modelQuiz.flagChecagemVoltar){
             if(idQuestao > modelQuiz.maxQuestion){
-                if((Number(questaoQuiz) - 1) >= 0){
-                    modelQuiz.notice = 'Responda a questão';
-                    this.props.navigator.replacePreviousAndPop({
-                        name: 'quiz',
-                        id: idQuiz,
-                        model: modelQuiz,
-                        novo: false,
-                        questao: modelQuiz.maxQuestion
-                    });
-                }
+                modelQuiz.flagChecagemVoltar = false;
+                ToastAndroid.showWithGravity('Responda a questão ' + idQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+
+                console.log('questao: ' + modelQuiz.maxQuestion);
+
+                this.props.navigator.replacePreviousAndPop({
+                    name: 'quiz',
+                    id: idQuiz,
+                    model: modelQuiz,
+                    novo: false,
+                    questao: modelQuiz.maxQuestion
+                });
             }
+        }else{
+            modelQuiz.flagChecagemVoltar = true;
         }
     }
 
     render() {
-        if(modelQuiz.notice !== ''){
-            ToastAndroid.showWithGravity(modelQuiz.notice, ToastAndroid.SHORT, ToastAndroid.CENTER);
-            modelQuiz.notice = '';
-        }
-
         function renderIf(condition, content) {
             if (condition) {
                 return content;
@@ -130,7 +131,7 @@ export default class Quiz extends Component {
                                         buttonSize={10}
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
-                                            modelQuiz.maxQuestion = Number(idQuestao) + 1;
+                                            modelQuiz.maxQuestion ++;
                                             for(key in block){
                                                 let item = block[key];
                                                 if(item){
@@ -247,7 +248,10 @@ export default class Quiz extends Component {
                         )}
 
                         <Button transparent onPress={() => {
-                            modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
+                            if(modelQuiz.quiz['questao_' + questao.id] != null){
+                                modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
+                                modelQuiz.maxQuestion ++;
+                            }
 
                             this.props.navigator.push({
                                 name: 'quiz',

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, TextInput, ToastAndroid, View } from 'react-native';
+import { PanResponder, StyleSheet, TouchableOpacity, TextInput, ToastAndroid, View } from 'react-native';
 import { Button, Card, CardItem, Container, Content, DeckSwiper, Footer, FooterTab, Header, Icon, Text, Title } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import SimpleGesture from 'react-native-simple-gesture';
 import { Sae } from 'react-native-textinput-effects';
 
 import { model } from '../Model';
@@ -37,6 +38,50 @@ export default class Quiz extends Component {
                 idQuiz = result;
             });
         }
+
+        this._panResponder = PanResponder.create({
+            onMoveShouldSetPanResponder: (e, gs) => {
+                let sgs = new SimpleGesture(e,gs);
+                if(sgs.isSimpleSwipeRight()){
+                    if(modelQuiz.flagSwiperVoltar){
+                        modelQuiz.flagSwiperVoltar = false;
+                        this.props.navigator.replacePreviousAndPop({
+                            name: 'quiz',
+                            id: idQuiz,
+                            model: modelQuiz,
+                            novo: false,
+                            questao: Number(questaoQuiz) - 1
+                        });
+                    }else{
+                        modelQuiz.flagSwiperVoltar = true;
+                    }
+                }
+                if(sgs.isSimpleSwipeLeft()){
+                    if(modelQuiz.flagSwiperSeguir){
+                        modelQuiz.flagSwiperSeguir = false;
+
+                        if(modelQuiz.quiz['questao_' + questions[questaoQuiz].id] != null){
+                            modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
+                            modelQuiz.maxQuestion ++;
+                        }
+
+                        if(Number(idQuestao) + 1 <= modelQuiz.maxQuestion){
+                            this.props.navigator.push({
+                                name: 'quiz',
+                                id: idQuiz,
+                                model: modelQuiz,
+                                novo: false,
+                                questao: Number(questaoQuiz) + 1
+                            });
+                        }else{
+                            ToastAndroid.showWithGravity('Responda a questão ' + idQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                        }
+                    }else{
+                        modelQuiz.flagSwiperSeguir = true;
+                    }
+                }
+            }
+        });
     }
 
     render() {
@@ -73,7 +118,7 @@ export default class Quiz extends Component {
                         <Icon name='ios-close' />
                     </Button>
                 </Header>
-                <Content>
+                <Content {...this._panResponder.panHandlers}>
                     <Card style={styles.card}>
                         {renderIf(questions.id !== 'id',
                             <CardItem>

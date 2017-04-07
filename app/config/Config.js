@@ -3,39 +3,30 @@ import { Alert, StyleSheet, View } from 'react-native';
 import { Button, Container, Content, List, Header, Icon, ListItem, Picker, Text, Title } from 'native-base';
 import TextField from 'react-native-md-textinput';
 import RadioForm from 'react-native-simple-radio-button';
+import RNFetchBlob from 'react-native-fetch-blob';
 
 import { exitApp } from '../Util';
 
 const Item = Picker.Item;
 
+const dirs = RNFetchBlob.fs.dirs;
+const fs = RNFetchBlob.fs;
+
+var dir_base = dirs.DownloadDir.substring(0, dirs.DownloadDir.lastIndexOf('/') + 1);
+var dir_file = dir_base + 'Ipea/IpeaSurvey/';
+
 var UF = {
-  select_uf: {
-    name: 'Selecione um Estado', value: '0',
-  },
-  rj: {
-    name: 'RJ', value: 'RJ',
-  },
-  rn: {
-    name: 'RN', value: 'RN',
-  },
-  ro: {
-    name: 'RO', value: 'RO',
-  },
+  select_uf: { name: 'Selecione um Estado', value: '0' },
+  rj: { name: 'RJ', value: 'RJ' },
+  rn: { name: 'RN', value: 'RN' },
+  ro: { name: 'RO', value: 'RO' },
 };
 
 var MUNICIPIO = {
-  select_municipio: {
-    name: 'Selecione um Município', value: '0',
-  },
-  rj: {
-    name: 'Rio de Janeiro', value: 'Rio de Janeiro',
-  },
-  rn: {
-    name: 'São Gonçalo', value: 'São Gonçalo',
-  },
-  ro: {
-    name: 'Duque de Caxias', value: 'Duque de Caxias',
-  },
+  select_municipio: { name: 'Selecione um Município', value: '0' },
+  rj: { name: 'Rio de Janeiro', value: 'Rio de Janeiro' },
+  rn: { name: 'São Gonçalo', value: 'São Gonçalo' },
+  ro: { name: 'Duque de Caxias', value: 'Duque de Caxias' },
 };
 
 var radio_localizacao = [
@@ -64,14 +55,37 @@ export default class Config extends Component {
 
       mode: Picker.MODE_DIALOG,
     }
+
     render() {
         let { nome_aplicador, nome_entrevistado, localidade, localizacao, loc_diferenciada, barragem } = this.state;
 
         var make_uf = UF[this.state.selected_uf];
         var make_municipio = MUNICIPIO[this.state.selected_municipio];
 
-        const onButtonPress = () => {
-          Alert.alert(nome_aplicador + "\n" + nome_entrevistado + "\n" + make_uf.value + "\n" + make_municipio.value + "\n" + localidade + "\n" + localizacao + "\n" + loc_diferenciada + "\n" + barragem);
+        var config = {
+          "nome_aplicador": nome_aplicador,
+          "nome_entrevistado": nome_entrevistado,
+          "uf": make_uf.value,
+          "municipio": make_municipio.value,
+          "localidade": localidade,
+          "localizacao": localizacao,
+          "loc_diferenciada": loc_diferenciada,
+          "barragem": barragem
+        };
+
+        var createFileConfig = (content) => {
+          var file_path = dir_file + 'config.json';
+          var data = JSON.stringify(content);
+          fs.exists(file_path).then((exist) => {
+              if(exist){
+                fs.writeFile(file_path, data, 'utf8').then(() => {
+                console.log('Arquivo atualizado');
+                });
+              }else{
+                  fs.createFile(file_path, data, 'utf8');
+                  console.log('Arquivo criado');
+              }
+          });
         };
 
         return (
@@ -167,7 +181,7 @@ export default class Config extends Component {
                   />
                   <Button
                     style={{ marginTop: 10 }}
-                    onPress={onButtonPress}
+                    onPress={()=> { createFileConfig(config); }}
                     > Salvar </Button>
                 </View>
                 </Content>

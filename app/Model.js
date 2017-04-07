@@ -237,5 +237,4 @@ export var model = {
     deleteFile: deleteFile,
     maxQuestion: 1,
     block: [],
-    flagChecagemVoltar: true,
 };

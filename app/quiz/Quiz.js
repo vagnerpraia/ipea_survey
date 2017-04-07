@@ -37,25 +37,6 @@ export default class Quiz extends Component {
                 idQuiz = result;
             });
         }
-
-        if(modelQuiz.flagChecagemVoltar){
-            if(idQuestao > modelQuiz.maxQuestion){
-                modelQuiz.flagChecagemVoltar = false;
-                ToastAndroid.showWithGravity('Responda a questão ' + idQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
-
-                console.log('questao: ' + modelQuiz.maxQuestion);
-
-                this.props.navigator.replacePreviousAndPop({
-                    name: 'quiz',
-                    id: idQuiz,
-                    model: modelQuiz,
-                    novo: false,
-                    questao: modelQuiz.maxQuestion
-                });
-            }
-        }else{
-            modelQuiz.flagChecagemVoltar = true;
-        }
     }
 
     render() {
@@ -253,13 +234,17 @@ export default class Quiz extends Component {
                                 modelQuiz.maxQuestion ++;
                             }
 
-                            this.props.navigator.push({
-                                name: 'quiz',
-                                id: idQuiz,
-                                model: modelQuiz,
-                                novo: false,
-                                questao: Number(questaoQuiz) + 1
-                            });
+                            if(Number(idQuestao) + 1 <= modelQuiz.maxQuestion){
+                                this.props.navigator.push({
+                                    name: 'quiz',
+                                    id: idQuiz,
+                                    model: modelQuiz,
+                                    novo: false,
+                                    questao: Number(questaoQuiz) + 1
+                                });
+                            }else{
+                                ToastAndroid.showWithGravity('Responda a questão ' + idQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                            }
                         }}>
                             <Icon name='ios-arrow-forward' />
                         </Button>

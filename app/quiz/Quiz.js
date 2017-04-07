@@ -157,7 +157,6 @@ export default class Quiz extends Component {
                                         buttonSize={10}
                                         labelStyle={styles.radioLabel}
                                         onPress={(value) => {
-                                            modelQuiz.maxQuestion ++;
                                             for(key in block){
                                                 let item = block[key];
                                                 if(item){

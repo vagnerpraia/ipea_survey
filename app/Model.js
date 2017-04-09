@@ -182,12 +182,16 @@ var morador = {
     "questao_93_secundaria": null
 };
 
-var createFile = (callback) => {
+var createFile = (type, callback) => {
     var id = new Date().getTime();
-    var file_path = dir_file + id + '.json';
+    var path = dir_file + id + '/'
+    var file_path = path + type + '.json';
+
+    fs.mkdir(path);
+
     fs.exists(file_path).then((exist) => {
         if(exist){
-            createFile();
+            return callback(id);
         }else{
             json = quiz;
             json['id'] = id;
@@ -200,9 +204,21 @@ var createFile = (callback) => {
     });
 }
 
-var readFile = (id, callback) => {
-    var file_path = dir_file + id + '.json';
+var readQuiz = (id, callback) => {
+    var file_path = dir_file + id + '/quiz.json';
+    fs.readFile(file_path, 'utf8').then((data) => {
+        /*
+            TODO: Fazer leitura dos moradores e agrupar a data
+        */
+        var json = JSON.parse(data);
+        return callback(json);
+    }).catch((err) => {
+        console.log(err);
+    });
+};
 
+var readConfig = (callback) => {
+    var file_path = dir_file + 'config.json';
     fs.readFile(file_path, 'utf8').then((data) => {
         var json = JSON.parse(data);
         return callback(json);
@@ -211,16 +227,16 @@ var readFile = (id, callback) => {
     });
 };
 
-var saveFile = (id, quiz) => {
-    var file_path = dir_file + id + '.json';
+var saveFile = (id, type, quiz) => {
+    var file_path = dir_file + id + '/' + type + '.json';
     var data = JSON.stringify(quiz);
     fs.writeFile(file_path, data, 'utf8').then(() => {
         console.log('Arquivo atualizado');
     });
 };
 
-var deleteFile = (id) => {
-    var file_path = dir_file + id + '.json';
+var deleteQuiz = (id, type) => {
+    var file_path = dir_file + id;
     fs.unlink(file_path).then(() => {
         console.log('Arquivo deletado');
     }).catch((error) => {
@@ -232,9 +248,10 @@ export var model = {
     quiz: quiz,
     morador: morador,
     createFile: createFile,
-    readFile: readFile,
+    readQuiz: readQuiz,
+    readConfig: readConfig,
     saveFile: saveFile,
-    deleteFile: deleteFile,
+    deleteQuiz: deleteQuiz,
     maxQuestion: 1,
     block: [],
     flagSwiperVoltar: true,

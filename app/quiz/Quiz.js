@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { PanResponder, StyleSheet, TouchableOpacity, TextInput, ToastAndroid, View } from 'react-native';
-import { Button, Card, CardItem, Container, Content, DeckSwiper, Footer, FooterTab, Header, Icon, Text, Title } from 'native-base';
+import { PanResponder, StyleSheet, TextInput, ToastAndroid, View } from 'react-native';
+import { Button, Card, CardItem, Container, Content, DeckSwiper, Footer, FooterTab, Header, Icon, ListItem, Radio, Text, Title } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -11,6 +11,8 @@ import { model } from '../Model';
 import { block } from '../Block';
 import { questions } from './Questions';
 import { exitApp } from '../Util';
+
+import RadioButton from './RadioButton';
 
 let modelQuiz;
 let questaoQuiz;
@@ -34,9 +36,13 @@ export default class Quiz extends Component {
                 modelQuiz.quiz[key] = null;
             }
 
-            modelQuiz.createFile((result) => {
+            modelQuiz.createFile('quiz', (result) => {
                 idQuiz = result;
             });
+
+            this.state = {
+                radioSelected: null
+            };
         }
 
         this._panResponder = PanResponder.create({
@@ -61,8 +67,7 @@ export default class Quiz extends Component {
                         modelQuiz.flagSwiperSeguir = false;
 
                         if(modelQuiz.quiz['questao_' + questions[questaoQuiz].id] != null){
-                            modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
-                            modelQuiz.maxQuestion ++;
+                            modelQuiz.saveFile(idQuiz, 'quiz', modelQuiz.quiz);
                         }
 
                         if(Number(idQuestao) + 1 <= modelQuiz.maxQuestion){
@@ -100,7 +105,7 @@ export default class Quiz extends Component {
                 <Header>
                     <Button transparent onPress={() => {
                         if(questaoQuiz === 0){
-                            modelQuiz.deleteFile(idQuiz);
+                            modelQuiz.deleteQuiz(idQuiz);
                         };
 
                         this.props.navigator.replacePreviousAndPop({
@@ -149,30 +154,7 @@ export default class Quiz extends Component {
                             )}
 
                             {renderIf(questao.tipo === 'radio',
-                                <View>
-                                    <RadioForm
-                                        radio_props={questao.opcoes}
-                                        initial={modelQuiz.quiz['questao_' + questao.id]}
-                                        buttonColor={'#000000'}
-                                        buttonSize={10}
-                                        labelStyle={styles.radioLabel}
-                                        onPress={(value) => {
-                                            for(key in block){
-                                                let item = block[key];
-                                                if(item){
-                                                    if(idQuestao == item.questao){
-                                                        if(item.opcao.indexOf(value) >= 0){
-                                                            modelQuiz.block.push(item.bloqueio);
-                                                            modelQuiz.maxQuestion = item.passe;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            modelQuiz.quiz['questao_' + questao.id] = value;
-                                        }}
-                                        style={styles.radioForm}
-                                    />
-                                </View>
+                                <RadioButton model={modelQuiz} block={block} questao={questao} />
                             )}
 
                             {renderIf(questao.tipo === 'select',
@@ -259,7 +241,8 @@ export default class Quiz extends Component {
 
                         {renderIf(questaoQuiz != 0,
                             <Button transparent onPress={() => {
-                                modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
+                                console.log(modelQuiz);
+                                modelQuiz.saveFile(idQuiz, 'quiz', modelQuiz.quiz);
                                 this.props.navigator.replacePreviousAndPop({
                                     name: 'quiz',
                                     id: idQuiz,
@@ -273,9 +256,9 @@ export default class Quiz extends Component {
                         )}
 
                         <Button transparent onPress={() => {
+                            console.log(modelQuiz);
                             if(modelQuiz.quiz['questao_' + questao.id] != null){
-                                modelQuiz.saveFile(idQuiz, modelQuiz.quiz);
-                                modelQuiz.maxQuestion ++;
+                                modelQuiz.saveFile(idQuiz, 'quiz', modelQuiz.quiz);
                             }
 
                             if(Number(idQuestao) + 1 <= modelQuiz.maxQuestion){

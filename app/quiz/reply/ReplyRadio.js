@@ -15,22 +15,23 @@ export default class ReplyRadio extends Component {
         questao = this.props.questao;
 
         this.state = {
-            radioSelected: model.quiz['questao_' + questao.id]
+            selected: model.quiz['questao_' + questao.id]
         }
     }
 
     render() {
-        let radioSelected = this.state.radioSelected;
+        let selected = this.state.selected;
 
         setQuestion = (value) => {
             let idQuestao = 'questao_' + questao.id;
-            console.log('idQuestao: ' + idQuestao);
+
             if(model.quiz[idQuestao] === -1){
                 ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + model.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }else{
                 this.setState({
-                    radioSelected: value
+                    selected: value
                 });
+                
                 model.quiz[idQuestao] = value;
 
                 let numeroQuestao = Number(questao.id.replace(/\D/g,''));
@@ -61,7 +62,7 @@ export default class ReplyRadio extends Component {
                 {questao.opcoes.map(function(object, i){
                     return(
                         <ListItem key={object.value}>
-                            <Radio selected={radioSelected === object.value} onPress={() => {
+                            <Radio selected={selected === object.value} onPress={() => {
                                 this.setQuestion(object.value);
                             }} />
                             <Text onPress={() => {

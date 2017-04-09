@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, ToastAndroid, View } from 'react-native';
-import { ListItem, Radio, Text } from 'native-base';
+import { CheckBox, ListItem, Text } from 'native-base';
 
 let model;
 let passQuestion;
@@ -15,23 +15,28 @@ export default class ReplyMultiSelect extends Component {
         questao = this.props.questao;
 
         this.state = {
-            radioSelected: model.quiz['questao_' + questao.id]
+            selected: model.quiz['questao_' + questao.id]
         }
     }
 
     render() {
-        let radioSelected = this.state.radioSelected;
+        let selected = this.state.selected;
+
+        if(!Array.isArray(selected)){
+            selected = new Array();
+        }
 
         setQuestion = (value) => {
             let idQuestao = 'questao_' + questao.id;
-            console.log('idQuestao: ' + idQuestao);
+
             if(model.quiz[idQuestao] === -1){
                 ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + model.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }else{
                 this.setState({
-                    radioSelected: value
+                    selected: selected
                 });
-                model.quiz[idQuestao] = value;
+
+                model.quiz[idQuestao] = this.state.selected;
 
                 let numeroQuestao = Number(questao.id.replace(/\D/g,''));
                 model.maxQuestion = numeroQuestao + 1;
@@ -61,7 +66,7 @@ export default class ReplyMultiSelect extends Component {
                 {questao.opcoes.map(function(object, i){
                     return(
                         <ListItem key={object.value}>
-                            <Radio selected={radioSelected === object.value} onPress={() => {
+                            <CheckBox checked={!Boolean(selected.indexOf(object.value))} onPress={() => {
                                 this.setQuestion(object.value);
                             }} />
                             <Text onPress={() => {

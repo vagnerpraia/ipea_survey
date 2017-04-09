@@ -1,5 +1,24 @@
 export const questions = [
     {
+        id: '59',
+        pergunta: 'Você ou algum outro residente deste domicílio trabalha com alguma forma de produção abaixo:',
+        observacao_pergunta: 'permite mais de uma opção',
+        pergunta_secundaria: '',
+        opcoes: [
+          {label: 'Agricultura (lavouras, fruticultura, floricultura, hortaliças...)', value: 0},
+          {label: 'Atividade florestal', value: 1},
+          {label: 'Extrativismo', value: 2},
+          {label: 'Pecuária', value: 3},
+          {label: 'Aquicultura', value: 4},
+          {label: 'Pesca (passe para a questão 62)', value: 5},
+          {label: 'Não ou somente como complemento, horta caseira, galinhas para consumo próprio, pesca eventual etc. (passe para a Lista de moradores do domicílio)', value: 6},
+          {label: 'Não sabe (passe para a Lista de moradores do domicílio)', value: 7},
+        ],
+        pergunta_extensao: '',
+        observacao_opcoes: 'Não ler esta opção',
+        tipo: 'multiple'
+    },
+    {
         id: '1',
         pergunta: 'Tipo de domicílio:',
         observacao_pergunta: '',

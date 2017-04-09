@@ -127,7 +127,7 @@ export default class Quiz extends Component {
                     <Card style={styles.card}>
                         {renderIf(questions.id !== 'id',
                             <CardItem>
-                                <Text>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
+                                <Text style={styles.question}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
                                 <Text note>{questao.observacao_pergunta}</Text>
                             </CardItem>
                         )}
@@ -221,12 +221,6 @@ export default class Quiz extends Component {
                                 />
                             </CardItem>
                         )}
-
-                        {renderIf(questao.id !== 'id',
-                            <CardItem>
-                                <Text>{questao.observacao_opcoes}</Text>
-                            </CardItem>
-                        )}
                     </Card>
                 </Content>
                 <Footer>
@@ -304,6 +298,13 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         paddingLeft: 10,
         paddingBottom: 14,
+    },
+    question: {
+        fontWeight: 'bold',
+    },
+    observacao_opcoes: {
+        fontSize: 14,
+        color: 'gray',
     },
     radioLabel: {
         fontSize: 14,

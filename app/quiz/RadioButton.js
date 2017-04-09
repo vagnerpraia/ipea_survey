@@ -51,9 +51,8 @@ export default class RadioButton extends Component {
                             <Radio selected={radioSelected === object.value} onPress={() => {
                                 this.onSelect(object.value);
                             }} />
-                            <Text onPress={() => {
-                                this.onSelect(object.value);
-                            }}>{object.label}</Text>
+                            <Text style={styles.text}>{object.label}</Text>
+                            <Text style={styles.note}>{object.observacao}</Text>
                         </ListItem>
                     );
                 })}
@@ -63,4 +62,10 @@ export default class RadioButton extends Component {
 }
 
 const styles = StyleSheet.create({
+    text: {
+    },
+    note: {
+        fontSize: 14,
+        color: 'gray',
+    },
 });

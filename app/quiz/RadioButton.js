@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, ToastAndroid, View } from 'react-native';
 import { ListItem, Radio, Text } from 'native-base';
 
 let model;
@@ -23,20 +23,32 @@ export default class RadioButton extends Component {
         let radioSelected = this.state.radioSelected;
 
         onSelect = (value) => {
-            this.setState({
-                radioSelected: value
-            });
-            model.quiz['questao_' + questao.id] = value;
+            let idQuestao = 'questao_' + questao.id;
+            if(model.quiz[idQuestao] === -1){
+                ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + model.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
+            }else{
+                this.setState({
+                    radioSelected: value
+                });
+                model.quiz[idQuestao] = value;
 
-            let numeroQuestao = Number(questao.id.replace(/\D/g,''));
-            model.maxQuestion = numeroQuestao + 1;
+                let numeroQuestao = Number(questao.id.replace(/\D/g,''));
+                model.maxQuestion = numeroQuestao + 1;
 
-            for(key in block){
-                let item = block[key];
-                if(item){
-                    if(numeroQuestao == item.questao){
-                        if(item.opcao.indexOf(value) >= 0){
-                            model.maxQuestion = item.passe;
+                for(key in block){
+                    let item = block[key];
+                    if(item){
+                        if(numeroQuestao == item.questao){
+                            if(item.opcao.indexOf(value) >= 0){
+                                model.maxQuestion = item.passe;
+                                for (i = numeroQuestao + 1; i < item.passe; i++) {
+                                    for(key in model.quiz){
+                                        if(key.replace(/\D/g,'') == i){
+                                            model.quiz[key] = -1;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

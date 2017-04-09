@@ -1,5 +1,3 @@
-import { AsyncStorage } from 'react-native';
-
 import RNFetchBlob from 'react-native-fetch-blob';
 
 const dirs = RNFetchBlob.fs.dirs;

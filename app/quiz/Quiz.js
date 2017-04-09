@@ -68,24 +68,23 @@ export default class Quiz extends Component {
                 if(sgs.isSimpleSwipeLeft()){
                     if(model.flagSwiperSeguir){
                         model.flagSwiperSeguir = false;
+                        model.saveFile(id, 'quiz', model.quiz);
 
                         if(model.quiz[idQuestao] != null){
-                            model.saveFile(id, 'quiz', model.quiz);
-                        }
-
-                        if(Number(numeroQuestao) + 1 <= model.maxQuestion){
-                            this.props.navigator.push({
-                                name: 'quiz',
-                                id: id,
-                                model: model,
-                                indexPage: Number(indexPage) + 1,
-                                newQuiz: false
-                            });
+                            if(Number(numeroQuestao) + 1 <= model.maxQuestion){
+                                this.props.navigator.push({
+                                    name: 'quiz',
+                                    id: id,
+                                    model: model,
+                                    indexPage: Number(indexPage) + 1,
+                                    newQuiz: false
+                                });
+                            }
                         }else{
                             ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
                         }
                     }else{
-                        model.flagSwiperSeguir = true;
+                        ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);
                     }
                 }
             }
@@ -215,7 +214,6 @@ export default class Quiz extends Component {
 
                         {renderIf(indexPage != 0,
                             <Button transparent onPress={() => {
-                                console.log(model);
                                 model.saveFile(id, 'quiz', model.quiz);
                                 this.props.navigator.replacePreviousAndPop({
                                     name: 'quiz',
@@ -230,20 +228,22 @@ export default class Quiz extends Component {
                         )}
 
                         <Button transparent onPress={() => {
-                            if(model.quiz[idQuestao] != null){
-                                model.saveFile(id, 'quiz', model.quiz);
-                            }
+                            model.saveFile(id, 'quiz', model.quiz);
 
-                            if(Number(numeroQuestao) + 1 <= model.maxQuestion){
-                                this.props.navigator.push({
-                                    name: 'quiz',
-                                    id: id,
-                                    model: model,
-                                    indexPage: Number(indexPage) + 1,
-                                    newQuiz: false
-                                });
+                            if(model.quiz[idQuestao] != null){
+                                if(Number(numeroQuestao) + 1 <= model.maxQuestion){
+                                    this.props.navigator.push({
+                                        name: 'quiz',
+                                        id: id,
+                                        model: model,
+                                        indexPage: Number(indexPage) + 1,
+                                        newQuiz: false
+                                    });
+                                }else{
+                                    ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                                }
                             }else{
-                                ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                                ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);
                             }
                         }}>
                             <Icon name='ios-arrow-forward' />

@@ -1,43 +1,41 @@
 import React, { Component } from 'react';
 import { PanResponder, StyleSheet, TextInput, ToastAndroid, View } from 'react-native';
 import { Button, Card, CardItem, Container, Content, DeckSwiper, Footer, FooterTab, Header, Icon, ListItem, Radio, Text, Title } from 'native-base';
-import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import SimpleGesture from 'react-native-simple-gesture';
 import { Sae } from 'react-native-textinput-effects';
 
-import { model } from '../Model';
-import { block } from '../Block';
 import { questions } from './Questions';
+import { block } from '../Block';
 import { exitApp } from '../Util';
-
 import RadioButton from './RadioButton';
 
-let modelQuiz;
-let questaoQuiz;
-let idQuiz;
+let id;
+let model;
+let indexPage;
 let idQuestao;
+let numeroQuestao;
 
 export default class Quiz extends Component {
     constructor(props) {
         super(props);
 
-        modelQuiz = this.props.model;
-        questaoQuiz = this.props.questao;
-        idQuiz = this.props.id;
-
-        idQuestao = questions[questaoQuiz].id.replace(/\D/g,'');
+        id = this.props.id;
+        model = this.props.model;
+        indexPage = this.props.indexPage;
+        idQuestao = 'questao_' + questions[indexPage].id;
+        numeroQuestao = questions[indexPage].id.replace(/\D/g,'');
     }
 
     componentWillMount(){
-        if(this.props.novo === true){
-            for(key in modelQuiz.quiz){
-                modelQuiz.quiz[key] = null;
+        if(this.props.newQuiz === true){
+            for(key in model.quiz){
+                model.quiz[key] = null;
             }
 
-            modelQuiz.createFile('quiz', (result) => {
-                idQuiz = result;
+            model.createFile('quiz', (result) => {
+                id = result;
             });
 
             this.state = {
@@ -47,42 +45,47 @@ export default class Quiz extends Component {
 
         this._panResponder = PanResponder.create({
             onMoveShouldSetPanResponder: (e, gs) => {
-                let sgs = new SimpleGesture(e,gs);
+                let sgs = new SimpleGesture(e, gs);
+
                 if(sgs.isSimpleSwipeRight()){
-                    if(modelQuiz.flagSwiperVoltar){
-                        modelQuiz.flagSwiperVoltar = false;
-                        this.props.navigator.replacePreviousAndPop({
-                            name: 'quiz',
-                            id: idQuiz,
-                            model: modelQuiz,
-                            novo: false,
-                            questao: Number(questaoQuiz) - 1
-                        });
+                    if(model.flagSwiperVoltar){
+                        model.flagSwiperVoltar = false;
+                        if(indexPage > 0){
+                            this.props.navigator.replacePreviousAndPop({
+                                name: 'quiz',
+                                id: id,
+                                model: model,
+                                indexPage: Number(indexPage) - 1,
+                                newQuiz: false
+                            });
+                        }else{
+                            ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                        }
                     }else{
-                        modelQuiz.flagSwiperVoltar = true;
+                        model.flagSwiperVoltar = true;
                     }
                 }
                 if(sgs.isSimpleSwipeLeft()){
-                    if(modelQuiz.flagSwiperSeguir){
-                        modelQuiz.flagSwiperSeguir = false;
+                    if(model.flagSwiperSeguir){
+                        model.flagSwiperSeguir = false;
 
-                        if(modelQuiz.quiz['questao_' + questions[questaoQuiz].id] != null){
-                            modelQuiz.saveFile(idQuiz, 'quiz', modelQuiz.quiz);
+                        if(model.quiz[idQuestao] != null){
+                            model.saveFile(id, 'quiz', model.quiz);
                         }
 
-                        if(Number(idQuestao) + 1 <= modelQuiz.maxQuestion){
+                        if(Number(numeroQuestao) + 1 <= model.maxQuestion){
                             this.props.navigator.push({
                                 name: 'quiz',
-                                id: idQuiz,
-                                model: modelQuiz,
-                                novo: false,
-                                questao: Number(questaoQuiz) + 1
+                                id: id,
+                                model: model,
+                                indexPage: Number(indexPage) + 1,
+                                newQuiz: false
                             });
                         }else{
-                            ToastAndroid.showWithGravity('Responda a questão ' + idQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                            ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
                         }
                     }else{
-                        modelQuiz.flagSwiperSeguir = true;
+                        model.flagSwiperSeguir = true;
                     }
                 }
             }
@@ -98,14 +101,14 @@ export default class Quiz extends Component {
             }
         }
 
-        var questao = questions[questaoQuiz];
+        var questao = questions[indexPage];
 
         return (
             <Container style={styles.container}>
                 <Header>
                     <Button transparent onPress={() => {
-                        if(questaoQuiz === 0){
-                            modelQuiz.deleteQuiz(idQuiz);
+                        if(indexPage === 0){
+                            model.deleteQuiz(id);
                         };
 
                         this.props.navigator.replacePreviousAndPop({
@@ -146,48 +149,25 @@ export default class Quiz extends Component {
                                     <TextInput
                                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                                         onChangeText={(value) => {
-                                            modelQuiz.quiz['nome_aplicador'] = value;
+                                            model.quiz['nome_aplicador'] = value;
                                         }}
-                                        value={modelQuiz.quiz['nome_aplicador']}
+                                        value={model.quiz['nome_aplicador']}
                                     />
                                 </View>
                             )}
 
                             {renderIf(questao.tipo === 'radio',
-                                <RadioButton model={modelQuiz} block={block} questao={questao} />
+                                <RadioButton model={model} block={block} questao={questao} />
                             )}
 
                             {renderIf(questao.tipo === 'select',
                                 <View>
-                                    <Text>modelQuiz.quiz['questao_' + questao.id]</Text>
+                                    <Text>model.quiz[idQuestao]</Text>
                                 </View>
                             )}
 
                             {renderIf(questao.tipo === 'multiple',
                                 <View>
-                                    <RadioForm
-                                        radio_props={questao.opcoes}
-                                        initial={modelQuiz.quiz['questao_' + questao.id]}
-                                        buttonColor={'#000000'}
-                                        buttonSize={10}
-                                        labelStyle={styles.radioLabel}
-                                        onPress={(value) => {
-                                            modelQuiz.maxQuestion = Number(idQuestao) + 1;
-                                            for(key in block){
-                                                let item = block[key];
-                                                if(item){
-                                                    if(idQuestao == item.questao){
-                                                        if(item.opcao.indexOf(value) >= 0){
-                                                            modelQuiz.block.push(item.bloqueio);
-                                                            modelQuiz.maxQuestion = item.passe;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            modelQuiz.quiz['questao_' + questao.id] = value;
-                                        }}
-                                        style={styles.radioForm}
-                                    />
                                 </View>
                             )}
 
@@ -197,7 +177,7 @@ export default class Quiz extends Component {
                                         style={styles.textInputNumeric}
                                         keyboardType = 'numeric'
                                         onChangeText = {(value) => {
-                                            modelQuiz.quiz['questao_' + questao.id] = value;
+                                            model.quiz[idQuestao] = value;
                                         }}
                                         value = {null}
                                         maxLength = {2}
@@ -210,7 +190,7 @@ export default class Quiz extends Component {
                             <CardItem>
                                 <Sae
                                     label={questao.pergunta_extensao.pergunta}
-                                    defaultValue={modelQuiz.quiz['questao_' + questao.id + '_secundaria']}
+                                    defaultValue={model.quiz[idQuestao + '_secundaria']}
                                     iconClass={FontAwesomeIcon}
                                     iconName={'pencil'}
                                     iconColor={'black'}
@@ -225,7 +205,7 @@ export default class Quiz extends Component {
                 </Content>
                 <Footer>
                     <FooterTab>
-                        {renderIf(questaoQuiz == 0,
+                        {renderIf(indexPage == 0,
                             <Button transparent onPress={()=> {
                                 ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
                             }}>
@@ -233,16 +213,16 @@ export default class Quiz extends Component {
                             </Button>
                         )}
 
-                        {renderIf(questaoQuiz != 0,
+                        {renderIf(indexPage != 0,
                             <Button transparent onPress={() => {
-                                console.log(modelQuiz);
-                                modelQuiz.saveFile(idQuiz, 'quiz', modelQuiz.quiz);
+                                console.log(model);
+                                model.saveFile(id, 'quiz', model.quiz);
                                 this.props.navigator.replacePreviousAndPop({
                                     name: 'quiz',
-                                    id: idQuiz,
-                                    model: modelQuiz,
-                                    novo: false,
-                                    questao: Number(questaoQuiz) - 1
+                                    id: id,
+                                    model: model,
+                                    indexPage: Number(indexPage) - 1,
+                                    newQuiz: false
                                 });
                             }}>
                                 <Icon name='ios-arrow-back' />
@@ -250,21 +230,20 @@ export default class Quiz extends Component {
                         )}
 
                         <Button transparent onPress={() => {
-                            console.log(modelQuiz);
-                            if(modelQuiz.quiz['questao_' + questao.id] != null){
-                                modelQuiz.saveFile(idQuiz, 'quiz', modelQuiz.quiz);
+                            if(model.quiz[idQuestao] != null){
+                                model.saveFile(id, 'quiz', model.quiz);
                             }
 
-                            if(Number(idQuestao) + 1 <= modelQuiz.maxQuestion){
+                            if(Number(numeroQuestao) + 1 <= model.maxQuestion){
                                 this.props.navigator.push({
                                     name: 'quiz',
-                                    id: idQuiz,
-                                    model: modelQuiz,
-                                    novo: false,
-                                    questao: Number(questaoQuiz) + 1
+                                    id: id,
+                                    model: model,
+                                    indexPage: Number(indexPage) + 1,
+                                    newQuiz: false
                                 });
                             }else{
-                                ToastAndroid.showWithGravity('Responda a questão ' + idQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                                ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
                             }
                         }}>
                             <Icon name='ios-arrow-forward' />

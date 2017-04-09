@@ -253,7 +253,6 @@ export var model = {
     saveFile: saveFile,
     deleteQuiz: deleteQuiz,
     maxQuestion: 1,
-    block: [],
     flagSwiperVoltar: true,
     flagSwiperSeguir: true,
 };

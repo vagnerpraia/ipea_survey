@@ -27,8 +27,8 @@ export default class Main extends Component {
                                 name: 'quiz',
                                 id: null,
                                 model: model,
-                                novo: true,
-                                questao: 0
+                                indexPage: 0,
+                                newQuiz: true
                             });
                         }}>
                             <Icon name='md-document' style={styles.icon} />
@@ -41,8 +41,8 @@ export default class Main extends Component {
                                 name: 'quiz',
                                 id: null,
                                 model: model,
-                                novo: false,
-                                questao: 0
+                                indexPage: 0,
+                                newQuiz: false
                             });
                         }}>
                             <Icon name='md-create' style={styles.icon} />

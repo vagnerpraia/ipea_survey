@@ -1,4 +1,4 @@
-export const block = [
+export const passQuestion = [
     {
         questao: 1,
         opcao: [0, 1, 2, 3, 4],

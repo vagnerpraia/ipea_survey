@@ -6,10 +6,16 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import SimpleGesture from 'react-native-simple-gesture';
 import { Sae } from 'react-native-textinput-effects';
 
-import { questions } from './Questions';
-import { block } from '../Block';
 import { exitApp } from '../Util';
-import RadioButton from './RadioButton';
+
+import { questions } from './content/Questions';
+import { passQuestion } from './content/PassQuestion';
+
+import ViewId from './ViewId';
+
+import ReplyInputNumeric from './reply/ReplyInputNumeric';
+import ReplyMultiSelect from './reply/ReplyMultiSelect';
+import ReplyRadio from './reply/ReplyRadio';
 
 let id;
 let model;
@@ -143,45 +149,19 @@ export default class Quiz extends Component {
                             )}
 
                             {renderIf(questao.tipo === 'quiz_id',
-                                <View>
-                                    <Text>Nome do aplicador</Text>
-                                    <TextInput
-                                        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                                        onChangeText={(value) => {
-                                            model.quiz['nome_aplicador'] = value;
-                                        }}
-                                        value={model.quiz['nome_aplicador']}
-                                    />
-                                </View>
-                            )}
-
-                            {renderIf(questao.tipo === 'radio',
-                                <RadioButton model={model} block={block} questao={questao} />
-                            )}
-
-                            {renderIf(questao.tipo === 'select',
-                                <View>
-                                    <Text>model.quiz[idQuestao]</Text>
-                                </View>
-                            )}
-
-                            {renderIf(questao.tipo === 'multiple',
-                                <View>
-                                </View>
+                                <ViewId model={model} passQuestion={passQuestion} questao={questao} />
                             )}
 
                             {renderIf(questao.tipo === 'input_numeric',
-                                <View>
-                                    <TextInput
-                                        style={styles.textInputNumeric}
-                                        keyboardType = 'numeric'
-                                        onChangeText = {(value) => {
-                                            model.quiz[idQuestao] = value;
-                                        }}
-                                        value = {null}
-                                        maxLength = {2}
-                                    />
-                                </View>
+                                <ReplyInputNumeric model={model} passQuestion={passQuestion} questao={questao} />
+                            )}
+
+                            {renderIf(questao.tipo === 'multiple',
+                                <ReplyMultiSelect model={model} passQuestion={passQuestion} questao={questao} />
+                            )}
+
+                            {renderIf(questao.tipo === 'radio',
+                                <ReplyRadio model={model} passQuestion={passQuestion} questao={questao} />
                             )}
                         </CardItem>
 

@@ -9,6 +9,7 @@ import { Sae } from 'react-native-textinput-effects';
 import { exitApp } from '../Util';
 
 import { questions } from './content/Questions';
+import { businessQuestion } from './content/BusinessQuestion';
 import { passQuestion } from './content/PassQuestion';
 
 import ViewId from './ViewId';
@@ -157,7 +158,7 @@ export default class Quiz extends Component {
                             )}
 
                             {renderIf(questao.tipo === 'multiple',
-                                <ReplyMultiSelect model={model} passQuestion={passQuestion} questao={questao} />
+                                <ReplyMultiSelect model={model} passQuestion={passQuestion} businessQuestion={businessQuestion} questao={questao} />
                             )}
 
                             {renderIf(questao.tipo === 'radio',

@@ -31,7 +31,7 @@ export default class ReplyRadio extends Component {
                 this.setState({
                     selected: value
                 });
-                
+
                 model.quiz[idQuestao] = value;
 
                 let numeroQuestao = Number(questao.id.replace(/\D/g,''));
@@ -65,14 +65,16 @@ export default class ReplyRadio extends Component {
                             <Radio selected={selected === object.value} onPress={() => {
                                 this.setQuestion(object.value);
                             }} />
-                            <Text onPress={() => {
-                                this.setQuestion(object.value);
-                            }}>
-                                {object.label}
-                            </Text>
-                            <Text style={styles.note}>
-                                {object.observacao}
-                            </Text>
+                            <View>
+                                <Text onPress={() => {
+                                    this.setQuestion(object.value);
+                                }}>
+                                    {object.label}
+                                </Text>
+                                <Text style={styles.note}>
+                                    {object.observacao}
+                                </Text>
+                            </View>
                         </ListItem>
                     );
                 })}

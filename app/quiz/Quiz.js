@@ -6,23 +6,28 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import SimpleGesture from 'react-native-simple-gesture';
 import { Sae } from 'react-native-textinput-effects';
 
-import { exitApp } from '../Util';
-
 import { questions } from './content/Questions';
 import { businessQuestion } from './content/BusinessQuestion';
+import { divisionQuestion } from './content/DivisionQuestion';
 import { passQuestion } from './content/PassQuestion';
 
-import ViewId from './ViewId';
+import SideMenuQuiz from './SideMenuQuiz';
+import ViewDomicilio from './ViewDomicilio';
+import ViewMorador from './ViewMorador';
 
 import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
+
+import SideMenu from 'react-native-side-menu';
 
 let id;
 let model;
 let indexPage;
 let idQuestao;
 let numeroQuestao;
+let titulo;
+let screen;
 
 export default class Quiz extends Component {
     constructor(props) {
@@ -33,6 +38,22 @@ export default class Quiz extends Component {
         indexPage = this.props.indexPage;
         idQuestao = 'questao_' + questions[indexPage].id;
         numeroQuestao = questions[indexPage].id.replace(/\D/g,'');
+
+        for(keyDiv in divisionQuestion){
+            let div = divisionQuestion[keyDiv];
+
+            if(numeroQuestao === div.inicio) screen = div.titulo;
+
+            if(numeroQuestao >= div.inicio && numeroQuestao < div.fim){
+                titulo = div.titulo;
+                for(keySub in div.subdivisoes){
+                    let sub = div.subdivisoes[keySub];
+                    if(numeroQuestao >= sub.inicio && numeroQuestao < sub.fim){
+                        titulo = sub.titulo;
+                    }
+                }
+            }
+        }
     }
 
     componentWillMount(){
@@ -46,7 +67,8 @@ export default class Quiz extends Component {
             });
 
             this.state = {
-                radioSelected: null
+                radioSelected: null,
+                isOpen: false,
             };
         }
 
@@ -98,7 +120,26 @@ export default class Quiz extends Component {
         });
     }
 
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen,
+        });
+    }
+
+    updateMenuState(isOpen) {
+        this.setState({ isOpen, });
+    }
+
+    onMenuItemSelected = (item) => {
+        this.setState({
+            isOpen: false,
+        });
+        console.log(item);
+    }
+
     render() {
+        const menu = <SideMenuQuiz onItemSelected={this.onMenuItemSelected} />;
+
         function renderIf(condition, content) {
             if (condition) {
                 return content;
@@ -110,128 +151,134 @@ export default class Quiz extends Component {
         var questao = questions[indexPage];
 
         return (
-            <Container style={styles.container}>
-                <Header>
-                    <Button transparent onPress={() => {
-                        if(indexPage === 0){
-                            model.deleteQuiz(id);
-                        };
+            <SideMenu menu={menu} menuPosition={'right'} isOpen={this.state.isOpen} onChange={(isOpen) => this.updateMenuState(isOpen)}>
+                <Container style={styles.container}>
+                    <Header>
+                        <Button transparent onPress={() => {
+                            if(indexPage === 0){
+                                model.deleteQuiz(id);
+                            };
 
-                        this.props.navigator.replacePreviousAndPop({
-                            name: 'main'
-                        });
-                    }}>
-                        <Icon name='ios-arrow-back' />
-                    </Button>
+                            this.props.navigator.replacePreviousAndPop({
+                                name: 'main'
+                            });
+                        }}>
+                            <Icon name='ios-arrow-back' />
+                        </Button>
 
-                    <Title>Questionário</Title>
-
-                    <Button transparent onPress={
-                        exitApp
-                    }>
-                        <Icon name='ios-close' />
-                    </Button>
-                </Header>
-                <Content {...this._panResponder.panHandlers}>
-                    <Card style={styles.card}>
-                        {renderIf(questions.id !== 'id',
-                            <CardItem>
-                                <Text style={styles.question}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
-                                <Text note>{questao.observacao_pergunta}</Text>
-                            </CardItem>
-                        )}
-
-                        <CardItem cardBody style={styles.cardItem}>
-                            {renderIf(questao.pergunta_secundaria !== '',
-                                <View style={styles.pergunta_secundaria}>
-                                    <Text>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
-                                    <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
-                                </View>
-                            )}
-
-                            {renderIf(questao.tipo === 'quiz_id',
-                                <ViewId model={model} passQuestion={passQuestion} questao={questao} />
-                            )}
-
-                            {renderIf(questao.tipo === 'input_numeric',
-                                <ReplyInputNumeric model={model} passQuestion={passQuestion} questao={questao} />
-                            )}
-
-                            {renderIf(questao.tipo === 'multiple',
-                                <ReplyMultiSelect model={model} passQuestion={passQuestion} businessQuestion={businessQuestion} questao={questao} />
-                            )}
-
-                            {renderIf(questao.tipo === 'radio',
-                                <ReplyRadio model={model} passQuestion={passQuestion} questao={questao} />
-                            )}
-                        </CardItem>
-
-                        {renderIf(questao.pergunta_extensao !== '',
-                            <CardItem>
-                                <Sae
-                                    label={questao.pergunta_extensao.pergunta}
-                                    defaultValue={model.quiz[idQuestao + '_secundaria']}
-                                    iconClass={FontAwesomeIcon}
-                                    iconName={'pencil'}
-                                    iconColor={'black'}
-                                    autoCapitalize={'none'}
-                                    autoCorrect={false}
-                                    labelStyle={styles.textInput}
-                                    inputStyle={styles.textInput}
-                                />
-                            </CardItem>
-                        )}
-                    </Card>
-                </Content>
-                <Footer>
-                    <FooterTab>
-                        {renderIf(indexPage == 0,
-                            <Button transparent onPress={()=> {
-                                ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                            }}>
-                                <Icon name='ios-arrow-back' />
-                            </Button>
-                        )}
-
-                        {renderIf(indexPage != 0,
-                            <Button transparent onPress={() => {
-                                model.saveFile(id, 'quiz', model.quiz);
-                                this.props.navigator.replacePreviousAndPop({
-                                    name: 'quiz',
-                                    id: id,
-                                    model: model,
-                                    indexPage: Number(indexPage) - 1,
-                                    newQuiz: false
-                                });
-                            }}>
-                                <Icon name='ios-arrow-back' />
-                            </Button>
-                        )}
+                        <Title>{titulo}</Title>
 
                         <Button transparent onPress={() => {
-                            model.saveFile(id, 'quiz', model.quiz);
+                            this.toggle();
+                        }}>
+                            <Icon name='ios-menu' />
+                        </Button>
+                    </Header>
+                    <Content {...this._panResponder.panHandlers}>
+                        <Card style={styles.card}>
+                            {renderIf(questions.id !== 'id',
+                                <CardItem>
+                                    <Text style={styles.question}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
+                                    <Text note>{questao.observacao_pergunta}</Text>
+                                </CardItem>
+                            )}
 
-                            if(model.quiz[idQuestao] != null){
-                                if(Number(numeroQuestao) + 1 <= model.maxQuestion){
-                                    this.props.navigator.push({
+                            <CardItem cardBody style={styles.cardItem}>
+                                {renderIf(questao.pergunta_secundaria !== '',
+                                    <View style={styles.pergunta_secundaria}>
+                                        <Text>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
+                                        <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
+                                    </View>
+                                )}
+
+                                {renderIf(questao.tipo === 'domicilio',
+                                    <ViewDomicilio model={model} passQuestion={passQuestion} questao={questao} />
+                                )}
+
+                                {renderIf(questao.tipo === 'morador',
+                                    <ViewMorador model={model} passQuestion={passQuestion} questao={questao} />
+                                )}
+
+                                {renderIf(questao.tipo === 'input_numeric',
+                                    <ReplyInputNumeric model={model} passQuestion={passQuestion} questao={questao} />
+                                )}
+
+                                {renderIf(questao.tipo === 'multiple',
+                                    <ReplyMultiSelect model={model} passQuestion={passQuestion} businessQuestion={businessQuestion} questao={questao} />
+                                )}
+
+                                {renderIf(questao.tipo === 'radio',
+                                    <ReplyRadio model={model} passQuestion={passQuestion} questao={questao} />
+                                )}
+                            </CardItem>
+
+                            {renderIf(questao.pergunta_extensao !== '',
+                                <CardItem>
+                                    <Sae
+                                        label={questao.pergunta_extensao.pergunta}
+                                        defaultValue={model.quiz[idQuestao + '_secundaria']}
+                                        iconClass={FontAwesomeIcon}
+                                        iconName={'pencil'}
+                                        iconColor={'black'}
+                                        autoCapitalize={'none'}
+                                        autoCorrect={false}
+                                        labelStyle={styles.textInput}
+                                        inputStyle={styles.textInput}
+                                    />
+                                </CardItem>
+                            )}
+                        </Card>
+                    </Content>
+                    <Footer>
+                        <FooterTab>
+                            {renderIf(indexPage == 0,
+                                <Button transparent onPress={()=> {
+                                    ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                                }}>
+                                    <Icon name='ios-arrow-back' />
+                                </Button>
+                            )}
+
+                            {renderIf(indexPage != 0,
+                                <Button transparent onPress={() => {
+                                    model.saveFile(id, 'quiz', model.quiz);
+                                    this.props.navigator.replacePreviousAndPop({
                                         name: 'quiz',
                                         id: id,
                                         model: model,
-                                        indexPage: Number(indexPage) + 1,
+                                        indexPage: Number(indexPage) - 1,
                                         newQuiz: false
                                     });
+                                }}>
+                                    <Icon name='ios-arrow-back' />
+                                </Button>
+                            )}
+
+                            <Button transparent onPress={() => {
+                                model.saveFile(id, 'quiz', model.quiz);
+
+                                if(model.quiz[idQuestao] != null){
+                                    if(Number(numeroQuestao) + 1 <= model.maxQuestion){
+                                        this.props.navigator.push({
+                                            name: 'quiz',
+                                            id: id,
+                                            model: model,
+                                            indexPage: Number(indexPage) + 1,
+                                            newQuiz: false
+                                        });
+                                    }else{
+                                        ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                                    }
                                 }else{
-                                    ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                                    ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);
                                 }
-                            }else{
-                                ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                            }
-                        }}>
-                            <Icon name='ios-arrow-forward' />
-                        </Button>
-                    </FooterTab>
-                </Footer>
-            </Container>
+                            }}>
+                                <Icon name='ios-arrow-forward' />
+                            </Button>
+                        </FooterTab>
+                    </Footer>
+                </Container>
+            </SideMenu>
         );
     }
 }

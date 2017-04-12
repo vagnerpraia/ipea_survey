@@ -691,7 +691,7 @@ export const questions = [
     },
     {
         id: '16',
-        pergunta: 'Qual a fonte de abastecimento de água utilizada neste domicílio hoje?',
+        pergunta: 'Qual a fonte de abastecimento de água utilizada neste domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
@@ -708,7 +708,7 @@ export const questions = [
             {label: 'Não sabe', value: 10, observacao: 'Não ler esta opção'},
         ],
         pergunta_extensao: '',
-        tipo: 'radio'
+        tipo: 'multiple'
     },
     {
         id: '17',
@@ -795,7 +795,7 @@ export const questions = [
             {label: 'Não sabe', observacao: 'Não ler esta opção', value: 7},
         ],
         pergunta_extensao: '',
-        tipo: 'radio'
+        tipo: 'multiple'
     },
     {
         id: '23',
@@ -1058,8 +1058,8 @@ export const questions = [
     },
     {
         id: '34',
-        pergunta: 'Alguém do domicílio possui plano de saúde particular?',
-        observacao_pergunta: '',
+        pergunta: 'Nos últimos 12 meses, com que frequência o seu domicílio recebeu uma visita de algum agente de endemias?',
+        observacao_pergunta: 'como a dengue, por exemplo',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Sim', observacao: '', value: 0},
@@ -1071,20 +1071,7 @@ export const questions = [
     },
     {
         id: '35',
-        pergunta: 'O domicílio recebe a visita da equipe do programa saúde da família (PSF) e/ou de agentes de saúde?',
-        observacao_pergunta: '',
-        pergunta_secundaria: '',
-        opcoes: [
-            {label: 'Sim', observacao: '', value: 0},
-            {label: 'Não', observacao: 'Passe para a questão 38', value: 1},
-            {label: 'Não sabe', observacao: 'Não ler esta opção / Passe para a questão 38', value: 2},
-        ],
-        pergunta_extensao: '',
-        tipo: 'radio'
-    },
-    {
-        id: '36',
-        pergunta: 'Com que frequência o domicílio recebe a visita da equipe do programa saúde da família (PSF) e/ou de agentes de saúde?',
+        pergunta: 'Nos últimos 12 meses, com que frequência o domicílio recebeu a visita da equipe do programa de saúde da família (PSF) e/ou de agentes de saúde?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
@@ -1094,13 +1081,14 @@ export const questions = [
             {label: 'Uma vez a cada bimestre (dois meses)', observacao: '', value: 3},
             {label: 'Uma vez a cada trimestre (três meses)', observacao: '', value: 4},
             {label: 'Duas vezes por ano ou menos', observacao: '', value: 5},
-            {label: 'Não sabe', observacao: 'Não ler esta opção', value: 6},
+            {label: 'Nunca recebeu', observacao: '', value: 6},
+            {label: 'Não sabe', observacao: 'Não ler esta opção', value: 7},
         ],
         pergunta_extensao: '',
         tipo: 'radio'
     },
     {
-        id: '37',
+        id: '36',
         pergunta: 'Como você e os moradores do domicílio avaliam a atuação da equipe do programa saúde da família (PSF) ou dos agentes de saúde',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1111,6 +1099,19 @@ export const questions = [
             {label: 'Ruim', observacao: '', value: 3},
             {label: 'Muito ruim', observacao: '', value: 4},
             {label: 'Não sabe', observacao: 'Não ler esta opção', value: 5},
+        ],
+        pergunta_extensao: '',
+        tipo: 'radio'
+    },
+    {
+        id: '37',
+        pergunta: 'Alguém do domicílio possui algum plano de saúde particular/privado?',
+        observacao_pergunta: '',
+        pergunta_secundaria: '',
+        opcoes: [
+            {label: 'Sim', observacao: '', value: 0},
+            {label: 'Não', observacao: '', value: 1},
+            {label: 'Não sabe', observacao: 'Não ler esta opção', value: 2},
         ],
         pergunta_extensao: '',
         tipo: 'radio'
@@ -1248,7 +1249,7 @@ export const questions = [
     {
         id: '42',
         pergunta: 'Com a construção da barragem, de que forma você e sua família foram atingidos?',
-        observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar: E o que mais?',
+        observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar E o que mais? E apenas após esgotar as opções passar para as seguintes',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Perderam a propriedade ou a posse de área rural', observacao: 'Passe para a questão 44', value: 0},
@@ -1819,7 +1820,7 @@ export const questions = [
     {
         id: '57',
         pergunta: 'Na escala em que 0 (zero) significa "insatisfeita" e 10 (dez) significa "satisfeita", como a família avalia a forma de reparação realizada pela empresa?',
-        observacao_pergunta: 'Todos devem responder, após passar para a questão 59',
+        observacao_pergunta: 'Todos devem responder.',
         pergunta_secundaria: '',
         opcoes: [
             {label: '0', observacao: '', value: 0},
@@ -1886,17 +1887,17 @@ export const questions = [
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Proprietário', observacao: '', value: 0},
-            {label: 'Parceleiro', observacao: 'Passe para a questão 62', value: 1},
-            {label: 'Ocupante', observacao: 'Passe para a questão 62', value: 2},
-            {label: 'Agregado', observacao: 'Passe para a questão 62', value: 3},
-            {label: 'Arrendatário', observacao: 'Passe para a questão 62', value: 4},
-            {label: 'Parceiro', observacao: 'Passe para a questão 62', value: 5},
-            {label: 'Meeiro', observacao: 'Passe para a questão 62', value: 6},
-            {label: 'Caseiro', observacao: 'Passe para a questão 62', value: 7},
-            {label: 'Tem produção própria fora do lote, em área comunitária ou floresta pública ou rios ou lagos', observacao: 'Passe para a questão 62', value: 8},
-            {label: 'Assalariado/Boia fria', observacao: 'Passe para a questão 70', value: 9},
-            {label: 'Outro', observacao: 'Passe para a questão 62', value: 10},
-            {label: 'Não sabe', observacao: 'Não ler esta opção / Passe para a questão 62', value: 11},
+            {label: 'Parceleiro', observacao: '', value: 1},
+            {label: 'Ocupante', observacao: '', value: 2},
+            {label: 'Agregado', observacao: '', value: 3},
+            {label: 'Arrendatário', observacao: '', value: 4},
+            {label: 'Parceiro', observacao: '', value: 5},
+            {label: 'Meeiro', observacao: '', value: 6},
+            {label: 'Caseiro', observacao: '', value: 7},
+            {label: 'Tem produção própria fora do lote, em área comunitária ou floresta pública ou rios ou lagos', observacao: '', value: 8},
+            {label: 'Assalariado/Boia fria', observacao: 'Passe para a questão 69', value: 9},
+            {label: 'Outro', observacao: '', value: 10},
+            {label: 'Não sabe', observacao: 'Não ler esta opção', value: 11},
         ],
         pergunta_extensao: '',
         tipo: 'radio'
@@ -2599,12 +2600,12 @@ export const questions = [
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
-            {label: 'Muito distante', observacao: '', value: 0},
-            {label: 'Distante', observacao: '', value: 1},
-            {label: 'Nem distante nem próximo', observacao: '', value: 2},
-            {label: 'Próximo', observacao: '', value: 3},
-            {label: 'Muito próximo', observacao: '', value: 4},
-            {label: 'Não sabe', observacao: 'Não ler esta opção', value: 5},
+            {label: 'Muito distante', observacao: 'Passe para a questão 85', value: 0},
+            {label: 'Distante', observacao: 'Passe para a questão 85', value: 1},
+            {label: 'Nem distante nem próximo', observacao: 'Passe para a questão 85', value: 2},
+            {label: 'Próximo', observacao: 'Passe para a questão 85', value: 3},
+            {label: 'Muito próximo', observacao: 'Passe para a questão 85', value: 4},
+            {label: 'Não sabe', observacao: 'Não ler esta opção / Passe para a questão 85', value: 5},
         ],
         pergunta_extensao: '',
         tipo: 'radio'
@@ -2658,59 +2659,26 @@ export const questions = [
     },
     {
         id: '85',
-        pergunta: 'Na semana passada o(a) sr.(a): Trabalhou, ganhando em dinheiro, produtos, mercadorias ou benefícios?',
-        observacao_pergunta: 'Benefícios: moradia, alimentação etc.',
-        pergunta_secundaria: '',
-        opcoes: [
-            {label: 'Sim', observacao: 'Passe para a questão 89', value: 0},
-            {label: 'Não', observacao: '', value: 1},
-            {label: 'Não sabe', observacao: 'Não ler esta opção', value: 2},
-        ],
-        pergunta_extensao: '',
-        tipo: 'radio'
-    },
-    {
-        id: '86',
-        pergunta: 'Na semana passada o(a) sr.(a): Tinha algum trabalho remunerado (que gerou renda, no qual ganhou dinheiro), mas estava temporariamente afastado por algum motivo?',
-        observacao_pergunta: 'Férias, doença, greve, falta, más condições do tempo etc.',
-        pergunta_secundaria: '',
-        opcoes: [
-            {label: 'Sim', observacao: 'Passe para a questão 89', value: 0},
-            {label: 'Não', observacao: '', value: 1},
-            {label: 'Não sabe', observacao: 'Não ler esta opção', value: 2},
-        ],
-        pergunta_extensao: '',
-        tipo: 'radio'
-    },
-    {
-        id: '87',
-        pergunta: 'Na semana passada o(a) sr.(a): Ajudou sem qualquer pagamento no trabalho remunerado de morador do domicílio?',
+        pergunta: 'Na semana passada o(a) Sr(a):',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
-            {label: 'Sim', observacao: 'Passe para a questão 89', value: 0},
-            {label: 'Não', observacao: '', value: 1},
-            {label: 'Não sabe', observacao: 'Não ler esta opção', value: 2},
+            {label: 'Tinha um trabalho remunerado (que gerou renda, ganhou dinheiro)', observacao: '', value: 0},
+            {label: 'Tinha um trabalho remunerado (que gerou renda, ganhou dinheiro), mas estava temporariamente afastado por algum motivo (férias, licença, greve, doença etc.)', observacao: '', value: 1},
+            {label: 'Trabalhou apenas em tarefas de cultivo, pesca ou criação de animais destinados somente para alimentação das pessoas moradoras no domicílio.', observacao: '', value: 2},
+            {label: 'Trabalhou apenas em tarefas de construção de prédio, cômodo, poço ou outras obras de construção destinadas somente ao próprio uso das pessoas moradoras no domicílio.', observacao: '', value: 3},
+            {label: 'Trabalhou apenas em tarefas domésticas no próprio domicílio', observacao: '', value: 4},
+            {label: 'Exerceu outro tipo de atividade não remunerada (que não gerou renda, dinheiro)', observacao: '', value: 5},
+            {label: 'Não trabalhou, mas procurou trabalho remunerado (desempregado)', observacao: '', value: 6},
+            {label: 'Não trabalhou e não procurou trabalho remunerado (inativo)', observacao: '', value: 7},
         ],
         pergunta_extensao: '',
-        tipo: 'radio'
+        tipo: 'multiple'
     },
+
     {
-        id: '88',
-        pergunta: 'Na semana passada o(a) sr.(a): Trabalhou na plantação, criação de animais ou pesca, somente para alimentação dos moradores do domicílio?',
-        observacao_pergunta: 'Inclusive caça e extrativismo',
-        pergunta_secundaria: '',
-        opcoes: [
-            {label: 'Sim', observacao: 'Passe para a questão 92', value: 0},
-            {label: 'Não', observacao: 'Passe para a questão 91', value: 1},
-            {label: 'Não sabe', observacao: 'Não ler esta opção', value: 2},
-        ],
-        pergunta_extensao: '',
-        tipo: 'radio'
-    },
-    {
-        id: '89',
-        pergunta: 'Na semana passada o(a) sr.(a): No trabalho da semana passada, você era:',
+        id: '86',
+        pergunta: 'No trabalho da semana passada, você era:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
@@ -2728,8 +2696,8 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '90',
-        pergunta: 'Na semana passada o(a) sr.(a): Quantas pessoas empregava nesse trabalho?',
+        id: '87',
+        pergunta: 'Quantas pessoas empregava nesse trabalho?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
@@ -2744,7 +2712,7 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '91',
+        id: '88',
         pergunta: 'No mês passado procurou por trabalho remunerado?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -2757,7 +2725,7 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '92',
+        id: '89',
         pergunta: 'Era contribuinte de instituto de previdência oficial na semana passada?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -2770,7 +2738,7 @@ export const questions = [
         tipo: 'radio'
     },
     {
-        id: '93',
+        id: '90',
         pergunta: 'Teve alguma renda no último mês? Se sim, qual foi o rendimento bruto total que obteve no último mês? ',
         observacao_pergunta: 'Incluindo todas as fontes de renda: salário, seguro-desemprego, aposentadoria, pensão, mesada, aluguel, retirada mensal, bicos, extras, bolsa família etc.',
         pergunta_secundaria: '',

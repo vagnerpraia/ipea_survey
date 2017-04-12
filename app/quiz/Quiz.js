@@ -33,6 +33,10 @@ export default class Quiz extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            isOpen: false,
+        };
+
         id = this.props.id;
         model = this.props.model;
         indexPage = this.props.indexPage;
@@ -65,11 +69,6 @@ export default class Quiz extends Component {
             model.createFile('quiz', (result) => {
                 id = result;
             });
-
-            this.state = {
-                radioSelected: null,
-                isOpen: false,
-            };
         }
 
         this._panResponder = PanResponder.create({
@@ -127,18 +126,21 @@ export default class Quiz extends Component {
     }
 
     updateMenuState(isOpen) {
-        this.setState({ isOpen, });
+        this.setState({
+            isOpen: isOpen
+        });
     }
 
-    onMenuItemSelected = (item) => {
+    onItemSelected = (isOpen) => {
         this.setState({
-            isOpen: false,
+            isOpen: isOpen
         });
-        console.log(item);
     }
 
     render() {
-        const menu = <SideMenuQuiz onItemSelected={this.onMenuItemSelected} />;
+        let open = this.state.isOpen;
+
+        const menu = <SideMenuQuiz id={id} model={model} indexPage={indexPage} navigator={this.props.navigator} onItemSelected={this.onItemSelected} />;
 
         function renderIf(condition, content) {
             if (condition) {
@@ -148,10 +150,12 @@ export default class Quiz extends Component {
             }
         }
 
-        var questao = questions[indexPage];
+        let questao = questions[indexPage];
 
         return (
-            <SideMenu menu={menu} menuPosition={'right'} isOpen={this.state.isOpen} onChange={(isOpen) => this.updateMenuState(isOpen)}>
+            <SideMenu menu={menu} menuPosition={'right'} isOpen={open} onChange={(isOpen) => {
+                this.updateMenuState(isOpen)
+            }}>
                 <Container style={styles.container}>
                     <Header>
                         <Button transparent onPress={() => {

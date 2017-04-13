@@ -5,6 +5,7 @@ import TextField from 'react-native-md-textinput';
 import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
 
+import { UF_MUNICIPIO, radio_localizacao, radio_loc_diferenciada } from './BdConfig';
 import { exitApp } from '../Util';
 
 const Item = Picker.Item;
@@ -15,39 +16,12 @@ const fs = RNFetchBlob.fs;
 var dir_base = dirs.DownloadDir.substring(0, dirs.DownloadDir.lastIndexOf('/') + 1);
 var dir_file = dir_base + 'Ipea/IpeaSurvey/';
 
-var UF = {
-  select_uf: { name: 'Selecione um Estado', value: '0' },
-  rj: { name: 'RJ', value: 'RJ' },
-  rn: { name: 'RN', value: 'RN' },
-  ro: { name: 'RO', value: 'RO' },
-};
-
-var MUNICIPIO = {
-  select_municipio: { name: 'Selecione um Município', value: '0' },
-  rj: { name: 'Rio de Janeiro', value: 'Rio de Janeiro' },
-  rn: { name: 'São Gonçalo', value: 'São Gonçalo' },
-  ro: { name: 'Duque de Caxias', value: 'Duque de Caxias' },
-};
-
-var radio_localizacao = [
-  {label: 'Urbana', value: 'Urbana' },
-  {label: 'Rural', value: 'Rural' }
-];
-
-var radio_loc_diferenciada = [
-  {label: 'Não se aplica', value: 'Não se aplica' },
-  {label: 'Reassentamento coletivo', value: 'Reassentamento coletivo' },
-  {label: 'Assentamento de reforma agrária', value: 'Assentamento de reforma agrária' },
-  {label: 'Área remanescente de quilombos', value: 'Área remanescente de quilombos' },
-  {label: 'Terra indígena', value: 'Terra indígena' },
-];
-
 export default class Config extends Component {
     state = {
       nome_aplicador: '',
       nome_entrevistado: '',
-      selected_uf: 'select_uf',
-      selected_municipio: 'select_municipio',
+      selected_uf: 'ac',
+      selected_municipio: 0,
       localidade: '',
       localizacao: '',
       loc_diferenciada: '',
@@ -59,14 +33,13 @@ export default class Config extends Component {
     render() {
         let { nome_aplicador, nome_entrevistado, localidade, localizacao, loc_diferenciada, barragem } = this.state;
 
-        var make_uf = UF[this.state.selected_uf];
-        var make_municipio = MUNICIPIO[this.state.selected_municipio];
+        var make = UF_MUNICIPIO[this.state.selected_uf];
 
         var config = {
           "nome_aplicador": nome_aplicador,
           "nome_entrevistado": nome_entrevistado,
-          "uf": make_uf.value,
-          "municipio": make_municipio.value,
+          "uf": make.name,
+          "municipio": make.municipios[this.state.selected_municipio],
           "localidade": localidade,
           "localizacao": localizacao,
           "loc_diferenciada": loc_diferenciada,
@@ -122,24 +95,25 @@ export default class Config extends Component {
                   <Text style={styles.texttitle} >UF</Text>
                   <Picker
                     selectedValue={this.state.selected_uf}
-                    onValueChange={(selected_uf) => this.setState({selected_uf})}>
-                    {Object.keys(UF).map((selected_uf) => (
+                    onValueChange={(selected_uf) => this.setState({selected_uf, selected_municipio: 0})}>
+                    {Object.keys(UF_MUNICIPIO).map((selected_uf) => (
                       <Item
                         key={selected_uf}
                         value={selected_uf}
-                        label={UF[selected_uf].name}
+                        label={UF_MUNICIPIO[selected_uf].name}
                       />
                     ))}
                   </Picker>
                   <Text style={styles.texttitle} >Município</Text>
                   <Picker
                     selectedValue={this.state.selected_municipio}
+                    key={this.state.selected_uf}
                     onValueChange={(selected_municipio) => this.setState({selected_municipio})}>
-                    {Object.keys(MUNICIPIO).map((selected_municipio) => (
+                    {UF_MUNICIPIO[this.state.selected_uf].municipios.map((modelName, selected_municipio) => (
                       <Item
-                        key={selected_municipio}
+                        key={this.state.selected_uf + '_' + selected_municipio}
                         value={selected_municipio}
-                        label={MUNICIPIO[selected_municipio].name}
+                        label={modelName}
                       />
                     ))}
                   </Picker>
@@ -154,7 +128,7 @@ export default class Config extends Component {
                   <Text style={styles.texttitle} >Localização/Zona</Text>
                   <RadioForm
                     radio_props={radio_localizacao}
-                    initial={0}
+                    initial={null}
                     buttonColor={'#000000'}
                     buttonSize={8}
                     labelStyle={styles.radioLabel}
@@ -164,7 +138,7 @@ export default class Config extends Component {
                   <Text style={styles.texttitle} >Localização diferenciada</Text>
                   <RadioForm
                     radio_props={radio_loc_diferenciada}
-                    initial={0}
+                    initial={null}
                     buttonColor={'#000000'}
                     buttonSize={8}
                     labelStyle={styles.radioLabel}

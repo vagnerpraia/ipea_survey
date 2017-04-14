@@ -14,45 +14,51 @@ export default class SideMenuQuiz extends Component {
         quiz = this.props.quiz;
     }
 
-    render() {
-        let onItemSelected = this.props.onItemSelected;
+    passQuestion(index, numeroQuestao){
         let navigator = this.props.navigator;
 
+        if(index < admin.indexPage){
+            admin.indexPage = index;
+            navigator.replacePreviousAndPop({
+                name: 'quiz',
+                admin: admin,
+                quiz: quiz,
+                newQuiz: false
+            });
+        }else if (index > admin.indexPage) {
+            if(numeroQuestao <= admin.maxQuestion){
+                admin.indexPage = index;
+                navigator.push({
+                    name: 'quiz',
+                    admin: admin,
+                    quiz: quiz,
+                    newQuiz: false
+                });
+            }else{
+                ToastAndroid.showWithGravity('Responda a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
+            }
+        }
+    }
+
+    render() {
         return (
             <ScrollView scrollsToTop={false}>
                 <List>
-                    {questoes.map(function(object, i){
-                        return(
-                            <ListItem key={object.id} onPress={() => {
-                                if(i < admin.indexPage){
-                                    admin.indexPage = i;
-                                    navigator.replacePreviousAndPop({
-                                        name: 'quiz',
-                                        admin: admin,
-                                        quiz: quiz,
-                                        newQuiz: false
-                                    });
-                                }else if (i > admin.indexPage) {
-                                    let idQuestao = 'questao_' + object.id;
-                                    let numeroQuestao = object.id.replace(/\D/g,'');
-
-                                    if(numeroQuestao <= admin.maxQuestion){
-                                        admin.indexPage = i;
-                                        navigator.push({
-                                            name: 'quiz',
-                                            admin: admin,
-                                            quiz: quiz,
-                                            newQuiz: false
-                                        });
-                                    }else{
-                                        ToastAndroid.showWithGravity('Responda a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
-                                    }
-                                }
-                            }}>
-                                <Text>Questão {object.id}</Text>
-                            </ListItem>
-                        );
-                    })}
+                    <ListItem key={1} onPress={() => {this.passQuestion(0, 1)}}>
+                        <Text>Questão 1</Text>
+                    </ListItem>
+                    <ListItem key={2} onPress={() => {this.passQuestion(1, 2)}}>
+                        <Text>Questão 2</Text>
+                    </ListItem>
+                    <ListItem key={3} onPress={() => {this.passQuestion(2, 3)}}>
+                        <Text>Questão 3</Text>
+                    </ListItem>
+                    <ListItem key={4} onPress={() => {this.passQuestion(3, 4)}}>
+                        <Text>Questão 4</Text>
+                    </ListItem>
+                    <ListItem key={5} onPress={() => {this.passQuestion(4, 5)}}>
+                        <Text>Questão 5</Text>
+                    </ListItem>
                 </List>
             </ScrollView>
         );

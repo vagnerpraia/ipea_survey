@@ -106,17 +106,11 @@ export default class Quiz extends Component {
         });
     }
 
-    onItemSelected = (isOpen) => {
-        this.setState({
-            isOpen: isOpen
-        });
-    }
-
     render() {
         let open = this.state.isOpen;
         let questao = questoes[admin.indexPage];
 
-        const menu = <SideMenuQuiz admin={admin} quiz={quiz} navigator={this.props.navigator} onItemSelected={this.onItemSelected} />;
+        const menu = <SideMenuQuiz admin={admin} quiz={quiz} navigator={this.props.navigator} />;
 
         function renderIf(condition, content) {
             if (condition) {

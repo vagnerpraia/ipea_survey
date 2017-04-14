@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import { PanResponder, StyleSheet, TextInput, ToastAndroid, View } from 'react-native';
 import { Button, Card, CardItem, Container, Content, DeckSwiper, Footer, FooterTab, Header, Icon, ListItem, Radio, Text, Title } from 'native-base';
-import RNFetchBlob from 'react-native-fetch-blob';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import SideMenu from 'react-native-side-menu';
 import SimpleGesture from 'react-native-simple-gesture';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
 import { questions } from './content/Questions';
 import { businessQuestion } from './content/BusinessQuestion';
 import { divisionQuestion } from './content/DivisionQuestion';
-import { passQuestion } from './content/PassQuestion';
-
 import SideMenuQuiz from './SideMenuQuiz';
 import ViewDomicilio from './ViewDomicilio';
 import ViewMorador from './ViewMorador';
-
 import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
+import QuizData from './../data/QuizData';
+import Domicilio from './../data/Domicilio';
+import Morador from './../data/Morador';
+import FileStore from './../store/FileStore';
 
-import SideMenu from 'react-native-side-menu';
-
-let id;
-let model;
-let indexPage;
+let admin;
+let quiz;
 let idQuestao;
 let numeroQuestao;
 let titulo;
@@ -36,75 +34,58 @@ export default class Quiz extends Component {
         this.state = {
             isOpen: false,
         };
-
-        id = this.props.id;
-        model = this.props.model;
-        indexPage = this.props.indexPage;
-        idQuestao = 'questao_' + questions[indexPage].id;
-        numeroQuestao = questions[indexPage].id.replace(/\D/g,'');
-
-        for(keyDiv in divisionQuestion){
-            let div = divisionQuestion[keyDiv];
-
-            if(numeroQuestao === div.inicio) screen = div.titulo;
-
-            if(numeroQuestao >= div.inicio && numeroQuestao < div.fim){
-                titulo = div.titulo;
-                for(keySub in div.subdivisoes){
-                    let sub = div.subdivisoes[keySub];
-                    if(numeroQuestao >= sub.inicio && numeroQuestao < sub.fim){
-                        titulo = sub.titulo;
-                    }
-                }
-            }
-        }
     }
 
     componentWillMount(){
-        if(this.props.newQuiz === true){
-            for(key in model.quiz){
-                model.quiz[key] = null;
-            }
+        admin = this.props.admin;
 
-            model.createFile('quiz', (result) => {
-                id = result;
-            });
+        if(this.props.newQuiz === true){
+            quiz = new QuizData(new Date().getTime());
+            quiz.domicilio = new Domicilio();
+            FileStore.createFile(quiz, 'domicilio');
+        }else{
+            quiz = this.props.quiz;
         }
+
+        FileStore.saveFile(quiz, 'domicilio');
+
+        idQuestao = 'questao_' + questions[admin.indexPage].id;
+        numeroQuestao = questions[admin.indexPage].id.replace(/\D/g,'');
 
         this._panResponder = PanResponder.create({
             onMoveShouldSetPanResponder: (e, gs) => {
                 let sgs = new SimpleGesture(e, gs);
 
                 if(sgs.isSimpleSwipeRight()){
-                    if(model.flagSwiperVoltar){
-                        model.flagSwiperVoltar = false;
-                        if(indexPage > 0){
+                    if(admin.flagSwiperVoltar){
+                        admin.flagSwiperVoltar = false;
+                        if(admin.indexPage > 0){
+                            admin.indexPage = Number(admin.indexPage) - 1;
                             this.props.navigator.replacePreviousAndPop({
                                 name: 'quiz',
-                                id: id,
-                                model: model,
-                                indexPage: Number(indexPage) - 1,
+                                admin: admin,
+                                quiz: quiz,
                                 newQuiz: false
                             });
                         }else{
                             ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
                         }
                     }else{
-                        model.flagSwiperVoltar = true;
+                        admin.flagSwiperVoltar = true;
                     }
                 }
                 if(sgs.isSimpleSwipeLeft()){
-                    if(model.flagSwiperSeguir){
-                        model.flagSwiperSeguir = false;
-                        model.saveFile(id, 'quiz', model.quiz);
+                    if(admin.flagSwiperSeguir){
+                        admin.flagSwiperSeguir = false;
 
-                        if(model.quiz[idQuestao] != null){
-                            if(Number(numeroQuestao) + 1 <= model.maxQuestion){
+                        let quizResponse = quiz.domicilio[idQuestao];
+                        if(quizResponse != null){
+                            if(Number(numeroQuestao) + 1 <= admin.maxQuestion){
+                                admin.indexPage = Number(admin.indexPage) + 1;
                                 this.props.navigator.push({
                                     name: 'quiz',
-                                    id: id,
-                                    model: model,
-                                    indexPage: Number(indexPage) + 1,
+                                    admin: admin,
+                                    quiz: quiz,
                                     newQuiz: false
                                 });
                             }
@@ -139,8 +120,9 @@ export default class Quiz extends Component {
 
     render() {
         let open = this.state.isOpen;
+        let questao = questions[admin.indexPage];
 
-        const menu = <SideMenuQuiz id={id} model={model} indexPage={indexPage} navigator={this.props.navigator} onItemSelected={this.onItemSelected} />;
+        const menu = <SideMenuQuiz admin={admin} navigator={this.props.navigator} onItemSelected={this.onItemSelected} />;
 
         function renderIf(condition, content) {
             if (condition) {
@@ -150,17 +132,13 @@ export default class Quiz extends Component {
             }
         }
 
-        let questao = questions[indexPage];
-
         return (
-            <SideMenu menu={menu} menuPosition={'right'} isOpen={open} onChange={(isOpen) => {
-                this.updateMenuState(isOpen)
-            }}>
+            <SideMenu menu={menu} menuPosition={'right'} isOpen={open} onChange={(isOpen) => {this.updateMenuState(isOpen)}}>
                 <Container style={styles.container}>
                     <Header>
                         <Button transparent onPress={() => {
-                            if(indexPage === 0){
-                                model.deleteQuiz(id);
+                            if(admin.indexPage === 0){
+                                AppStore.deleteQuiz(quiz.id);
                             };
 
                             this.props.navigator.replacePreviousAndPop({
@@ -196,23 +174,23 @@ export default class Quiz extends Component {
                                 )}
 
                                 {renderIf(questao.tipo === 'domicilio',
-                                    <ViewDomicilio model={model} passQuestion={passQuestion} questao={questao} />
+                                    <ViewDomicilio admin={admin} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'morador',
-                                    <ViewMorador model={model} passQuestion={passQuestion} questao={questao} />
+                                    <ViewMorador admin={admin} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'input_numeric',
-                                    <ReplyInputNumeric model={model} passQuestion={passQuestion} questao={questao} />
+                                    <ReplyInputNumeric admin={admin} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'multiple',
-                                    <ReplyMultiSelect model={model} passQuestion={passQuestion} businessQuestion={businessQuestion} questao={questao} />
+                                    <ReplyMultiSelect admin={admin} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'radio',
-                                    <ReplyRadio model={model} passQuestion={passQuestion} questao={questao} />
+                                    <ReplyRadio admin={admin} quiz={quiz} questao={questao}  />
                                 )}
                             </CardItem>
 
@@ -220,7 +198,7 @@ export default class Quiz extends Component {
                                 <CardItem>
                                     <Sae
                                         label={questao.pergunta_extensao.pergunta}
-                                        defaultValue={model.quiz[idQuestao + '_secundaria']}
+                                        defaultValue={quiz.domicilio[idQuestao + '_secundaria']}
                                         iconClass={FontAwesomeIcon}
                                         iconName={'pencil'}
                                         iconColor={'black'}
@@ -235,7 +213,7 @@ export default class Quiz extends Component {
                     </Content>
                     <Footer>
                         <FooterTab>
-                            {renderIf(indexPage == 0,
+                            {renderIf(admin.indexPage == 0,
                                 <Button transparent onPress={()=> {
                                     ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
                                 }}>
@@ -243,14 +221,13 @@ export default class Quiz extends Component {
                                 </Button>
                             )}
 
-                            {renderIf(indexPage != 0,
+                            {renderIf(admin.indexPage != 0,
                                 <Button transparent onPress={() => {
-                                    model.saveFile(id, 'quiz', model.quiz);
+                                    admin.indexPage = Number(admin.indexPage) - 1;
                                     this.props.navigator.replacePreviousAndPop({
                                         name: 'quiz',
-                                        id: id,
-                                        model: model,
-                                        indexPage: Number(indexPage) - 1,
+                                        admin: admin,
+                                        quiz: quiz,
                                         newQuiz: false
                                     });
                                 }}>
@@ -259,15 +236,15 @@ export default class Quiz extends Component {
                             )}
 
                             <Button transparent onPress={() => {
-                                model.saveFile(id, 'quiz', model.quiz);
+                                let quizResponse = quiz.domicilio[idQuestao];
 
-                                if(model.quiz[idQuestao] != null){
-                                    if(Number(numeroQuestao) + 1 <= model.maxQuestion){
+                                if(quizResponse != null){
+                                    if(Number(numeroQuestao) + 1 <= admin.maxQuestion){
+                                        admin.indexPage = Number(admin.indexPage) + 1;
                                         this.props.navigator.push({
                                             name: 'quiz',
-                                            id: id,
-                                            model: model,
-                                            indexPage: Number(indexPage) + 1,
+                                            admin: admin,
+                                            quiz: quiz,
                                             newQuiz: false
                                         });
                                     }else{

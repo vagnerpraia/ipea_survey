@@ -2,10 +2,26 @@ import React, { Component } from 'react';
 import { Navigator, StyleSheet } from 'react-native';
 import { Button, Container, Content, Header, List, ListItem, Text, Icon, Title } from 'native-base';
 
-import { model } from '../Model';
+import AppStore from './../store/AppStore';
 import { exitApp } from '../Util';
 
+import AdminData from './../data/AdminData';
+
+let admin;
+
 export default class Main extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isOpen: false,
+        };
+    }
+
+    componentWillMount(){
+        admin = new AdminData();
+    }
+
     render() {
         return (
             <Container style={styles.container}>
@@ -25,9 +41,7 @@ export default class Main extends Component {
                         <ListItem iconLeft onPress={() => {
                             this.props.navigator.push({
                                 name: 'quiz',
-                                id: null,
-                                model: model,
-                                indexPage: 0,
+                                admin: admin,
                                 newQuiz: true
                             });
                         }}>
@@ -39,9 +53,7 @@ export default class Main extends Component {
                         <ListItem iconLeft onPress={() => {
                             this.props.navigator.push({
                                 name: 'quiz',
-                                id: null,
-                                model: model,
-                                indexPage: 0,
+                                admin: admin,
                                 newQuiz: false
                             });
                         }}>

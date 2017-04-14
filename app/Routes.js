@@ -14,7 +14,7 @@ export default class Routes extends Component {
                 break;
 
             case 'quiz':
-                return <Quiz navigator={navigator} id={route.id} model={route.model} indexPage={route.indexPage} newQuiz={route.newQuiz} />
+                return <Quiz navigator={navigator} admin={route.admin} quiz={route.quiz} newQuiz={route.newQuiz} />
                 break;
 
             case 'config':

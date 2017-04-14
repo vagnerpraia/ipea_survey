@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { Text } from 'native-base';
 
+import { passQuestion } from './content/PassQuestion';
+import AppStore from './../store/AppStore';
+
 let model;
-let passQuestion;
 let questao;
 
 export default class ViewDomicilio extends Component {
@@ -11,7 +13,6 @@ export default class ViewDomicilio extends Component {
         super(props);
 
         model = this.props.model;
-        passQuestion = this.props.passQuestion;
         questao = this.props.questao;
     }
 

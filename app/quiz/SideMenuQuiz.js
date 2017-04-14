@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import { ScrollView, ToastAndroid } from 'react-native';
 import { List, ListItem, Text } from 'native-base';
 import { questions } from './content/Questions';
+import AppStore from './../store/AppStore';
 
-let id;
-let model;
-let indexPage;
+let admin;
 
 export default class SideMenuQuiz extends Component {
     constructor(props) {
         super(props);
 
-        id = this.props.id;
-        model = this.props.model;
-        indexPage = this.props.indexPage;
+        admin = this.props.admin;
     }
 
     render() {
@@ -26,28 +23,24 @@ export default class SideMenuQuiz extends Component {
                     {questions.map(function(object, i){
                         return(
                             <ListItem key={object.id} onPress={() => {
-                                if(i < indexPage){
-                                    model.saveFile(id, 'quiz', model.quiz);
+                                if(i < admin.indexPage){
+                                    AppStore.saveQuiz();
 
                                     navigator.replacePreviousAndPop({
                                         name: 'quiz',
-                                        id: id,
-                                        model: model,
-                                        indexPage: i,
+                                        admin: admin,
                                         newQuiz: false
                                     });
-                                }else if (i > indexPage) {
-                                    model.saveFile(id, 'quiz', model.quiz);
+                                }else if (i > admin.indexPage) {
+                                    AppStore.saveQuiz();
 
                                     let idQuestao = 'questao_' + object.id;
                                     let numeroQuestao = object.id.replace(/\D/g,'');
 
-                                    if(numeroQuestao <= model.maxQuestion){
+                                    if(numeroQuestao <= admin.maxQuestion){
                                         navigator.push({
                                             name: 'quiz',
-                                            id: id,
-                                            model: model,
-                                            indexPage: i,
+                                            admin: admin,
                                             newQuiz: false
                                         });
                                     }else{

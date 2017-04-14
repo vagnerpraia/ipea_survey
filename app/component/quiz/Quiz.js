@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
-import { PanResponder, StyleSheet, TextInput, ToastAndroid, View } from 'react-native';
-import { Button, Card, CardItem, Container, Content, DeckSwiper, Footer, FooterTab, Header, Icon, ListItem, Radio, Text, Title } from 'native-base';
+import { PanResponder, StyleSheet, ToastAndroid, View } from 'react-native';
+import { Button, Card, CardItem, Container, Content, Footer, FooterTab, Header, Icon, Text, Title } from 'native-base';
 import SideMenu from 'react-native-side-menu';
 import SimpleGesture from 'react-native-simple-gesture';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
-import { questions } from './content/Questions';
-import { businessQuestion } from './content/BusinessQuestion';
-import { divisionQuestion } from './content/DivisionQuestion';
 import SideMenuQuiz from './SideMenuQuiz';
 import ViewDomicilio from './ViewDomicilio';
 import ViewMorador from './ViewMorador';
 import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
-import QuizData from './../data/QuizData';
-import Domicilio from './../data/Domicilio';
-import Morador from './../data/Morador';
-import FileStore from './../store/FileStore';
+
+import FileStore from './../../FileStore';
+import QuizData from './../../data/QuizData';
+import { questoes } from './../../data/Questoes';
 
 let admin;
 let quiz;
 let idQuestao;
 let numeroQuestao;
-let titulo;
-let screen;
 
 export default class Quiz extends Component {
     constructor(props) {
@@ -41,7 +36,6 @@ export default class Quiz extends Component {
 
         if(this.props.newQuiz === true){
             quiz = new QuizData(new Date().getTime());
-            quiz.domicilio = new Domicilio();
             FileStore.createFile(quiz, 'domicilio');
         }else{
             quiz = this.props.quiz;
@@ -49,8 +43,8 @@ export default class Quiz extends Component {
 
         FileStore.saveFile(quiz, 'domicilio');
 
-        idQuestao = 'questao_' + questions[admin.indexPage].id;
-        numeroQuestao = questions[admin.indexPage].id.replace(/\D/g,'');
+        idQuestao = 'questao_' + questoes[admin.indexPage].id;
+        numeroQuestao = questoes[admin.indexPage].id.replace(/\D/g,'');
 
         this._panResponder = PanResponder.create({
             onMoveShouldSetPanResponder: (e, gs) => {
@@ -120,9 +114,9 @@ export default class Quiz extends Component {
 
     render() {
         let open = this.state.isOpen;
-        let questao = questions[admin.indexPage];
+        let questao = questoes[admin.indexPage];
 
-        const menu = <SideMenuQuiz admin={admin} navigator={this.props.navigator} onItemSelected={this.onItemSelected} />;
+        const menu = <SideMenuQuiz admin={admin} quiz={quiz} navigator={this.props.navigator} onItemSelected={this.onItemSelected} />;
 
         function renderIf(condition, content) {
             if (condition) {
@@ -138,7 +132,7 @@ export default class Quiz extends Component {
                     <Header>
                         <Button transparent onPress={() => {
                             if(admin.indexPage === 0){
-                                AppStore.deleteQuiz(quiz.id);
+                                FileStore.deleteQuiz(quiz);
                             };
 
                             this.props.navigator.replacePreviousAndPop({
@@ -148,7 +142,7 @@ export default class Quiz extends Component {
                             <Icon name='ios-arrow-back' />
                         </Button>
 
-                        <Title>{titulo}</Title>
+                        <Title>{questao.titulo}</Title>
 
                         <Button transparent onPress={() => {
                             this.toggle();
@@ -158,7 +152,7 @@ export default class Quiz extends Component {
                     </Header>
                     <Content {...this._panResponder.panHandlers}>
                         <Card style={styles.card}>
-                            {renderIf(questions.id !== 'id',
+                            {renderIf(questoes.id !== 'id',
                                 <CardItem>
                                     <Text style={styles.question}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
                                     <Text note>{questao.observacao_pergunta}</Text>

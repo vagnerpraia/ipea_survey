@@ -1,6 +1,7 @@
-export const questions = [
+export const questoes = [
     {
         id: '1',
+        titulo: 'Identificação do domicílio',
         pergunta: 'Tipo de domicílio:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -21,6 +22,7 @@ export const questions = [
     },
     {
         id: '2',
+        titulo: 'Características do domicílio',
         pergunta: 'O atual domicílio é:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -39,6 +41,7 @@ export const questions = [
     },
     {
         id: '3',
+        titulo: 'Características do domicílio',
         pergunta: 'A família possui documento por escrito do imóvel atual?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -52,6 +55,7 @@ export const questions = [
     },
     {
         id: '4',
+        titulo: 'Características do domicílio',
         pergunta: 'Qual documento a família possui do imóvel atual?',
         observacao_pergunta: 'Somente documento “por escrito”',
         pergunta_secundaria: '',
@@ -74,6 +78,7 @@ export const questions = [
     },
     {
         id: '5a',
+        titulo: 'Características do domicílio',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -90,6 +95,7 @@ export const questions = [
     },
     {
         id: '5b',
+        titulo: 'Características do domicílio',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -106,6 +112,7 @@ export const questions = [
     },
     {
         id: '5c',
+        titulo: 'Características do domicílio',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -122,6 +129,7 @@ export const questions = [
     },
     {
         id: '5d',
+        titulo: 'Características do domicílio',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -138,6 +146,7 @@ export const questions = [
     },
     {
         id: '5e',
+        titulo: 'Características do domicílio',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -154,6 +163,7 @@ export const questions = [
     },
     {
         id: '5f',
+        titulo: 'Características do domicílio',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -170,6 +180,7 @@ export const questions = [
     },
     {
         id: '5g',
+        titulo: 'Características do domicílio',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -186,6 +197,7 @@ export const questions = [
     },
     {
         id: '5h',
+        titulo: 'Características do domicílio',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -202,6 +214,7 @@ export const questions = [
     },
     {
         id: '5i',
+        titulo: 'Características do domicílio',
         pergunta: 'Este domicílio está localizado em/ou próximo a alguma destas áreas de risco?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -218,6 +231,7 @@ export const questions = [
     },
     {
         id: '6',
+        titulo: 'Características do domicílio',
         pergunta: 'Qual é o material que predomina na construção das paredes externas desse domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -240,6 +254,7 @@ export const questions = [
     },
     {
         id: '7',
+        titulo: 'Características do domicílio',
         pergunta: 'Qual é o material que predomina na cobertura (telhado) deste domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -259,6 +274,7 @@ export const questions = [
     },
     {
         id: '8',
+        titulo: 'Características do domicílio',
         pergunta: 'Qual é o material que predomina no piso deste domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -277,6 +293,7 @@ export const questions = [
     },
     {
         id: '9a',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -293,6 +310,7 @@ export const questions = [
     },
     {
         id: '9b',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -309,6 +327,7 @@ export const questions = [
     },
     {
         id: '9c',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -325,6 +344,7 @@ export const questions = [
     },
     {
         id: '9d',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -341,6 +361,7 @@ export const questions = [
     },
     {
         id: '9e',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -357,6 +378,7 @@ export const questions = [
     },
     {
         id: '9f',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -373,6 +395,7 @@ export const questions = [
     },
     {
         id: '9g',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -389,6 +412,7 @@ export const questions = [
     },
     {
         id: '9h',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -405,6 +429,7 @@ export const questions = [
     },
     {
         id: '9i',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -421,6 +446,7 @@ export const questions = [
     },
     {
         id: '9j',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -437,6 +463,7 @@ export const questions = [
     },
     {
         id: '9k',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -453,6 +480,7 @@ export const questions = [
     },
     {
         id: '9l',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -469,6 +497,7 @@ export const questions = [
     },
     {
         id: '9m',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -485,6 +514,7 @@ export const questions = [
     },
     {
         id: '9n',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -501,6 +531,7 @@ export const questions = [
     },
     {
         id: '9o',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -517,6 +548,7 @@ export const questions = [
     },
     {
         id: '9p',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -533,6 +565,7 @@ export const questions = [
     },
     {
         id: '9q',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -549,6 +582,7 @@ export const questions = [
     },
     {
         id: '9r',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -565,6 +599,7 @@ export const questions = [
     },
     {
         id: '9s',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -581,6 +616,7 @@ export const questions = [
     },
     {
         id: '9t',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -597,6 +633,7 @@ export const questions = [
     },
     {
         id: '9u',
+        titulo: 'Características do domicílio',
         pergunta: 'O que tem no seu domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -613,6 +650,7 @@ export const questions = [
     },
     {
         id: '10',
+        titulo: 'Características do domicílio',
         pergunta: 'Quantos cômodos tem este domicílio?',
         observacao_pergunta: 'Incluir banheiro e cozinha e não considerar corredor, varanda aberta e garagem',
         pergunta_secundaria: '',
@@ -622,6 +660,7 @@ export const questions = [
     },
     {
         id: '11',
+        titulo: 'Características do domicílio',
         pergunta: 'Quantos cômodos estão servindo permanentemente de dormitório para os moradores deste domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -631,6 +670,7 @@ export const questions = [
     },
     {
         id: '12',
+        titulo: 'Características do domicílio',
         pergunta: 'Quantos banheiros de uso exclusivo dos moradores existem neste domicílio?',
         observacao_pergunta: 'Inclusive os localizados no terreno ou na propriedade',
         pergunta_secundaria: '',
@@ -640,6 +680,7 @@ export const questions = [
     },
     {
         id: '13',
+        titulo: 'Características do domicílio',
         pergunta: 'De que forma é feito o escoadouro deste(s) banheiro(s) ou sanitário(s)?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -657,6 +698,7 @@ export const questions = [
     },
     {
         id: '14',
+        titulo: 'Características do domicílio',
         pergunta: 'O lixo deste domicílio é:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -676,6 +718,7 @@ export const questions = [
     },
     {
         id: '15',
+        titulo: 'Características do domicílio',
         pergunta: 'Com que frequência o lixo deste domicílio é coletado?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -691,6 +734,7 @@ export const questions = [
     },
     {
         id: '16',
+        titulo: 'Características do domicílio',
         pergunta: 'Qual a fonte de abastecimento de água utilizada neste domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -712,6 +756,7 @@ export const questions = [
     },
     {
         id: '17',
+        titulo: 'Características do domicílio',
         pergunta: 'Neste domicílio existe água canalizada (encanada)?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -726,6 +771,7 @@ export const questions = [
     },
     {
         id: '18',
+        titulo: 'Características do domicílio',
         pergunta: 'Como os moradores do domicílio avaliam a qualidade da água que utiliza?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -742,6 +788,7 @@ export const questions = [
     },
     {
         id: '19',
+        titulo: 'Características do domicílio',
         pergunta: 'A água para uso é suficiente para atender às necessidades da casa?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -755,6 +802,7 @@ export const questions = [
     },
     {
         id: '20',
+        titulo: 'Características do domicílio',
         pergunta: 'Costuma faltar água no domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: '',

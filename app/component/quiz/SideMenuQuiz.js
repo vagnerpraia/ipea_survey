@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { ScrollView, ToastAndroid } from 'react-native';
 import { List, ListItem, Text } from 'native-base';
-import { questions } from './content/Questions';
-import AppStore from './../store/AppStore';
+import { questoes } from './../../data/Questoes';
 
 let admin;
+let quiz;
 
 export default class SideMenuQuiz extends Component {
     constructor(props) {
         super(props);
 
         admin = this.props.admin;
+        quiz = this.props.quiz;
     }
 
     render() {
@@ -20,31 +21,31 @@ export default class SideMenuQuiz extends Component {
         return (
             <ScrollView scrollsToTop={false}>
                 <List>
-                    {questions.map(function(object, i){
+                    {questoes.map(function(object, i){
                         return(
                             <ListItem key={object.id} onPress={() => {
                                 if(i < admin.indexPage){
-                                    AppStore.saveQuiz();
-
+                                    admin.indexPage = i;
                                     navigator.replacePreviousAndPop({
                                         name: 'quiz',
                                         admin: admin,
+                                        quiz: quiz,
                                         newQuiz: false
                                     });
                                 }else if (i > admin.indexPage) {
-                                    AppStore.saveQuiz();
-
                                     let idQuestao = 'questao_' + object.id;
                                     let numeroQuestao = object.id.replace(/\D/g,'');
 
                                     if(numeroQuestao <= admin.maxQuestion){
+                                        admin.indexPage = i;
                                         navigator.push({
                                             name: 'quiz',
                                             admin: admin,
+                                            quiz: quiz,
                                             newQuiz: false
                                         });
                                     }else{
-                                        ToastAndroid.showWithGravity('Responda a questão ' + model.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
+                                        ToastAndroid.showWithGravity('Responda a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
                                     }
                                 }
                             }}>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Navigator } from 'react-native';
 
-import Config from './config/Config';
-import Edit from './edit/Edit';
-import Main from './main/Main';
-import Quiz from './quiz/Quiz';
+import Config from './component/config/Config';
+import Edit from './component/edit/Edit';
+import Main from './component/main/Main';
+import Quiz from './component/quiz/Quiz';
 
 export default class Routes extends Component {
     renderScene (route, navigator) {

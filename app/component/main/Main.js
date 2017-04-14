@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { Navigator, StyleSheet } from 'react-native';
 import { Button, Container, Content, Header, List, ListItem, Text, Icon, Title } from 'native-base';
 
-import AppStore from './../store/AppStore';
-import { exitApp } from '../Util';
-
-import AdminData from './../data/AdminData';
+import AdminData from './../../data/AdminData';
+import { exitApp } from '../../Util';
 
 let admin;
 

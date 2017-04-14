@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { StyleSheet, ToastAndroid, View } from 'react-native';
 import { CheckBox, ListItem, Text } from 'native-base';
 
-let model;
-let passQuestion;
-let businessQuestion;
+import { businessQuestion } from './../business/BusinessQuestion';
+import { passQuestion } from './../business/PassQuestion';
+
+let admin;
+let quiz;
 let questao;
 
 Array.prototype.remove = function(from, to) {
@@ -17,13 +19,12 @@ export default class ReplyMultiSelect extends Component {
     constructor(props) {
         super(props);
 
-        model = this.props.model;
-        passQuestion = this.props.passQuestion;
-        businessQuestion = this.props.businessQuestion;
+        admin = this.props.admin;
+        quiz = this.props.quiz;
         questao = this.props.questao;
 
         this.state = {
-            selected: model.quiz['questao_' + questao.id]
+            selected: quiz.domicilio['questao_' + questao.id]
         }
     }
 
@@ -37,8 +38,8 @@ export default class ReplyMultiSelect extends Component {
         setQuestion = (value) => {
             let idQuestao = 'questao_' + questao.id;
 
-            if(model.quiz[idQuestao] === -1){
-                ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + model.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
+            if(quiz.domicilio[idQuestao] === -1){
+                ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }else{
                 if(selected.indexOf(value) >= 0){
                     selected.remove(selected.indexOf(value));
@@ -64,21 +65,21 @@ export default class ReplyMultiSelect extends Component {
                     selected: selected
                 });
 
-                model.quiz[idQuestao] = this.state.selected;
+                quiz.domicilio[idQuestao] = this.state.selected;
 
                 let numeroQuestao = Number(questao.id.replace(/\D/g,''));
-                model.maxQuestion = numeroQuestao + 1;
+                admin.maxQuestion = numeroQuestao + 1;
 
                 for(keyPass in passQuestion){
                     let item = passQuestion[keyPass];
                     if(item){
                         if(numeroQuestao == item.questao){
                             if(item.opcao.indexOf(value) >= 0){
-                                model.maxQuestion = item.passe;
+                                admin.maxQuestion = item.passe;
                                 for (i = numeroQuestao + 1; i < item.passe; i++) {
-                                    for(keyQuiz in model.quiz){
+                                    for(keyQuiz in quiz.domicilio){
                                         if(keyQuiz.replace(/\D/g,'') == i){
-                                            model.quiz[keyQuiz] = -1;
+                                            quiz.domicilio[key] = -1;
                                         }
                                     }
                                 }

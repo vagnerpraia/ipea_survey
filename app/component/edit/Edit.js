@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Container, Content, Header, Icon, Text, Title } from 'native-base';
 
-import { exitApp } from '../Util';
+import { exitApp } from '../../Util';
 
 export default class Edit extends Component {
     render() {

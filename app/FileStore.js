@@ -1,6 +1,5 @@
 import RNFetchBlob from 'react-native-fetch-blob';
-import AppStore from './AppStore';
-import QuizData from './../data/QuizData';
+import QuizData from './data/QuizData';
 
 const dirs = RNFetchBlob.fs.dirs;
 const fs = RNFetchBlob.fs;
@@ -10,18 +9,9 @@ var dir_file = dir_base + 'Ipea/IpeaSurvey/';
 
 class FileStore {
     static createFile(quiz, type) {
-        let path = dir_file + quiz.id;
-        fs.mkdir(path);
-
-        let file_path = path + '/' + type + '.json';
-        fs.exists(file_path).then((exist) => {
-            if(!exist){
-                let data = JSON.stringify(quiz);
-                fs.createFile(file_path, data, 'utf8');
-            }
-        }).catch((err) => {
-            console.log(err);
-        });
+        let file_path = dir_file + quiz.id + '/' + type + '.json';
+        let data = JSON.stringify(quiz);
+        fs.createFile(file_path, data, 'utf8');
     }
 
     static readQuiz(quiz, callback) {
@@ -57,6 +47,7 @@ class FileStore {
 
     static deleteQuiz(quiz) {
         let file_path = dir_file + quiz.id;
+        console.log(file_path);
         fs.unlink(file_path).then(() => {
             console.log('Arquivo deletado');
         }).catch((error) => {

@@ -1,38 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, ToastAndroid, View } from 'react-native';
-import { ListItem, Radio, Text } from 'native-base';
-import { passQuestion } from './../content/PassQuestion';
+import { StyleSheet, TextInput, ToastAndroid, View } from 'react-native';
+import { Text } from 'native-base';
+import { passQuestion } from './../business/PassQuestion';
 
 let admin;
 let quiz;
 let questao;
 
-export default class ReplyRadio extends Component {
+export default class ReplyInputNumeric extends Component {
     constructor(props) {
         super(props);
 
         admin = this.props.admin;
         quiz = this.props.quiz;
         questao = this.props.questao;
-
-        this.state = {
-            selected: quiz['questao_' + questao.id]
-        }
     }
 
     render() {
-        let selected = this.state.selected;
-
         setQuestion = (value) => {
             let idQuestao = 'questao_' + questao.id;
-
             if(quiz.domicilio[idQuestao] === -1){
                 ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }else{
-                this.setState({
-                    selected: value
-                });
-
                 quiz.domicilio[idQuestao] = value;
 
                 let numeroQuestao = Number(questao.id.replace(/\D/g,''));
@@ -60,25 +49,15 @@ export default class ReplyRadio extends Component {
 
         return (
             <View>
-                {questao.opcoes.map(function(object, i){
-                    return(
-                        <ListItem key={object.value}>
-                            <Radio selected={selected === object.value} onPress={() => {
-                                this.setQuestion(object.value);
-                            }} />
-                            <View>
-                                <Text onPress={() => {
-                                    this.setQuestion(object.value);
-                                }}>
-                                    {object.label}
-                                </Text>
-                                <Text style={styles.note}>
-                                    {object.observacao}
-                                </Text>
-                            </View>
-                        </ListItem>
-                    );
-                })}
+                <TextInput
+                    style={styles.textInputNumeric}
+                    keyboardType = 'numeric'
+                    onChangeText = {(value) => {
+                        this.setQuestion(value);
+                    }}
+                    value = {null}
+                    maxLength = {2}
+                />
             </View>
         );
     }

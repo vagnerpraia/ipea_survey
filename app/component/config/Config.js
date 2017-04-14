@@ -6,7 +6,7 @@ import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
 
 import { UF_MUNICIPIO, radio_localizacao, radio_loc_diferenciada } from './BdConfig';
-import { exitApp } from '../Util';
+import { exitApp } from '../../Util';
 
 const Item = Picker.Item;
 

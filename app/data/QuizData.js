@@ -5,7 +5,7 @@ class QuizData {
     constructor(id) {
         this.id = id,
         this.nome_aplicador = null,
-        this.domicilio = null,
+        this.domicilio = new Domicilio(),
         this.morador = new Array()
     }
 

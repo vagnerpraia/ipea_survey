@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Navigator, StyleSheet } from 'react-native';
-import { Button, Container, Content, Header, List, ListItem, Text, Icon, Title } from 'native-base';
+import { Image, Navigator, View } from 'react-native';
+import { Body, Button, Container, Content, Header, Left, Text, Icon, Right, Title } from 'native-base';
 
 import AdminData from './../../data/AdminData';
 import { exitApp } from '../../Util';
@@ -10,101 +10,91 @@ let admin;
 export default class Main extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            isOpen: false,
-        };
     }
 
     componentWillMount(){
         admin = new AdminData();
     }
 
+    pushScreen(route){
+        this.props.navigator.push({
+            name: route,
+            admin: admin,
+            newQuiz: true
+        });
+    }
+
     render() {
         return (
             <Container style={styles.container}>
-                <Header>
-                    <Button transparent>
-                        <Text />
-                    </Button>
-
-                    <Title>Ipea Survey</Title>
-
-                    <Button transparent onPress={exitApp}>
-                        <Icon name='ios-close' />
-                    </Button>
+                <Header style={styles.header}>
+                    <Left>
+                        <Text/>
+                    </Left>
+                    <Body>
+                        <View>
+                            <Title>Menu Principal</Title>
+                        </View>
+                    </Body>
+                    <Right>
+                        <Button transparent>
+                            <Text>Sair</Text>
+                        </Button>
+                    </Right>
                 </Header>
                 <Content>
-                    <List>
-                        <ListItem iconLeft onPress={() => {
-                            this.props.navigator.push({
-                                name: 'quiz',
-                                admin: admin,
-                                newQuiz: true
-                            });
-                        }}>
-                            <Icon name='md-document' style={styles.icon} />
-                            <Text style={styles.text}>Novo</Text>
-                            <Text note style={styles.note}>Abrir novo questionário</Text>
-                        </ListItem>
+                    <View style={styles.viewImageContent}>
+                        <Image style={styles.imageContent} source={require('./../../img/ipea_survey.png')} />
+                    </View>
+                    <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('new')}}>
+                        <Icon name='md-document' />
+                        <Text style={styles.textButtonContent}>Novo</Text>
+                    </Button>
 
-                        <ListItem iconLeft onPress={() => {
-                            this.props.navigator.push({
-                                name: 'quiz',
-                                admin: admin,
-                                newQuiz: false
-                            });
-                        }}>
-                            <Icon name='md-create' style={styles.icon} />
-                            <Text style={styles.text}>Editar</Text>
-                            <Text note style={styles.note}>Editar questionário</Text>
-                        </ListItem>
+                    <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('edit')}}>
+                        <Icon name='md-create' />
+                        <Text style={styles.textButtonContent}>Editar</Text>
+                    </Button>
 
-                        <ListItem iconLeft onPress={() => {
-                            this.props.navigator.push({
-                                name: 'config'
-                            });
-                        }}>
-                            <Icon name='md-settings' style={styles.icon} />
-                            <Text style={styles.text}>Configurações</Text>
-                            <Text note style={styles.note}>Configurações do aplicativo</Text>
-                        </ListItem>
+                    <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('config')}}>
+                        <Icon name='md-settings' />
+                        <Text style={styles.textButtonContent}>Configuração</Text>
+                    </Button>
 
-                        <ListItem iconLeft>
-                            <Icon name='md-stats' style={styles.icon} />
-                            <Text style={styles.text}>Estatísticas</Text>
-                            <Text note style={styles.note}>Estatística dos questionários</Text>
-                        </ListItem>
-
-                        <ListItem iconLeft>
-                            <Icon name='md-help-circle' style={styles.icon} />
-                            <Text style={styles.text}>Instruções</Text>
-                            <Text note style={styles.note}>Instruções sobre o questionário</Text>
-                        </ListItem>
-
-                        <ListItem iconLeft>
-                            <Icon name='md-information-circle' style={styles.icon} />
-                            <Text style={styles.text}>Sobre</Text>
-                            <Text note style={styles.note}>Informações sobre o aplicativo</Text>
-                        </ListItem>
-
-                        <ListItem iconLeft onPress={exitApp}>
-                            <Icon name='md-exit' style={styles.icon} />
-                            <Text style={styles.text}>Sair</Text>
-                            <Text note style={styles.note}>Sair do aplicativo</Text>
-                        </ListItem>
-                    </List>
+                    <Button full style={styles.buttonContent} onPress={exitApp}>
+                        <Icon name='md-exit' />
+                        <Text style={styles.textButtonContent}>Sair</Text>
+                    </Button>
                 </Content>
             </Container>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#F5FCFF',
+const styles = {
+    header: {
+        backgroundColor: '#005376'
     },
-    button_footer: {
-        fontSize: 20
-    }
-});
+    container: {
+        backgroundColor: '#ffffff',
+    },
+    viewImageContent: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    imageContent: {
+    },
+    buttonContent: {
+        backgroundColor: '#005376',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+        marginLeft: 20,
+        marginRight: 20,
+        height: 60,
+    },
+    textButtonContent: {
+        paddingLeft: 10,
+        fontSize: 14,
+    },
+};

@@ -13,7 +13,7 @@ export default class Routes extends Component {
                 return <Main navigator={navigator} />
                 break;
 
-            case 'quiz':
+            case 'new':
                 return <Quiz navigator={navigator} admin={route.admin} quiz={route.quiz} newQuiz={route.newQuiz} />
                 break;
 

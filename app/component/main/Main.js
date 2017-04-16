@@ -32,7 +32,7 @@ export default class Main extends Component {
                 </Header>
                 <Content>
                     <View style={styles.viewContentMenuPrincipal}>
-                        <Image style={styles.imageContent} source={require('./../../img/ipea_survey.png')} />
+                        <Image style={styles.imageContent} source={require('./../../img/logo_ipea_survey.png')} />
                     </View>
                     <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('new')}}>
                         <Icon name='md-document' />

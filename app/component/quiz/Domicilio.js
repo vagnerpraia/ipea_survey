@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PanResponder, StyleSheet, ToastAndroid, View } from 'react-native';
-import { Button, Card, CardItem, Container, Content, Footer, FooterTab, Header, Icon, Text, Title } from 'native-base';
+import { Body, Button, Card, CardItem, Container, Content, Footer, FooterTab, Header, Icon, Left, Right, Text, Title } from 'native-base';
 import SideMenu from 'react-native-side-menu';
 import SimpleGesture from 'react-native-simple-gesture';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -14,6 +14,7 @@ import ReplyRadio from './reply/ReplyRadio';
 import FileStore from './../../FileStore';
 import QuizData from './../../data/QuizData';
 import { questoes } from './../../data/QuestoesDomicilio';
+import { styles } from './../../Styles';
 
 export default class Domicilio extends Component {
     constructor(props) {
@@ -38,49 +39,59 @@ export default class Domicilio extends Component {
         this._panResponder = PanResponder.create({
             onMoveShouldSetPanResponder: (e, gs) => {
                 let sgs = new SimpleGesture(e, gs);
-
                 if(sgs.isSimpleSwipeRight()){
                     if(this.state.admin.flagSwiperVoltar){
-                        this.state.admin.flagSwiperVoltar = false;
-                        if(this.state.admin.indexPage > 0){
-                            this.state.admin.indexPage = Number(this.state.admin.indexPage) - 1;
-                            this.props.navigator.replacePreviousAndPop({
-                                name: 'quiz',
-                                admin: this.state.admin,
-                                quiz: this.state.quiz,
-                                newQuiz: false
-                            });
-                        }else{
-                            ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                        }
-                    }else{
-                        this.state.admin.flagSwiperVoltar = true;
+                        this.popScreen();
                     }
+                    this.state.admin.flagSwiperVoltar = !this.state.admin.flagSwiperVoltar;
                 }
                 if(sgs.isSimpleSwipeLeft()){
-                    if(admin.flagSwiperSeguir){
-                        this.state.admin.flagSwiperSeguir = false;
-
-                        let quizResponse = quiz.domicilio[idQuestao];
-                        if(quizResponse != null){
-                            if(Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
-                                this.state.admin.indexPage = Number(this.state.admin.indexPage) + 1;
-                                this.props.navigator.push({
-                                    name: 'quiz',
-                                    admin: this.state.admin,
-                                    quiz: this.state.quiz,
-                                    newQuiz: false
-                                });
-                            }
-                        }else{
-                            ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
-                        }
-                    }else{
-                        ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                    if(this.state.admin.flagSwiperSeguir){
+                        this.pushScreen();
                     }
+                    this.state.admin.flagSwiperSeguir = !this.state.admin.flagSwiperSeguir;
                 }
             }
         });
+    }
+
+    popQuizScreen(){
+        if(this.state.admin.indexPage === 0){
+            FileStore.deleteQuiz(this.state.quiz);
+        };
+        this.props.navigator.replacePreviousAndPop({
+            name: 'quiz'
+        });
+    }
+
+    popScreen(){
+        if(this.state.admin.indexPage > 0){
+            this.state.admin.indexPage = Number(this.state.admin.indexPage) - 1;
+            this.props.navigator.replacePreviousAndPop({
+                name: 'domicilio',
+                admin: this.state.admin,
+                quiz: this.state.quiz
+            });
+        }else{
+            ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
+        }
+    }
+
+    pushScreen(){
+        if(this.state.quiz.domicilio[idQuestao] != null){
+            if(Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
+                this.state.admin.indexPage = Number(this.state.admin.indexPage) + 1;
+                this.props.navigator.push({
+                    name: 'domicilio',
+                    admin: this.state.admin,
+                    quiz: this.state.quiz
+                });
+            }else{
+                ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
+            }
+        }else{
+            ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);
+        }
     }
 
     toggle() {
@@ -97,6 +108,9 @@ export default class Domicilio extends Component {
 
     render() {
         let open = this.state.isOpen;
+        let admin = this.state.admin;
+        let quiz = this.state.quiz;
+
         let questao = questoes[admin.indexPage];
 
         const menu = <SideMenuQuiz admin={admin} quiz={quiz} navigator={this.props.navigator} />;
@@ -113,25 +127,21 @@ export default class Domicilio extends Component {
             <SideMenu menu={menu} menuPosition={'right'} isOpen={open} onChange={(isOpen) => {this.updateMenuState(isOpen)}}>
                 <Container style={styles.container}>
                     <Header>
-                        <Button transparent onPress={() => {
-                            if(admin.indexPage === 0){
-                                FileStore.deleteQuiz(quiz);
-                            };
+                        <Left>
+                            <Button transparent onPress={() => {this.popQuizScreen()}}>
+                                <Icon name='ios-arrow-back' />
+                            </Button>
+                        </Left>
 
-                            this.props.navigator.replacePreviousAndPop({
-                                name: 'main'
-                            });
-                        }}>
-                            <Icon name='ios-arrow-back' />
-                        </Button>
+                        <Body style={styles.bodyHeader}>
+                            <Title>{questao.titulo}</Title>
+                        </Body>
 
-                        <Title>{questao.titulo}</Title>
-
-                        <Button transparent onPress={() => {
-                            this.toggle();
-                        }}>
-                            <Icon name='ios-menu' />
-                        </Button>
+                        <Right>
+                            <Button transparent onPress={() => {this.toggle()}}>
+                                <Icon name='ios-menu' />
+                            </Button>
+                        </Right>
                     </Header>
                     <Content {...this._panResponder.panHandlers}>
                         <Card style={styles.card}>
@@ -148,14 +158,6 @@ export default class Domicilio extends Component {
                                         <Text>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
                                         <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
                                     </View>
-                                )}
-
-                                {renderIf(questao.tipo === 'domicilio',
-                                    <ViewDomicilio admin={admin} questao={questao} />
-                                )}
-
-                                {renderIf(questao.tipo === 'morador',
-                                    <ViewMorador admin={admin} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'input_numeric',
@@ -190,47 +192,10 @@ export default class Domicilio extends Component {
                     </Content>
                     <Footer>
                         <FooterTab>
-                            {renderIf(admin.indexPage == 0,
-                                <Button transparent onPress={()=> {
-                                    ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                                }}>
-                                    <Icon name='ios-arrow-back' />
-                                </Button>
-                            )}
-
-                            {renderIf(admin.indexPage != 0,
-                                <Button transparent onPress={() => {
-                                    admin.indexPage = Number(admin.indexPage) - 1;
-                                    this.props.navigator.replacePreviousAndPop({
-                                        name: 'quiz',
-                                        admin: admin,
-                                        quiz: quiz,
-                                        newQuiz: false
-                                    });
-                                }}>
-                                    <Icon name='ios-arrow-back' />
-                                </Button>
-                            )}
-
-                            <Button transparent onPress={() => {
-                                let quizResponse = quiz.domicilio[idQuestao];
-
-                                if(quizResponse != null){
-                                    if(Number(numeroQuestao) + 1 <= admin.maxQuestion){
-                                        admin.indexPage = Number(admin.indexPage) + 1;
-                                        this.props.navigator.push({
-                                            name: 'quiz',
-                                            admin: admin,
-                                            quiz: quiz,
-                                            newQuiz: false
-                                        });
-                                    }else{
-                                        ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
-                                    }
-                                }else{
-                                    ToastAndroid.showWithGravity('Responda a questão', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                                }
-                            }}>
+                            <Button transparent onPress={() => {this.popScreen()}}>
+                                <Icon name='ios-arrow-back' />
+                            </Button>
+                            <Button transparent onPress={() => {this.pushScreen()}}>
                                 <Icon name='ios-arrow-forward' />
                             </Button>
                         </FooterTab>
@@ -241,7 +206,7 @@ export default class Domicilio extends Component {
     }
 }
 
-const styles = StyleSheet.create({
+const styles2 = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: '#F5FCFF',

@@ -51,11 +51,11 @@ export default class Quiz extends Component {
     checkCompleto(segment){
         let result = styles.buttonContentIncompleto;
         if(segment == 'identificacao'){
-            if(true) return styles.buttonContentCompleto;
+            if(true) result = styles.buttonContentCompleto;
         }else if(segment == 'domicilio'){
-            if(false) return styles.buttonContentCompleto;
+            if(false) result = styles.buttonContentCompleto;
         }else if(segment == 'morador'){
-            if(false) return styles.buttonContentCompleto;
+            if(false) result = styles.buttonContentCompleto;
         }
         return result;
     }
@@ -66,7 +66,7 @@ export default class Quiz extends Component {
                 <Header style={styles.header}>
                     <Left>
                         <Button transparent onPress={() => {this.voltar()}}>
-                            <Text>Voltar</Text>
+                            <Icon name='ios-arrow-back' />
                         </Button>
                     </Left>
                     <Body style={styles.bodyHeader}>

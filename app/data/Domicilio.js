@@ -1,4 +1,4 @@
-class Domicilio {
+export default class Domicilio {
     constructor() {
         this.questao_1 = null,
         this.questao_2 = null,
@@ -289,5 +289,3 @@ class Domicilio {
         return object;
     }
 }
-
-module.exports = Domicilio;

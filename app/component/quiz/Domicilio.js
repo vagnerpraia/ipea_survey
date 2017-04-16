@@ -7,20 +7,13 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
 import SideMenuQuiz from './SideMenuQuiz';
-import ViewDomicilio from './ViewDomicilio';
-import ViewMorador from './ViewMorador';
 import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
 
 import FileStore from './../../FileStore';
 import QuizData from './../../data/QuizData';
-import { questoes } from './../../data/Questoes';
-
-let admin;
-let quiz;
-let idQuestao;
-let numeroQuestao;
+import { questoes } from './../../data/QuestoesDomicilio';
 
 export default class Domicilio extends Component {
     constructor(props) {
@@ -28,58 +21,54 @@ export default class Domicilio extends Component {
 
         this.state = {
             isOpen: false,
+            admin: {},
+            quiz: {}
         };
     }
 
     componentWillMount(){
-        admin = this.props.admin;
+        this.state.admin = this.props.admin;
+        this.state.quiz = this.props.quiz;
 
-        if(this.props.newQuiz === true){
-            quiz = new QuizData(new Date().getTime());
-            FileStore.createFile(quiz, 'domicilio');
-        }else{
-            quiz = this.props.quiz;
-        }
+        FileStore.saveFile(this.state.quiz, 'domicilio');
 
-        FileStore.saveFile(quiz, 'domicilio');
-
-        idQuestao = 'questao_' + questoes[admin.indexPage].id;
-        numeroQuestao = questoes[admin.indexPage].id.replace(/\D/g,'');
+        idQuestao = 'questao_' + questoes[this.state.admin.indexPage].id;
+        numeroQuestao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
 
         this._panResponder = PanResponder.create({
             onMoveShouldSetPanResponder: (e, gs) => {
                 let sgs = new SimpleGesture(e, gs);
 
                 if(sgs.isSimpleSwipeRight()){
-                    if(admin.flagSwiperVoltar){
-                        admin.flagSwiperVoltar = false;
-                        if(admin.indexPage > 0){
-                            admin.indexPage = Number(admin.indexPage) - 1;
+                    if(this.state.admin.flagSwiperVoltar){
+                        this.state.admin.flagSwiperVoltar = false;
+                        if(this.state.admin.indexPage > 0){
+                            this.state.admin.indexPage = Number(this.state.admin.indexPage) - 1;
                             this.props.navigator.replacePreviousAndPop({
                                 name: 'quiz',
-                                admin: admin,
-                                quiz: quiz,
+                                admin: this.state.admin,
+                                quiz: this.state.quiz,
                                 newQuiz: false
                             });
                         }else{
                             ToastAndroid.showWithGravity('Não há como voltar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
                         }
                     }else{
-                        admin.flagSwiperVoltar = true;
+                        this.state.admin.flagSwiperVoltar = true;
                     }
                 }
                 if(sgs.isSimpleSwipeLeft()){
                     if(admin.flagSwiperSeguir){
-                        admin.flagSwiperSeguir = false;
+                        this.state.admin.flagSwiperSeguir = false;
 
                         let quizResponse = quiz.domicilio[idQuestao];
                         if(quizResponse != null){
-                            if(Number(numeroQuestao) + 1 <= admin.maxQuestion){
-                                admin.indexPage = Number(admin.indexPage) + 1;
+                            if(Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
+                                this.state.admin.indexPage = Number(this.state.admin.indexPage) + 1;
                                 this.props.navigator.push({
                                     name: 'quiz',
-                                    admin: admin,
-                                    quiz: quiz,
+                                    admin: this.state.admin,
+                                    quiz: this.state.quiz,
                                     newQuiz: false
                                 });
                             }

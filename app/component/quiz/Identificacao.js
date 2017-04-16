@@ -6,7 +6,7 @@ let model;
 let passQuestion;
 let questao;
 
-export default class ViewMorador extends Component {
+export default class Identificacao extends Component {
     constructor(props) {
         super(props);
 

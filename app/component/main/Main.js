@@ -4,16 +4,18 @@ import { Body, Button, Container, Content, Header, Left, Text, Icon, Title } fro
 
 import AdminData from './../../data/AdminData';
 import { styles } from './../../Styles';
-import { exitApp } from '../../Util';
+import { exitApp } from './../../Util';
 
 export default class Main extends Component {
     constructor(props) {
         super(props);
     }
 
-    pushScreen(route){
+    pushQuizScreen(route){
         this.props.navigator.push({
-            name: route
+            name: route,
+            admin: null,
+            quiz: null,
         });
     }
 
@@ -34,7 +36,7 @@ export default class Main extends Component {
                     <View style={styles.viewContentMenuPrincipal}>
                         <Image style={styles.imageContent} source={require('./../../img/logo_ipea_survey.png')} />
                     </View>
-                    <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('new')}}>
+                    <Button full style={styles.buttonContent} onPress={() => {this.pushQuizScreen('quiz')}}>
                         <Icon name='md-document' />
                         <Text style={styles.textButtonContent}>Novo</Text>
                     </Button>

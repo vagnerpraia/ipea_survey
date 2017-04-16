@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Navigator } from 'react-native';
 
-import Config from './component/config/Config';
-import Edit from './component/edit/Edit';
 import Main from './component/main/Main';
 import Quiz from './component/quiz/Quiz';
+import Identificacao from './component/quiz/Identificacao';
+import Domicilio from './component/quiz/Domicilio';
+import Morador from './component/quiz/Morador';
+import Config from './component/config/Config';
+import Edit from './component/edit/Edit';
 
 export default class Routes extends Component {
     renderScene (route, navigator) {
@@ -13,8 +16,20 @@ export default class Routes extends Component {
                 return <Main navigator={navigator} />
                 break;
 
-            case 'new':
-                return <Quiz navigator={navigator} admin={route.admin} quiz={route.quiz} newQuiz={route.newQuiz} />
+            case 'quiz':
+                return <Quiz navigator={navigator} admin={route.admin} quiz={route.quiz} />
+                break;
+
+            case 'identificacao':
+                return <Identificacao navigator={navigator} admin={route.admin} quiz={route.quiz} />
+                break;
+
+            case 'domicilio':
+                return <Domicilio navigator={navigator} admin={route.admin} quiz={route.quiz} />
+                break;
+
+            case 'morador':
+                return <Morador navigator={navigator} admin={route.admin} quiz={route.quiz} />
                 break;
 
             case 'config':

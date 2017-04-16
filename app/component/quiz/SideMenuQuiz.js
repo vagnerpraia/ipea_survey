@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, ToastAndroid } from 'react-native';
 import { List, ListItem, Text } from 'native-base';
-import { questoes } from './../../data/Questoes';
 
 let admin;
 let quiz;
@@ -22,8 +21,7 @@ export default class SideMenuQuiz extends Component {
             navigator.replacePreviousAndPop({
                 name: 'quiz',
                 admin: admin,
-                quiz: quiz,
-                newQuiz: false
+                quiz: quiz
             });
         }else if (index > admin.indexPage) {
             if(numeroQuestao <= admin.maxQuestion){

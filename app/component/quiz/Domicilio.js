@@ -60,7 +60,9 @@ export default class Domicilio extends Component {
             FileStore.deleteQuiz(this.state.quiz);
         };
         this.props.navigator.replacePreviousAndPop({
-            name: 'quiz'
+            name: 'quiz',
+            admin: this.state.admin,
+            quiz: this.state.quiz
         });
     }
 
@@ -110,7 +112,6 @@ export default class Domicilio extends Component {
         let open = this.state.isOpen;
         let admin = this.state.admin;
         let quiz = this.state.quiz;
-
         let questao = questoes[admin.indexPage];
 
         const menu = <SideMenuQuiz admin={admin} quiz={quiz} navigator={this.props.navigator} />;
@@ -146,9 +147,9 @@ export default class Domicilio extends Component {
                     <Content {...this._panResponder.panHandlers}>
                         <Card style={styles.card}>
                             {renderIf(questoes.id !== 'id',
-                                <CardItem>
-                                    <Text style={styles.question}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
-                                    <Text note>{questao.observacao_pergunta}</Text>
+                                <CardItem style={styles.cardItemQuestao}>
+                                    <Text style={styles.questao}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
+                                    <Text style={styles.observacao}>{questao.observacao_pergunta}</Text>
                                 </CardItem>
                             )}
 
@@ -205,54 +206,3 @@ export default class Domicilio extends Component {
         );
     }
 }
-
-const styles2 = StyleSheet.create({
-    container:{
-        flex: 1,
-        backgroundColor: '#F5FCFF',
-    },
-    content:{
-        paddingBottom: 20,
-    },
-    card:{
-        elevation: 3
-    },
-    cardItem:{
-        flex:1,
-        flexDirection:'column',
-        justifyContent:'center',
-    },
-    label: {
-        fontSize: 14,
-        color: '#000000',
-        textAlignVertical: 'center',
-        paddingLeft: 10,
-        paddingBottom: 14,
-    },
-    question: {
-        fontWeight: 'bold',
-    },
-    observacao_opcoes: {
-        fontSize: 14,
-        color: 'gray',
-    },
-    radioLabel: {
-        fontSize: 14,
-        color: '#000000',
-        paddingTop: 5,
-        paddingBottom: 5,
-    },
-    radioForm: {
-        paddingLeft: 0,
-    },
-    pergunta_secundaria: {
-        paddingBottom: 10,
-    },
-    textInput: {
-        fontSize: 14,
-        color: '#000000'
-    },
-    textInputNumeric: {
-        width: 50,
-    },
-});

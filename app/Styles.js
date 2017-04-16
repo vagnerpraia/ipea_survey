@@ -8,6 +8,14 @@ export const styles = {
     container: {
         backgroundColor: '#ffffff',
     },
+    card:{
+        elevation: 3
+    },
+    cardItem:{
+        flex:1,
+        flexDirection:'column',
+        justifyContent:'center',
+    },
     viewContentMenuPrincipal: {
         justifyContent: 'center',
         alignItems: 'center'
@@ -60,5 +68,37 @@ export const styles = {
     },
     textContentViewContent: {
         fontSize: 30,
-    }
+    },
+    pergunta_secundaria: {
+        paddingBottom: 10,
+    },
+    textInput: {
+        fontSize: 14,
+        color: '#000000'
+    },
+    cardItemQuestao: {
+        flex: 1,
+        flexDirection:'column',
+        alignItems: 'flex-start'
+    },
+    questao: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    opcaoTextRadio: {
+        fontSize: 14,
+        paddingLeft: 10,
+        paddingTop: 10,
+        paddingBottom: 5,
+    },
+    viewOpcao: {
+        backgroundColor: '#dddddd',
+        alignItems: 'flex-start',
+    },
+    observacao: {
+        fontSize: 14,
+        color: 'gray',
+        paddingTop: 10,
+        paddingLeft: 10,
+    },
 };

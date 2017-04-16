@@ -2,30 +2,28 @@ import React, { Component } from 'react';
 import { StyleSheet, ToastAndroid, View } from 'react-native';
 import { ListItem, Radio, Text } from 'native-base';
 import { passQuestion } from './../business/PassQuestion';
-
-let admin;
-let quiz;
-let questao;
+import { styles } from './../../../Styles';
 
 export default class ReplyRadio extends Component {
     constructor(props) {
         super(props);
 
-        admin = this.props.admin;
-        quiz = this.props.quiz;
-        questao = this.props.questao;
-
         this.state = {
-            selected: quiz.domicilio['questao_' + questao.id]
+            admin: this.props.admin,
+            quiz: this.props.quiz,
+            questao: this.props.questao,
+            selected: this.props.quiz.domicilio['questao_' + this.props.questao.id],
         }
     }
 
     render() {
         let selected = this.state.selected;
+        let admin = this.state.admin;
+        let quiz = this.state.quiz;
+        let questao = this.state.questao;
+        let idQuestao = 'questao_' + questao.id;
 
         setQuestion = (value) => {
-            let idQuestao = 'questao_' + questao.id;
-
             if(quiz.domicilio[idQuestao] === -1){
                 ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }else{
@@ -63,18 +61,20 @@ export default class ReplyRadio extends Component {
                 {questao.opcoes.map(function(object, i){
                     return(
                         <ListItem key={object.value}>
-                            <Radio selected={selected === object.value} onPress={() => {
-                                this.setQuestion(object.value);
-                            }} />
                             <View>
-                                <Text onPress={() => {
-                                    this.setQuestion(object.value);
-                                }}>
-                                    {object.label}
-                                </Text>
-                                <Text style={styles.note}>
-                                    {object.observacao}
-                                </Text>
+                                <Radio selected={selected === object.value} onPress={() => {this.setQuestion(object.value)}} />
+                            </View>
+                            <View style={{alignItems: 'flex-start'}}>
+                                <View>
+                                    <Text style={styles.opcaoTextRadio} onPress={() => {this.setQuestion(object.value)}}>
+                                        {object.label}
+                                    </Text>
+                                </View>
+                                <View>
+                                    <Text style={styles.observacao}>
+                                        {object.observacao}
+                                    </Text>
+                                </View>
                             </View>
                         </ListItem>
                     );
@@ -83,10 +83,3 @@ export default class ReplyRadio extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    note: {
-        fontSize: 14,
-        color: 'gray',
-    },
-});

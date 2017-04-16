@@ -11,13 +11,13 @@ export default class Quiz extends Component {
         super(props);
 
         this.state = {
-            admin: null,
-            quiz: null
+            admin: this.props.admin,
+            quiz: this.props.quiz
         };
     }
 
     componentWillMount(){
-        if(this.props.quiz === null){
+        if(this.state.quiz === null){
             this.state.admin = new AdminData(new Date().getTime());
             this.state.quiz = new QuizData();
         }else{
@@ -78,7 +78,7 @@ export default class Quiz extends Component {
                 <Content>
                     <View style={styles.viewContentQuestionario}>
                         <Text style={styles.texLabeltViewContent}>Número do questionário:</Text>
-                        <Text style={styles.textContentViewContent}>123456789</Text>
+                        <Text style={styles.textContentViewContent}>{this.state.admin.id}</Text>
                     </View>
                     <Button full style={this.checkCompleto('identificacao')} onPress={() => {this.pushScreen('identificacao')}}>
                         <Icon name='md-finger-print' />

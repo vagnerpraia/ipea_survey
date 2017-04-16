@@ -3,10 +3,10 @@ export const questoes = [
         id: '1',
         titulo: 'Identificação do domicílio',
         pergunta: 'Tipo de domicílio:',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Teste observação de questão',
         pergunta_secundaria: '',
         opcoes: [
-            {label: 'Casa', value: 0, observacao: ''},
+            {label: 'Casa', value: 0, observacao: 'Teste observação de opção'},
             {label: 'Casa de agrovila', value: 1, observacao: ''},
             {label: 'Apartamento', value: 2, observacao: ''},
             {label: 'Cômodo ou peça', value: 3, observacao: ''},

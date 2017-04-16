@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
-import { Image, Navigator, View } from 'react-native';
-import { Body, Button, Container, Content, Header, Left, Text, Icon, Right, Title } from 'native-base';
+import { Image, View } from 'react-native';
+import { Body, Button, Container, Content, Header, Left, Text, Icon, Title } from 'native-base';
 
 import AdminData from './../../data/AdminData';
+import { styles } from './../../Styles';
 import { exitApp } from '../../Util';
-
-let admin;
 
 export default class Main extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentWillMount(){
-        admin = new AdminData();
-    }
-
     pushScreen(route){
         this.props.navigator.push({
-            name: route,
-            admin: admin,
-            newQuiz: true
+            name: route
         });
     }
 
@@ -31,19 +24,14 @@ export default class Main extends Component {
                     <Left>
                         <Text/>
                     </Left>
-                    <Body>
+                    <Body style={styles.bodyHeader}>
                         <View>
                             <Title>Menu Principal</Title>
                         </View>
                     </Body>
-                    <Right>
-                        <Button transparent>
-                            <Text>Sair</Text>
-                        </Button>
-                    </Right>
                 </Header>
                 <Content>
-                    <View style={styles.viewImageContent}>
+                    <View style={styles.viewContentMenuPrincipal}>
                         <Image style={styles.imageContent} source={require('./../../img/ipea_survey.png')} />
                     </View>
                     <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('new')}}>
@@ -70,31 +58,3 @@ export default class Main extends Component {
         );
     }
 }
-
-const styles = {
-    header: {
-        backgroundColor: '#005376'
-    },
-    container: {
-        backgroundColor: '#ffffff',
-    },
-    viewImageContent: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    imageContent: {
-    },
-    buttonContent: {
-        backgroundColor: '#005376',
-        justifyContent: 'center',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 20,
-        marginRight: 20,
-        height: 60,
-    },
-    textButtonContent: {
-        paddingLeft: 10,
-        fontSize: 14,
-    },
-};

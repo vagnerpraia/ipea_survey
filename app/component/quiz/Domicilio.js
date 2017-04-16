@@ -22,7 +22,7 @@ let quiz;
 let idQuestao;
 let numeroQuestao;
 
-export default class Quiz_2 extends Component {
+export default class Domicilio extends Component {
     constructor(props) {
         super(props);
 

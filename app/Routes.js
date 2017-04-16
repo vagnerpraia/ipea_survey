@@ -9,7 +9,7 @@ import Quiz from './component/quiz/Quiz';
 export default class Routes extends Component {
     renderScene (route, navigator) {
         switch (route.name) {
-            case 'main':
+            case 'home':
                 return <Main navigator={navigator} />
                 break;
 

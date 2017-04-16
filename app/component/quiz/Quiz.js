@@ -1,31 +1,45 @@
 import React, { Component } from 'react';
-import { Image, Navigator, View } from 'react-native';
+import { Image, View } from 'react-native';
 import { Body, Button, Container, Content, Header, Left, Text, Icon, Right, Title } from 'native-base';
 
 import AdminData from './../../data/AdminData';
+import FileStore from './../../FileStore';
+import { styles } from './../../Styles';
 import { exitApp } from '../../Util';
 
+let id;
 let admin;
 
 export default class Quiz extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            isOpen: false,
-        };
     }
 
     componentWillMount(){
         admin = new AdminData();
+
+        if(this.props.id == null){
+            id = new Date().getTime();
+        }else{
+            id = this.props.id;
+        }
+    }
+
+    popScreen(){
+        this.props.navigator.replacePreviousAndPop({
+            name: 'home'
+        });
     }
 
     pushScreen(route){
         this.props.navigator.push({
             name: route,
-            admin: admin,
-            newQuiz: true
+            admin: admin
         });
+    }
+
+    voltar(){
+        this.popScreen();
     }
 
     render() {
@@ -33,72 +47,37 @@ export default class Quiz extends Component {
             <Container style={styles.container}>
                 <Header style={styles.header}>
                     <Left>
-                        <Text/>
+                        <Button transparent onPress={() => {this.voltar()}}>
+                            <Text>Voltar</Text>
+                        </Button>
                     </Left>
-                    <Body>
+                    <Body style={styles.bodyHeader}>
                         <View>
-                            <Title>Menu Principal</Title>
+                            <Title>Questionário</Title>
                         </View>
                     </Body>
-                    <Right>
-                        <Button transparent>
-                            <Text>Sair</Text>
-                        </Button>
-                    </Right>
                 </Header>
                 <Content>
-                    <View style={styles.viewImageContent}>
-                        <Image style={styles.imageContent} source={require('./../../img/ipea_survey.png')} />
+                    <View style={styles.viewContentQuestionario}>
+                        <Text style={styles.texLabeltViewContent}>Número do questionário:</Text>
+                        <Text style={styles.textContentViewContent}>{id}</Text>
                     </View>
                     <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('new')}}>
-                        <Icon name='md-document' />
-                        <Text style={styles.textButtonContent}>Novo</Text>
+                        <Icon name='md-finger-print' />
+                        <Text style={styles.textButtonContent}>Identificação</Text>
                     </Button>
 
                     <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('edit')}}>
-                        <Icon name='md-create' />
-                        <Text style={styles.textButtonContent}>Editar</Text>
+                        <Icon name='md-home' />
+                        <Text style={styles.textButtonContent}>Domicílio</Text>
                     </Button>
 
                     <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('config')}}>
-                        <Icon name='md-settings' />
-                        <Text style={styles.textButtonContent}>Configuração</Text>
-                    </Button>
-
-                    <Button full style={styles.buttonContent} onPress={exitApp}>
-                        <Icon name='md-exit' />
-                        <Text style={styles.textButtonContent}>Sair</Text>
+                        <Icon name='md-contacts' />
+                        <Text style={styles.textButtonContent}>Moradores</Text>
                     </Button>
                 </Content>
             </Container>
         );
     }
 }
-
-const styles = {
-    header: {
-        backgroundColor: '#005376'
-    },
-    container: {
-        backgroundColor: '#ffffff',
-    },
-    viewImageContent: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    imageContent: {
-    },
-    buttonContent: {
-        backgroundColor: '#005376',
-        justifyContent: 'center',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 20,
-        marginRight: 20,
-        height: 60,
-    },
-    textButtonContent: {
-        paddingLeft: 10,
-        fontSize: 14,
-    },
-};

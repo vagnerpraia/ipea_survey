@@ -48,6 +48,18 @@ export default class Quiz extends Component {
         this.popScreen();
     }
 
+    checkCompleto(segment){
+        let result = styles.buttonContentIncompleto;
+        if(segment == 'identificacao'){
+            if(true) return styles.buttonContentCompleto;
+        }else if(segment == 'domicilio'){
+            if(false) return styles.buttonContentCompleto;
+        }else if(segment == 'morador'){
+            if(false) return styles.buttonContentCompleto;
+        }
+        return result;
+    }
+
     render() {
         return (
             <Container style={styles.container}>
@@ -68,20 +80,24 @@ export default class Quiz extends Component {
                         <Text style={styles.texLabeltViewContent}>Número do questionário:</Text>
                         <Text style={styles.textContentViewContent}>123456789</Text>
                     </View>
-                    <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('identificacao')}}>
+                    <Button full style={this.checkCompleto('identificacao')} onPress={() => {this.pushScreen('identificacao')}}>
                         <Icon name='md-finger-print' />
                         <Text style={styles.textButtonContent}>Identificação</Text>
                     </Button>
 
-                    <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('domicilio')}}>
+                    <Button full style={this.checkCompleto('domicilio')} onPress={() => {this.pushScreen('domicilio')}}>
                         <Icon name='md-home' />
                         <Text style={styles.textButtonContent}>Domicílio</Text>
                     </Button>
 
-                    <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('morador')}}>
+                    <Button full style={this.checkCompleto('morador')} onPress={() => {this.pushScreen('morador')}}>
                         <Icon name='md-contacts' />
                         <Text style={styles.textButtonContent}>Moradores</Text>
                     </Button>
+
+                    <View style={{alignItems: 'center', paddingTop: 20, paddingRight: 20}}>
+                        <Icon name='md-information-circle' style={{fontSize: 50, color: '#005376'}} />
+                    </View>
                 </Content>
             </Container>
         );

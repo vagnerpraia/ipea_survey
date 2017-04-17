@@ -156,7 +156,7 @@ export default class Domicilio extends Component {
                                 </CardItem>
                             )}
 
-                            <CardItem cardBody style={styles.cardItem}>
+                            <CardItem cardBody style={styles.cardItem} style={styles.cardItemOpcoes}>
                                 {renderIf(questao.pergunta_secundaria !== '',
                                     <View style={styles.pergunta_secundaria}>
                                         <Text>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>

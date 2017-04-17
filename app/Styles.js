@@ -12,9 +12,9 @@ export const styles = {
         elevation: 3
     },
     cardItem:{
-        flex:1,
-        flexDirection:'column',
-        justifyContent:'center',
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
     },
     viewContentMenuPrincipal: {
         justifyContent: 'center',
@@ -79,7 +79,7 @@ export const styles = {
     cardItemQuestao: {
         flex: 1,
         flexDirection:'column',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
     },
     questao: {
         fontSize: 18,
@@ -102,8 +102,8 @@ export const styles = {
         color: 'gray',
         paddingLeft: 10,
     },
-    viewOpcao: {
-        backgroundColor: '#dddddd',
+    cardItemOpcoes: {
         alignItems: 'flex-start',
+        paddingLeft: 10,
     },
 };

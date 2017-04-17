@@ -148,7 +148,7 @@ export default class Domicilio extends Component {
                         </Right>
                     </Header>
                     <Content {...this._panResponder.panHandlers}>
-                        <Card style={styles.card}>
+                        <Card>
                             {renderIf(questoes.id !== 'id',
                                 <CardItem style={styles.cardItemQuestao}>
                                     <Text style={styles.questao}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
@@ -156,20 +156,20 @@ export default class Domicilio extends Component {
                                 </CardItem>
                             )}
 
-                            <CardItem cardBody style={styles.cardItem} style={styles.cardItemOpcoes}>
-                                {renderIf(questao.pergunta_secundaria !== '',
-                                    <View style={styles.pergunta_secundaria}>
-                                        <Text>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
-                                        <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
-                                    </View>
-                                )}
+                            {renderIf(questao.pergunta_secundaria !== '',
+                                <CardItem style={styles.pergunta_secundaria}>
+                                    <Text>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
+                                    <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
+                                </CardItem>
+                            )}
 
+                            <CardItem cardBody>
                                 {renderIf(questao.tipo === 'input_numeric',
-                                    <ReplyInputNumeric admin={admin} questao={questao} />
+                                    <ReplyInputNumeric admin={admin} quiz={quiz} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'multiple',
-                                    <ReplyMultiSelect admin={admin} questao={questao} />
+                                    <ReplyMultiSelect admin={admin} quiz={quiz} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'radio',

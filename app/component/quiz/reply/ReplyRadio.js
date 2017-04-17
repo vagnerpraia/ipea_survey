@@ -64,14 +64,14 @@ export default class ReplyRadio extends Component {
                             <View>
                                 <Radio selected={selected === object.value} onPress={() => {this.setQuestion(object.value)}} />
                             </View>
-                            <View style={{alignItems: 'flex-start'}}>
+                            <View style={styles.opcaoView}>
                                 <View>
-                                    <Text style={styles.opcaoTextRadio} onPress={() => {this.setQuestion(object.value)}}>
+                                    <Text style={styles.opcaoTexto} onPress={() => {this.setQuestion(object.value)}}>
                                         {object.label}
                                     </Text>
                                 </View>
                                 <View>
-                                    <Text style={styles.observacaoOpcao}>
+                                    <Text style={styles.opcaoObservacao}>
                                         {object.observacao}
                                     </Text>
                                 </View>

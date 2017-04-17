@@ -745,7 +745,7 @@ export const questoes = [
             {label: 'Poço artesiano', value: 3, observacao: ''},
             {label: 'Água da chuva armazenada em cisterna', value: 4, observacao: ''},
             {label: 'Água da chuva armazenada de outra forma', value: 5, observacao: ''},
-            {label: 'JCarro-pipa', value: 6, observacao: ''},
+            {label: 'Carro-pipa', value: 6, observacao: ''},
             {label: 'Rios, açudes, lagos, córregos e igarapés', value: 7, observacao: ''},
             {label: 'Chafariz (sistema de abastecimento coletivo)', value: 8, observacao: ''},
             {label: 'Outra', value: 9, observacao: ''},

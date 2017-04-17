@@ -9,7 +9,7 @@ export const styles = {
         backgroundColor: '#ffffff',
     },
     card:{
-        elevation: 3
+        elevation: 3,
     },
     cardItem:{
         flex: 1,
@@ -91,19 +91,18 @@ export const styles = {
         paddingTop: 10,
         paddingLeft: 10,
     },
-    opcaoTextRadio: {
+    opcaoTexto: {
         fontSize: 14,
         paddingLeft: 10,
         paddingBottom: 5,
         marginTop: 10,
     },
-    observacaoOpcao: {
+    opcaoObservacao: {
         fontSize: 14,
         color: 'gray',
         paddingLeft: 10,
     },
-    cardItemOpcoes: {
+    opcaoView: {
         alignItems: 'flex-start',
-        paddingLeft: 10,
-    },
+    }
 };

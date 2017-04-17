@@ -12,7 +12,7 @@ import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
 
 import FileStore from './../../FileStore';
-import QuizData from './../../data/QuizData';
+import DomicilioData from './../../data/DomicilioData';
 import { questoes } from './../../data/QuestoesDomicilio';
 import { styles } from './../../Styles';
 
@@ -30,8 +30,11 @@ export default class Domicilio extends Component {
     componentWillMount(){
         this.state.admin = this.props.admin;
         this.state.quiz = this.props.quiz;
+        if(this.state.quiz.domicilio === null){
+            this.state.quiz.domicilio = new DomicilioData(this.state.admin.id);
+        }
 
-        FileStore.saveFile(this.state.quiz, 'domicilio');
+        FileStore.saveFile(this.state.quiz.domicilio, 'domicilio');
 
         idQuestao = 'questao_' + questoes[this.state.admin.indexPage].id;
         numeroQuestao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
@@ -149,7 +152,7 @@ export default class Domicilio extends Component {
                             {renderIf(questoes.id !== 'id',
                                 <CardItem style={styles.cardItemQuestao}>
                                     <Text style={styles.questao}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
-                                    <Text style={styles.observacao}>{questao.observacao_pergunta}</Text>
+                                    <Text style={styles.observacaoQuestao}>{questao.observacao_pergunta}</Text>
                                 </CardItem>
                             )}
 
@@ -193,10 +196,10 @@ export default class Domicilio extends Component {
                     </Content>
                     <Footer>
                         <FooterTab>
-                            <Button transparent onPress={() => {this.popScreen()}}>
+                            <Button onPress={() => {this.popScreen()}}>
                                 <Icon name='ios-arrow-back' />
                             </Button>
-                            <Button transparent onPress={() => {this.pushScreen()}}>
+                            <Button onPress={() => {this.pushScreen()}}>
                                 <Icon name='ios-arrow-forward' />
                             </Button>
                         </FooterTab>

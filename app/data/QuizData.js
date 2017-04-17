@@ -1,18 +1,18 @@
-import Identificacao from './Identificacao';
-import Domicilio from './Domicilio';
-import Morador from './Morador';
+import IdentificacaoData from './IdentificacaoData';
+import DomicilioData from './DomicilioData';
+import MoradorData from './MoradorData';
 
 export default class QuizData {
     constructor() {
-        this.identificacao = new Identificacao();
-        this.domicilio = new Domicilio(),
-        this.morador = new Array()
+        this.identificacao = null;
+        this.domicilio = null;
+        this.morador = null;
     }
 
     setObject(obj){
-        this.identificacao = Identificacao.object(obj.identificacao),
-        this.domicilio = Domicilio.object(obj.domicilio),
-        this.morador = Morador.object(obj.morador)
+        if(obj.identificacao) this.identificacao = IdentificacaoData.object(obj.identificacao);
+        if(obj.domicilio) this.domicilio = DomicilioData.object(obj.domicilio);
+        if(obj.morador) this.morador = MoradorData.object(obj.morador);
     }
 
     static object(obj){

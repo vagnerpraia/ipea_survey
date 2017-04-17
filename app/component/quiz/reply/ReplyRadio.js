@@ -71,7 +71,7 @@ export default class ReplyRadio extends Component {
                                     </Text>
                                 </View>
                                 <View>
-                                    <Text style={styles.observacao}>
+                                    <Text style={styles.observacaoOpcao}>
                                         {object.observacao}
                                     </Text>
                                 </View>

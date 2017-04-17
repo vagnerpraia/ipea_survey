@@ -38,8 +38,8 @@ export default class FileStore {
     };
 
     static saveFile(quiz, type) {
-        let file_path = dirFile + quiz.id + '/' + type + '.json';
         let data = JSON.stringify(quiz);
+        let file_path = dirFile + quiz.id + '/' + type + '.json';
         fs.writeFile(file_path, data, 'utf8').then(() => {
             console.log('Arquivo atualizado');
         });

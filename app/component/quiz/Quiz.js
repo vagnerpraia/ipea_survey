@@ -18,8 +18,9 @@ export default class Quiz extends Component {
 
     componentWillMount(){
         if(this.state.quiz === null){
-            this.state.admin = new AdminData(new Date().getTime());
-            this.state.quiz = new QuizData();
+            let id = new Date().getTime();
+            this.state.admin = new AdminData(id);
+            this.state.quiz = new QuizData(id);
         }else{
             this.state.admin = AdminData.object(this.props.admin);
         }
@@ -51,11 +52,11 @@ export default class Quiz extends Component {
     checkCompleto(segment){
         let result = styles.buttonContentIncompleto;
         if(segment == 'identificacao'){
-            if(true) result = styles.buttonContentCompleto;
+            if(this.state.admin.identificacaoCompleto) result = styles.buttonContentCompleto;
         }else if(segment == 'domicilio'){
-            if(false) result = styles.buttonContentCompleto;
+            if(this.state.admin.domicilioCompleto) result = styles.buttonContentCompleto;
         }else if(segment == 'morador'){
-            if(false) result = styles.buttonContentCompleto;
+            if(this.state.admin.moradorCompleto) result = styles.buttonContentCompleto;
         }
         return result;
     }

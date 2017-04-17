@@ -5,6 +5,9 @@ export default class AdminData {
         this.maxQuestion = 1;
         this.flagVoltar = true;
         this.flagSeguir = true;
+        this.identificacaoCompleto = false;
+        this.domicilioCompleto = false;
+        this.moradorCompleto = false;
     }
 
     setObject(obj) {
@@ -13,6 +16,9 @@ export default class AdminData {
         if(obj.maxQuestion) this.maxQuestion = obj.maxQuestion;
         if(obj.flagVoltar) this.flagVoltar = obj.flagVoltar;
         if(obj.flagSeguir) this.flagSeguir = obj.flagSeguir;
+        if(obj.identificacaoCompleto) this.identificacaoCompleto = obj.identificacaoCompleto;
+        if(obj.domicilioCompleto) this.domicilioCompleto = obj.domicilioCompleto;
+        if(obj.moradorCompleto) this.moradorCompleto = obj.moradorCompleto;
     }
 
     static object(obj) {

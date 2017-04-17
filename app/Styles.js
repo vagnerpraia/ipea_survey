@@ -85,20 +85,25 @@ export const styles = {
         fontSize: 18,
         fontWeight: 'bold',
     },
-    opcaoTextRadio: {
-        fontSize: 14,
-        paddingLeft: 10,
-        paddingTop: 10,
-        paddingBottom: 5,
-    },
-    viewOpcao: {
-        backgroundColor: '#dddddd',
-        alignItems: 'flex-start',
-    },
-    observacao: {
+    observacaoQuestao: {
         fontSize: 14,
         color: 'gray',
         paddingTop: 10,
         paddingLeft: 10,
+    },
+    opcaoTextRadio: {
+        fontSize: 14,
+        paddingLeft: 10,
+        paddingBottom: 5,
+        marginTop: 10,
+    },
+    observacaoOpcao: {
+        fontSize: 14,
+        color: 'gray',
+        paddingLeft: 10,
+    },
+    viewOpcao: {
+        backgroundColor: '#dddddd',
+        alignItems: 'flex-start',
     },
 };

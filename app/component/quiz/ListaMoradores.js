@@ -6,7 +6,7 @@ import AdminData from './../../data/AdminData';
 import QuizData from './../../data/QuizData';
 import { styles } from './../../Styles';
 
-export default class Quiz extends Component {
+export default class ListaMoradores extends Component {
     constructor(props) {
         super(props);
 
@@ -50,15 +50,7 @@ export default class Quiz extends Component {
     }
 
     checkCompleto(segment){
-        let result = styles.buttonContentIncompleto;
-        if(segment == 'identificacao'){
-            if(this.state.admin.identificacaoCompleto) result = styles.buttonContentCompleto;
-        }else if(segment == 'domicilio'){
-            if(this.state.admin.domicilioCompleto) result = styles.buttonContentCompleto;
-        }else if(segment == 'morador'){
-            if(this.state.admin.moradorCompleto) result = styles.buttonContentCompleto;
-        }
-        return result;
+
     }
 
     render() {
@@ -72,15 +64,15 @@ export default class Quiz extends Component {
                     </Left>
                     <Body style={styles.bodyHeader}>
                         <View>
-                            <Title>Questionário</Title>
+                            <Title>Lista de Moradores</Title>
                         </View>
                     </Body>
                 </Header>
                 <Content>
                     <View style={styles.viewContentQuestionario}>
-                        <Text style={styles.texLabeltViewContent}>Número do questionário:</Text>
-                        <Text style={styles.textContentViewContent}>{this.state.admin.id}</Text>
+                        <Text style={styles.texLabeltViewContent}>Lista de moradores do domicílio</Text>
                     </View>
+
                     <Button full style={this.checkCompleto('identificacao')} onPress={() => {this.pushScreen('identificacao')}}>
                         <Icon name='md-finger-print' />
                         <Text style={styles.textButtonContent}>Identificação</Text>
@@ -91,14 +83,10 @@ export default class Quiz extends Component {
                         <Text style={styles.textButtonContent}>Domicílio</Text>
                     </Button>
 
-                    <Button full style={this.checkCompleto('morador')} onPress={() => {this.pushScreen('lista_moradores')}}>
+                    <Button full style={this.checkCompleto('morador')} onPress={() => {this.pushScreen('morador')}}>
                         <Icon name='md-contacts' />
                         <Text style={styles.textButtonContent}>Moradores</Text>
                     </Button>
-
-                    <View style={{alignItems: 'center', paddingTop: 20, paddingRight: 20}}>
-                        <Icon name='md-information-circle' style={{fontSize: 50, color: '#005376'}} />
-                    </View>
                 </Content>
             </Container>
         );

@@ -47,17 +47,15 @@ export default class ReplyInputNumeric extends Component {
 
     render() {
         return (
-            <View style={styles.cardItem}>
-                <TextInput
-                    style={styles.textInputNumeric}
-                    keyboardType = 'numeric'
-                    onChangeText = {(value) => {
-                        this.setQuestion(value);
-                    }}
-                    value = {null}
-                    maxLength = {2}
-                />
-            </View>
+            <TextInput
+                style={{width: 100}}
+                keyboardType = 'numeric'
+                onChangeText = {(value) => {
+                    this.setQuestion(value);
+                }}
+                value = {null}
+                maxLength = {2}
+            />
         );
     }
 }

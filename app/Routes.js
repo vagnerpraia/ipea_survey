@@ -5,6 +5,7 @@ import Main from './component/main/Main';
 import Quiz from './component/quiz/Quiz';
 import Identificacao from './component/quiz/Identificacao';
 import Domicilio from './component/quiz/Domicilio';
+import ListaMoradores from './component/quiz/ListaMoradores';
 import Morador from './component/quiz/Morador';
 import Config from './component/config/Config';
 import Edit from './component/edit/Edit';
@@ -26,6 +27,10 @@ export default class Routes extends Component {
 
             case 'domicilio':
                 return <Domicilio navigator={navigator} admin={route.admin} quiz={route.quiz} />
+                break;
+
+            case 'lista_moradores':
+                return <ListaMoradores navigator={navigator} admin={route.admin} quiz={route.quiz} />
                 break;
 
             case 'morador':

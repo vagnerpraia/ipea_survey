@@ -163,7 +163,7 @@ export default class Domicilio extends Component {
                                 </CardItem>
                             )}
 
-                            <CardItem cardBody>
+                            <CardItem cardBody style={{justifyContent: 'center'}}>
                                 {renderIf(questao.tipo === 'input_numeric',
                                     <ReplyInputNumeric admin={admin} quiz={quiz} questao={questao} />
                                 )}

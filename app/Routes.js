@@ -37,6 +37,10 @@ export default class Routes extends Component {
                 return <Morador navigator={navigator} admin={route.admin} quiz={route.quiz} />
                 break;
 
+            case 'edit':
+                return <Edit navigator={navigator} />
+                break;
+
             case 'config':
                 return <Config navigator={navigator} />
                 break;

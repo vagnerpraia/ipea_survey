@@ -11,6 +11,12 @@ export default class Main extends Component {
         super(props);
     }
 
+    pushScreen(route){
+        this.props.navigator.push({
+            name: route
+        });
+    }
+
     pushQuizScreen(route){
         this.props.navigator.push({
             name: route,

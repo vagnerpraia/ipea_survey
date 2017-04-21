@@ -51,6 +51,14 @@ export default class FileStore {
             console.log('Arquivo deletado');
         }).catch((error) => {
             console.log(error);
-        })
+        });
     };
+
+    static getQuizList(callback){
+        fs.ls(dirFile).then((files) => {
+            callback(files);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
 }

@@ -89,7 +89,7 @@ export default class ReplyMultiSelect extends Component {
             <View>
                 {this.state.questao.opcoes.map(function(object, i){
                     return(
-                        <ListItem key={object.value}>
+                        <ListItem key={i}>
                             <CheckBox checked={selected.indexOf(object.value) >= 0} onPress={() => {this.setQuestion(object.value)}} />
                             <View style={styles.opcaoView}>
                                 <View>

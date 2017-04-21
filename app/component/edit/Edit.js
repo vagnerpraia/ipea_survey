@@ -2,51 +2,28 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Body, Button, Container, Content, Header, Left, List, ListItem, Icon, Right, Text, Title } from 'native-base';
 
+import FileStore from './../../FileStore';
 import { styles } from './../../Styles';
 import { exitApp } from '../../Util';
 
 export default class Edit extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            quizList: new Array(),
+        }
+    }
+
+    componentWillMount(){
+        FileStore.getQuizList((result) => {
+            this.state.quizList = result;
+            this.forceUpdate();
+        });
+    }
+
     render() {
         var model = this.props.model;
-
-        var quizList = [
-            {
-                'id': '123456789',
-                'data': '25/01/2017',
-                'entrevistado': 'João da Silva',
-                'endereco': 'Rua Paulo Martins'
-            },
-            {
-                'id': '123456789',
-                'data': '25/01/2017',
-                'entrevistado': 'João da Silva',
-                'endereco': 'Rua Paulo Martins'
-            },
-            {
-                'id': '123456789',
-                'data': '25/01/2017',
-                'entrevistado': 'João da Silva',
-                'endereco': 'Rua Paulo Martins'
-            },
-            {
-                'id': '123456789',
-                'data': '25/01/2017',
-                'entrevistado': 'João da Silva',
-                'endereco': 'Rua Paulo Martins'
-            },
-            {
-                'id': '123456789',
-                'data': '25/01/2017',
-                'entrevistado': 'João da Silva',
-                'endereco': 'Rua Paulo Martins'
-            },
-            {
-                'id': '123456789',
-                'data': '25/01/2017',
-                'entrevistado': 'João da Silva',
-                'endereco': 'Rua Paulo Martins'
-            },
-        ];
 
         return (
             <Container style={styles.container}>
@@ -66,14 +43,11 @@ export default class Edit extends Component {
                     <View style={styles.viewContentQuestionario}>
                         <Text style={styles.texLabeltViewContent}>Lista de quiz</Text>
                     </View>
-                    <List dataArray={quizList}
-                        renderRow={(item) =>
-                            <ListItem>
+                    {this.state.quizList.map(function(object, i){
+                        return(
+                            <ListItem key={i}>
                                 <Body>
-                                    <Text>{item.id}</Text>
-                                    <Text note>Data: {item.data}</Text>
-                                    <Text note>Entrevistado: {item.entrevistado}</Text>
-                                    <Text note>Endereço: {item.endereco}</Text>
+                                    <Text>{object}</Text>
                                 </Body>
                                 <Right>
                                     <Button dark transparent onPress={() => {}}>
@@ -81,8 +55,8 @@ export default class Edit extends Component {
                                     </Button>
                                 </Right>
                             </ListItem>
-                        }>
-                    </List>
+                        );
+                    })}
                 </Content>
             </Container>
         );

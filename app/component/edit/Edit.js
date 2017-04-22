@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { Body, Button, Container, Content, Header, Left, List, ListItem, Icon, Right, Text, Title } from 'native-base';
 
 import FileStore from './../../FileStore';

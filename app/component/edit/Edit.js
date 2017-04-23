@@ -11,7 +11,7 @@ export default class Edit extends Component {
         super(props);
 
         this.state = {
-            quizList: new Array(),
+            quizList: new Array()
         }
     }
 
@@ -23,8 +23,6 @@ export default class Edit extends Component {
     }
 
     render() {
-        var model = this.props.model;
-
         return (
             <Container style={styles.container}>
                 <Header style={styles.header}>

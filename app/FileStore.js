@@ -37,16 +37,33 @@ export default class FileStore {
         });
     };
 
-    static saveFile(quiz, type) {
+    static saveFileDomicilio(quiz) {
         let data = JSON.stringify(quiz);
-        let file_path = dirFile + quiz.id + '/' + type + '.json';
+        let file_path = dirFile + quiz.id + '/quiz.json';
         fs.writeFile(file_path, data, 'utf8').then(() => {
             console.log('Arquivo atualizado');
         });
     };
 
-    static deleteQuiz(quiz) {
-        let file_path = dirFile + quiz.id;
+    static saveFileMorador(id, quiz) {
+        let data = JSON.stringify(quiz);
+        let file_path = dirFile + id + '/' + quiz.id + '.json';
+        fs.writeFile(file_path, data, 'utf8').then(() => {
+            console.log('Arquivo atualizado');
+        });
+    };
+
+    static deleteDomicilio(idQuiz) {
+        let file_path = dirFile + idQuiz + '/quiz.json';
+        fs.unlink(file_path).then(() => {
+            console.log('Arquivo deletado');
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    static deleteMorador(idQuiz, idMorador) {
+        let file_path = dirFile + idQuiz + 'moradores/' + idMorador + '.json';
         fs.unlink(file_path).then(() => {
             console.log('Arquivo deletado');
         }).catch((error) => {
@@ -56,6 +73,14 @@ export default class FileStore {
 
     static getQuizList(callback){
         fs.ls(dirFile).then((files) => {
+            callback(files);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    static getMoradoresList(id, callback){
+        fs.ls(dirFile + id + '/moradores').then((files) => {
             callback(files);
         }).catch((error) => {
             console.log(error);

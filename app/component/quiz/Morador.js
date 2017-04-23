@@ -12,7 +12,7 @@ import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
 
 import FileStore from './../../FileStore';
-import DomicilioData from './../../data/DomicilioData';
+import MoradorData from './../../data/MoradorData';
 import { questoes } from './../../data/QuestoesMorador';
 import { styles } from './../../Styles';
 
@@ -21,20 +21,28 @@ export default class Morador extends Component {
         super(props);
 
         this.state = {
-            isOpen: false,
-            admin: {},
-            quiz: {}
+            id: this.props.id,
+            admin: this.props.admin,
+            quiz: this.props.quiz,
+            isOpen: false
         };
     }
 
     componentWillMount(){
-        this.state.admin = this.props.admin;
-        this.state.quiz = this.props.quiz;
-        if(this.state.quiz.domicilio === null){
-            this.state.quiz.domicilio = new DomicilioData(this.state.admin.id);
+        if(this.state.quiz.morador === null){
+            this.state.quiz.morador = [new MoradorData(0)];
+        }else if(this.state.id === null){
+            let id = 0;
+            FileStore.getMoradoresList(this.state.admin.id, function(listFile) {
+                listFile.forEach(function(idFile) {
+                    if(idFile > id) id = idFile;
+                });
+            });
+            this.state.id = id;
+            this.state.quiz.morador.push(new MoradorData(id));
         }
 
-        FileStore.saveFile(this.state.quiz.domicilio, 'domicilio');
+        FileStore.saveFileMorador(this.state.id, this.state.quiz.morador);
 
         idQuestao = 'questao_' + questoes[this.state.admin.indexPage].id;
         numeroQuestao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
@@ -60,7 +68,11 @@ export default class Morador extends Component {
 
     popQuizScreen(){
         if(this.state.admin.indexPage === 0){
-            FileStore.deleteQuiz(this.state.quiz);
+            for(key in this.state.quiz.morador){
+                if(this.state.quiz.morador.id === this.state.id) delete this.state.quiz.morador[keys];
+                if(this.state.quiz.morador.length === 0) this.state.quiz.morador = null;
+            }
+            FileStore.deleteMorador(this.state.admin.id, this.state.id);
         };
         this.props.navigator.replacePreviousAndPop({
             name: 'lista_moradores',

@@ -21,20 +21,18 @@ export default class Domicilio extends Component {
         super(props);
 
         this.state = {
-            isOpen: false,
-            admin: {},
-            quiz: {}
+            admin: this.props.admin,
+            quiz: this.props.quiz,
+            isOpen: false
         };
     }
 
     componentWillMount(){
-        this.state.admin = this.props.admin;
-        this.state.quiz = this.props.quiz;
         if(this.state.quiz.domicilio === null){
             this.state.quiz.domicilio = new DomicilioData(this.state.admin.id);
         }
 
-        FileStore.saveFile(this.state.quiz.domicilio, 'domicilio');
+        FileStore.saveFileDomicilio(this.state.quiz.domicilio);
 
         idQuestao = 'questao_' + questoes[this.state.admin.indexPage].id;
         numeroQuestao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
@@ -60,7 +58,8 @@ export default class Domicilio extends Component {
 
     popQuizScreen(){
         if(this.state.admin.indexPage === 0){
-            FileStore.deleteQuiz(this.state.quiz);
+            this.state.quiz.domicilio = null;
+            FileStore.deleteDomicilio(this.state.admin.id);
         };
         this.props.navigator.replacePreviousAndPop({
             name: 'quiz',

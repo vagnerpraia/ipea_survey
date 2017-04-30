@@ -19,7 +19,7 @@ export default class ListaMoradores extends Component {
     }
 
     componentWillMount(){
-        FileStore.getQuizList(this.state.id, (result) => {
+        FileStore.getMoradoresList(this.state.id, (result) => {
             this.state.moradoresList = result;
             this.forceUpdate();
         });

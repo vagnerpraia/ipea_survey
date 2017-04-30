@@ -26,8 +26,6 @@ export const styles = {
         paddingTop: 30,
         paddingBottom: 20,
     },
-    imageContent: {
-    },
     buttonContent: {
         backgroundColor: '#005376',
         justifyContent: 'center',
@@ -60,8 +58,10 @@ export const styles = {
         borderColor:'#00ff00'
     },
     textButtonContent: {
+        fontSize: 20,
         paddingLeft: 10,
-        fontSize: 14,
+        paddingTop: 15,
+        paddingBottom: 20,
     },
     texLabeltViewContent: {
         fontSize: 20,
@@ -73,36 +73,38 @@ export const styles = {
         paddingBottom: 10,
     },
     textInput: {
-        fontSize: 14,
+        fontSize: 20,
         color: '#000000'
     },
     cardItemQuestao: {
         flex: 1,
         flexDirection:'column',
         alignItems: 'flex-start',
+        paddingTop: 20,
     },
     questao: {
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: 'bold',
     },
     observacaoQuestao: {
-        fontSize: 14,
+        fontSize: 20,
         color: 'gray',
         paddingTop: 10,
         paddingLeft: 10,
     },
     opcaoTexto: {
-        fontSize: 14,
+        fontSize: 20,
         paddingLeft: 10,
         paddingBottom: 5,
         marginTop: 10,
     },
     opcaoObservacao: {
-        fontSize: 14,
+        fontSize: 20,
         color: 'gray',
         paddingLeft: 10,
     },
     opcaoView: {
         alignItems: 'flex-start',
+        paddingTop: 10
     }
 };

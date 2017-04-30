@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, ToastAndroid, View } from 'react-native';
-import { ListItem, Radio, Text } from 'native-base';
+import { Body, Left, List, ListItem, Radio, Text } from 'native-base';
 import { passQuestion } from './../business/PassQuestion';
 import { styles } from './../../../Styles';
 
@@ -14,6 +14,10 @@ export default class ReplyRadio extends Component {
             questao: this.props.questao,
             selected: this.props.quiz.domicilio['questao_' + this.props.questao.id],
         }
+    }
+
+    componentDidMount(){
+        this.forceUpdate();
     }
 
     render() {
@@ -57,29 +61,23 @@ export default class ReplyRadio extends Component {
         }
 
         return (
-            <View>
-                {questao.opcoes.map(function(object, i){
-                    return(
-                        <ListItem key={object.value}>
+            <List dataArray={questao.opcoes}
+                renderRow={(item) =>
+                    <ListItem>
+                        <View>
+                            <Radio selected={selected === item.value} onPress={() => {this.setQuestion(item.value)}} />
+                        </View>
+                        <View style={styles.opcaoView}>
                             <View>
-                                <Radio selected={selected === object.value} onPress={() => {this.setQuestion(object.value)}} />
+                                <Text style={styles.opcaoTexto}>{item.label}</Text>
                             </View>
-                            <View style={styles.opcaoView}>
-                                <View>
-                                    <Text style={styles.opcaoTexto} onPress={() => {this.setQuestion(object.value)}}>
-                                        {object.label}
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text style={styles.opcaoObservacao}>
-                                        {object.observacao}
-                                    </Text>
-                                </View>
+                            <View>
+                                <Text note style={styles.opcaoObservacao}>{item.observacao}</Text>
                             </View>
-                        </ListItem>
-                    );
-                })}
-            </View>
+                        </View>
+                    </ListItem>
+                }>
+            </List>
         );
     }
 }

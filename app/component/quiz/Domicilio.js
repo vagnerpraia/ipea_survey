@@ -134,7 +134,7 @@ export default class Domicilio extends Component {
                             )}
 
                             {renderIf(questao.tipo === 'radio',
-                                <ReplyRadio admin={admin} quiz={quiz} questao={questao}  />
+                                <ReplyRadio admin={admin} quiz={quiz} questao={questao} />
                             )}
                         </CardItem>
 

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, ToastAndroid, View } from 'react-native';
-import { Body, Left, List, ListItem, Radio, Text } from 'native-base';
+import { ToastAndroid, View } from 'react-native';
+import { List, ListItem, Radio, Text } from 'native-base';
 import { passQuestion } from './../business/PassQuestion';
 import { styles } from './../../../Styles';
+
+const Dimensions = require('Dimensions');
+const window = Dimensions.get('window');
 
 export default class ReplyRadio extends Component {
     constructor(props) {
@@ -16,28 +19,37 @@ export default class ReplyRadio extends Component {
         }
     }
 
-    setQuestion(value){
-        let idQuestao = 'questao_' + value;
+    render() {
+        let selected = this.state.selected;
+        let admin = this.state.admin;
+        let quiz = this.state.quiz;
+        let questao = this.state.questao;
+        let idQuestao = 'questao_' + questao.id;
 
-        if(this.state.quiz.domicilio[idQuestao] === -1){
-            ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + this.state.admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
-        }else{
-            this.state.selected = value;
-            this.state.quiz.domicilio[idQuestao] = value;
+        setQuestion = (value) => {
+            if(quiz.domicilio[idQuestao] === -1){
+                ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
+            }else{
+                this.setState({
+                    selected: value
+                });
 
-            let numeroQuestao = Number(String(value).replace(/\D/g,''));
-            this.state.admin.maxQuestion = numeroQuestao + 1;
+                quiz.domicilio[idQuestao] = value;
 
-            for(key in passQuestion){
-                let item = passQuestion[key];
-                if(item){
-                    if(numeroQuestao == item.questao){
-                        if(item.opcao.indexOf(value) >= 0){
-                            this.state.admin.maxQuestion = item.passe;
-                            for (i = numeroQuestao + 1; i < item.passe; i++) {
-                                for(key in this.state.quiz.domicilio){
-                                    if(key.replace(/\D/g,'') == i){
-                                        this.state.quiz.domicilio[key] = -1;
+                let numeroQuestao = Number(questao.id.replace(/\D/g,''));
+                admin.maxQuestion = numeroQuestao + 1;
+
+                for(key in passQuestion){
+                    let item = passQuestion[key];
+                    if(item){
+                        if(numeroQuestao == item.questao){
+                            if(item.opcao.indexOf(value) >= 0){
+                                admin.maxQuestion = item.passe;
+                                for (i = numeroQuestao + 1; i < item.passe; i++) {
+                                    for(key in quiz.domicilio){
+                                        if(key.replace(/\D/g,'') == i){
+                                            quiz.domicilio[key] = -1;
+                                        }
                                     }
                                 }
                             }
@@ -46,26 +58,26 @@ export default class ReplyRadio extends Component {
                 }
             }
         }
-    }
 
-    render() {
         return (
-            <List dataArray={this.state.questao.opcoes}
-                renderRow={(item) =>
-                    <ListItem style={{paddingLeft: 20}} onPress={() => {this.setQuestion(item.value)}}>
-                        <View>
-                            <Radio selected={this.state.selected === item.value} />
-                        </View>
-                        <View style={styles.opcaoView}>
+            <List style={{flex: 1, flexDirection:'column'}}>
+                {questao.opcoes.map(function(item, i){
+                    return(
+                        <ListItem key={i} style={{paddingLeft: 20}} onPress={() => {this.setQuestion(item.value)}}>
                             <View>
-                                <Text style={styles.opcaoTexto}>{item.label}</Text>
+                                <Radio selected={selected === item.value} />
                             </View>
-                            <View>
-                                <Text note style={styles.opcaoObservacao}>{item.observacao}</Text>
+                            <View style={styles.opcaoView}>
+                                <View>
+                                    <Text style={styles.opcaoTexto}>{item.label}</Text>
+                                </View>
+                                <View>
+                                    <Text note style={styles.opcaoObservacao}>{item.observacao}</Text>
+                                </View>
                             </View>
-                        </View>
-                    </ListItem>
-                }>
+                        </ListItem>
+                    );
+                })}
             </List>
         );
     }

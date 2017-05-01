@@ -5,6 +5,9 @@ export const styles = {
     bodyHeader: {
         paddingLeft: 10,
     },
+    header: {
+        backgroundColor: '#005376',
+    },
     container: {
         backgroundColor: '#ffffff',
     },
@@ -83,8 +86,12 @@ export const styles = {
         paddingTop: 20,
     },
     questao: {
-        fontSize: 22,
+        fontSize: 24,
         fontWeight: 'bold',
+    },
+    questao_secundaria:{
+        fontSize: 22,
+        paddingLeft: 20,
     },
     observacaoQuestao: {
         fontSize: 20,

@@ -42,22 +42,22 @@ export default class Main extends Component {
                     <View style={styles.viewContentMenuPrincipal}>
                         <Image style={styles.imageContent} source={require('./../../img/logo_ipea_survey.png')} />
                     </View>
-                    <Button full style={styles.buttonContent} onPress={() => {this.pushQuizScreen('quiz')}}>
+                    <Button full style={styles.buttonMain} onPress={() => {this.pushQuizScreen('quiz')}}>
                         <Icon name='md-document' />
                         <Text style={styles.textButtonContent}>Novo</Text>
                     </Button>
 
-                    <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('edit')}}>
+                    <Button full style={styles.buttonMain} onPress={() => {this.pushScreen('edit')}}>
                         <Icon name='md-create' />
                         <Text style={styles.textButtonContent}>Editar</Text>
                     </Button>
 
-                    <Button full style={styles.buttonContent} onPress={() => {this.pushScreen('config')}}>
+                    <Button full style={styles.buttonMain} onPress={() => {this.pushScreen('config')}}>
                         <Icon name='md-settings' />
                         <Text style={styles.textButtonContent}>Configuração</Text>
                     </Button>
 
-                    <Button full style={styles.buttonContent} onPress={exitApp}>
+                    <Button full style={styles.buttonMain} onPress={exitApp}>
                         <Icon name='md-exit' />
                         <Text style={styles.textButtonContent}>Sair</Text>
                     </Button>

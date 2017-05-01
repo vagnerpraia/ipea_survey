@@ -50,13 +50,13 @@ export default class Quiz extends Component {
     }
 
     checkCompleto(segment){
-        let result = styles.buttonContentIncompleto;
+        let result = styles.buttonIncompleto;
         if(segment == 'identificacao'){
-            if(this.state.admin.identificacaoCompleto) result = styles.buttonContentCompleto;
+            if(this.state.admin.identificacaoCompleto) result = styles.buttonCompleto;
         }else if(segment == 'domicilio'){
-            if(this.state.admin.domicilioCompleto) result = styles.buttonContentCompleto;
+            if(this.state.admin.domicilioCompleto) result = styles.buttonCompleto;
         }else if(segment == 'morador'){
-            if(this.state.admin.moradorCompleto) result = styles.buttonContentCompleto;
+            if(this.state.admin.moradorCompleto) result = styles.buttonCompleto;
         }
         return result;
     }

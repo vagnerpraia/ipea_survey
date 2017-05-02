@@ -70,6 +70,7 @@ export default class Domicilio extends Component {
                 if(this.state.admin.indexPage >= questoes.length){
                     ToastAndroid.showWithGravity('Questionário Finalizado\nNão há como avançar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
                     FileStore.saveFileDomicilio(this.state.quiz.domicilio);
+                    this.state.admin.domicilioCompleto = true;
                 }else{
                     this.props.navigator.push({
                         name: 'domicilio',

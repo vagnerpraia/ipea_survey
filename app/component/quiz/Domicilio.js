@@ -67,16 +67,16 @@ export default class Domicilio extends Component {
             if(Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
                 this.state.admin.indexPage = Number(this.state.admin.indexPage) + 1;
 
-                let name = 'domicilio';
                 if(this.state.admin.indexPage >= questoes.length){
-                    name = 'domicilio_fim';
+                    ToastAndroid.showWithGravity('Questionário Finalizado\nNão há como avançar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                    FileStore.saveFileDomicilio(this.state.quiz.domicilio);
+                }else{
+                    this.props.navigator.push({
+                        name: 'domicilio',
+                        admin: this.state.admin,
+                        quiz: this.state.quiz
+                    });
                 }
-
-                this.props.navigator.push({
-                    name: name,
-                    admin: this.state.admin,
-                    quiz: this.state.quiz
-                });
             }else{
                 ToastAndroid.showWithGravity('Responda a questão ' + numeroQuestao, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }

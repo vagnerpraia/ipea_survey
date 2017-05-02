@@ -39,6 +39,7 @@ export const questoes = [
         pergunta_extensao: '',
         tipo: 'radio'
     },
+    /*
     {
         id: '3',
         titulo: 'Características do domicílio',
@@ -2412,4 +2413,5 @@ export const questoes = [
         pergunta_extensao: '',
         tipo: 'input_money'
     }
+    */
 ];

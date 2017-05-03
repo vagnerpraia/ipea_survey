@@ -45,9 +45,10 @@ export default class FileStore {
         });
     };
 
-    static saveFileMorador(id, quiz) {
+    static saveFileMorador(idQuiz, idMorador, quiz) {
         let data = JSON.stringify(quiz);
-        let file_path = dirFile + id + '/' + quiz.id + '.json';
+        let file_path = dirFile + idQuiz + '/' + idMorador + '.json';
+        console.log(file_path);
         fs.writeFile(file_path, data, 'utf8').then(() => {
             console.log('Arquivo atualizado');
         });

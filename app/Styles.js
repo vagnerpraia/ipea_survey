@@ -60,6 +60,21 @@ export const styles = {
         borderWidth: 4,
         borderColor:'#00ff00'
     },
+    viewAddMorador: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        paddingTop: 20,
+        paddingBottom: 10
+    },
+    buttonAddMorador: {
+        backgroundColor: '#005376',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+        height: 60,
+        width: 250
+    },
     textButtonContent: {
         fontSize: 20,
         paddingLeft: 10,

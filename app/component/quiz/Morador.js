@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { PanResponder, StyleSheet, ToastAndroid, View } from 'react-native';
 import { Body, Button, Card, CardItem, Container, Content, Footer, FooterTab, Header, Icon, Left, Right, Text, Title } from 'native-base';
 import SideMenu from 'react-native-side-menu';
-import SimpleGesture from 'react-native-simple-gesture';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
@@ -23,61 +22,40 @@ export default class Morador extends Component {
         this.state = {
             id: this.props.id,
             admin: this.props.admin,
-            quiz: this.props.quiz,
-            isOpen: false
+            quiz: this.props.quiz
         };
     }
 
     componentWillMount(){
-        if(this.state.quiz.morador === null){
-            this.state.quiz.morador = [new MoradorData(0)];
+        if(this.state.quiz.moradores === null){
+            this.state.quiz.moradores = [new MoradorData(0)];
         }else if(this.state.id === null){
             let id = 0;
-            FileStore.getMoradoresList(this.state.admin.id, function(listFile) {
+            FileStore.getMoradoresList(this.state.quiz.id, function(listFile) {
                 listFile.forEach(function(idFile) {
                     if(idFile > id) id = idFile;
                 });
             });
             this.state.id = id;
-            this.state.quiz.morador.push(new MoradorData(id));
+            this.state.quiz.moradores.push(new MoradorData(id));
         }
 
-        FileStore.saveFileMorador(this.state.id, this.state.quiz.morador);
+        FileStore.saveFileMorador(this.state.quiz.id, this.state.id, this.state.quiz.moradores);
 
         idQuestao = 'questao_' + questoes[this.state.admin.indexPage].id;
         numeroQuestao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
-
-        this._panResponder = PanResponder.create({
-            onMoveShouldSetPanResponder: (e, gs) => {
-                let sgs = new SimpleGesture(e, gs);
-                if(sgs.isSimpleSwipeRight()){
-                    if(this.state.admin.flagSwiperVoltar){
-                        this.popScreen();
-                    }
-                    this.state.admin.flagSwiperVoltar = !this.state.admin.flagSwiperVoltar;
-                }
-                if(sgs.isSimpleSwipeLeft()){
-                    if(this.state.admin.flagSwiperSeguir){
-                        this.pushScreen();
-                    }
-                    this.state.admin.flagSwiperSeguir = !this.state.admin.flagSwiperSeguir;
-                }
-            }
-        });
     }
 
     popQuizScreen(){
         if(this.state.admin.indexPage === 0){
-            for(key in this.state.quiz.morador){
-                if(this.state.quiz.morador.id === this.state.id) delete this.state.quiz.morador[keys];
-                if(this.state.quiz.morador.length === 0) this.state.quiz.morador = null;
-            }
-            FileStore.deleteMorador(this.state.admin.id, this.state.id);
+            this.state.quiz.moradores = null;
+            FileStore.deleteMorador(this.state.quiz.id, this.state.id);
         };
         this.props.navigator.replacePreviousAndPop({
-            name: 'lista_moradores',
+            name: 'quiz',
             admin: this.state.admin,
-            quiz: this.state.quiz
+            quiz: this.state.quiz,
+            isOpen: false
         });
     }
 
@@ -95,14 +73,13 @@ export default class Morador extends Component {
     }
 
     pushScreen(){
-        if(this.state.quiz.domicilio[idQuestao] != null){
+        if(this.state.quiz.moradores[idQuestao] != null){
             if(Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
                 this.state.admin.indexPage = Number(this.state.admin.indexPage) + 1;
 
                 if(this.state.admin.indexPage >= questoes.length){
                     ToastAndroid.showWithGravity('Questionário Finalizado\nNão há como avançar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                    FileStore.saveFileMorador(this.state.id, this.state.quiz.morador);
-                    this.state.admin.moradorCompleto = true;
+                    FileStore.saveFileMorador(this.state.quiz.id, this.state.id, this.state.quiz.moradores);
                 }else{
                     this.props.navigator.push({
                         name: 'morador',
@@ -118,38 +95,38 @@ export default class Morador extends Component {
         }
     }
 
-    toggle() {
+    updateMenuState() {
         this.setState({
             isOpen: !this.state.isOpen,
         });
     }
 
-    updateMenuState(isOpen) {
+    setMenuState(isOpen) {
         this.setState({
             isOpen: isOpen
         });
     }
 
     render() {
-        let open = this.state.isOpen;
+        let isOpen = this.state.isOpen;
         let admin = this.state.admin;
         let quiz = this.state.quiz;
         let questao = questoes[admin.indexPage];
 
         const menu = <SideMenuQuiz admin={admin} quiz={quiz} navigator={this.props.navigator} />;
 
-        function renderIf(condition, content) {
+        function renderIf(condition, contentIf, contentElse = null) {
             if (condition) {
-                return content;
+                return contentIf;
             } else {
-                return null;
+                return contentElse;
             }
         }
 
         return (
-            <SideMenu menu={menu} menuPosition={'right'} isOpen={open} onChange={(isOpen) => {this.updateMenuState(isOpen)}}>
+            <SideMenu menu={menu} menuPosition={'right'} isOpen={isOpen} onChange={(isOpen) => {this.setMenuState(isOpen)}}>
                 <Container style={styles.container}>
-                    <Header>
+                    <Header style={styles.header}>
                         <Left>
                             <Button transparent onPress={() => {this.popQuizScreen()}}>
                                 <Icon name='ios-arrow-back' />
@@ -161,12 +138,12 @@ export default class Morador extends Component {
                         </Body>
 
                         <Right>
-                            <Button transparent onPress={() => {this.toggle()}}>
+                            <Button transparent onPress={() => {this.updateMenuState()}}>
                                 <Icon name='ios-menu' />
                             </Button>
                         </Right>
                     </Header>
-                    <Content {...this._panResponder.panHandlers}>
+                    <Content>
                         <Card>
                             {renderIf(questoes.id !== 'id',
                                 <CardItem style={styles.cardItemQuestao}>
@@ -177,7 +154,7 @@ export default class Morador extends Component {
 
                             {renderIf(questao.pergunta_secundaria !== '',
                                 <CardItem style={styles.pergunta_secundaria}>
-                                    <Text>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
+                                    <Text style={styles.questao_secundaria}>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
                                     <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
                                 </CardItem>
                             )}
@@ -192,7 +169,7 @@ export default class Morador extends Component {
                                 )}
 
                                 {renderIf(questao.tipo === 'radio',
-                                    <ReplyRadio admin={admin} quiz={quiz} questao={questao}  />
+                                    <ReplyRadio admin={admin} quiz={quiz} questao={questao} />
                                 )}
                             </CardItem>
 
@@ -200,7 +177,7 @@ export default class Morador extends Component {
                                 <CardItem>
                                     <Sae
                                         label={questao.pergunta_extensao.pergunta}
-                                        defaultValue={quiz.domicilio[idQuestao + '_secundaria']}
+                                        defaultValue={quiz.moradores[idQuestao + '_secundaria']}
                                         iconClass={FontAwesomeIcon}
                                         iconName={'pencil'}
                                         iconColor={'black'}
@@ -213,7 +190,7 @@ export default class Morador extends Component {
                             )}
                         </Card>
                     </Content>
-                    <Footer>
+                    <Footer style={styles.footer}>
                         <FooterTab>
                             <Button onPress={() => {this.popScreen()}}>
                                 <Icon name='ios-arrow-back' />

@@ -22,12 +22,18 @@ export default class Edit extends Component {
         });
     }
 
+    popScreen(){
+        this.props.navigator.replacePreviousAndPop({
+            name: 'home'
+        });
+    }
+
     render() {
         return (
             <Container style={styles.container}>
                 <Header style={styles.header}>
                     <Left>
-                        <Button transparent onPress={() => {this.voltar()}}>
+                        <Button transparent onPress={() => {this.popScreen()}}>
                             <Icon name='ios-arrow-back' />
                         </Button>
                     </Left>

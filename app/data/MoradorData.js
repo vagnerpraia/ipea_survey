@@ -1,6 +1,7 @@
 export default class MoradorData {
     constructor(id) {
         this.id = id;
+        this.completo = false;
         this.questao_1 = null,
         this.questao_2 = null,
         this.questao_3 = null,
@@ -29,6 +30,7 @@ export default class MoradorData {
 
     setObject(obj){
         if(obj.id) this.id = obj.id;
+        if(obj.completo) this.completo = obj.completo;
         if(obj.questao_1) this.questao_1 = obj.questao_1;
         if(obj.questao_2) this.questao_2 = obj.questao_2;
         if(obj.questao_3) this.questao_3 = obj.questao_3;

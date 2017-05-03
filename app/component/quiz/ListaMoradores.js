@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Body, Button, Container, Content, Header, Left, List, ListItem, Text, Icon, Title } from 'native-base';
 
+import FileStore from './../../FileStore';
 import AdminData from './../../data/AdminData';
 import QuizData from './../../data/QuizData';
 import { styles } from './../../Styles';
@@ -25,12 +26,26 @@ export default class ListaMoradores extends Component {
         });
     }
 
+    popScreen(){
+        this.props.navigator.replacePreviousAndPop({
+            name: 'home'
+        });
+    }
+
+    pushScreen(){
+        this.props.navigator.push({
+            name: 'morador',
+            admin: this.state.admin,
+            quiz: this.state.quiz
+        });
+    }
+
     render() {
         return (
             <Container style={styles.container}>
                 <Header style={styles.header}>
                     <Left>
-                        <Button transparent onPress={() => {this.voltar()}}>
+                        <Button transparent onPress={() => {this.popScreen()}}>
                             <Icon name='ios-arrow-back' />
                         </Button>
                     </Left>
@@ -58,6 +73,12 @@ export default class ListaMoradores extends Component {
                             </ListItem>
                         );
                     })}
+                    <View style={styles.viewAddMorador}>
+                        <Button style={styles.buttonAddMorador} onPress={() => {this.pushScreen()}}>
+                            <Icon style={{fontSize: 30}} name='md-add' />
+                            <Text style={{fontSize: 20}}>Adicionar Morador</Text>
+                        </Button>
+                    </View>
                 </Content>
             </Container>
         );

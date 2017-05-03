@@ -52,11 +52,20 @@ export default class Quiz extends Component {
     checkCompleto(segment){
         let result = styles.buttonIncompleto;
         if(segment == 'identificacao'){
-            if(this.state.admin.identificacaoCompleto) result = styles.buttonCompleto;
+            if(this.state.quiz.identificacao) if(this.state.quiz.identificacao.completo) result = styles.buttonCompleto;
         }else if(segment == 'domicilio'){
-            if(this.state.admin.domicilioCompleto) result = styles.buttonCompleto;
+            if(this.state.quiz.domicilio) if(this.state.quiz.domicilio.completo) result = styles.buttonCompleto;
         }else if(segment == 'morador'){
-            if(this.state.admin.moradorCompleto) result = styles.buttonCompleto;
+            if(this.state.quiz.moradores){
+                let completo = true;
+                for(morador in this.state.quiz.moradores){
+                    if(morador.completo === false){
+                        completo = false;
+                        break;
+                    }
+                }
+                if(completo) result = styles.buttonCompleto;
+            }
         }
         return result;
     }

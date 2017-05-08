@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Alert, StyleSheet, ToastAndroid, View } from 'react-native';
-import { Body, Button, Container, Content, Left, List, Header, Icon, ListItem, Picker, Text, Title } from 'native-base';
-import TextField from 'react-native-md-textinput';
+import { Body, Button, Container, Content, Left, List, Header, Icon, ListItem, Picker, Radio, Text, Title } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
+
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Sae } from 'react-native-textinput-effects';
 
 import { UF_MUNICIPIO, radio_localizacao, radio_loc_diferenciada } from './BdConfig';
 import { styles } from './../../Styles';
@@ -26,8 +28,8 @@ export default class Config extends Component {
             selected_uf: 'ac',
             selected_municipio: 0,
             localidade: '',
-            localizacao: '',
-            loc_diferenciada: '',
+            localizacao: null,
+            loc_diferenciada: null,
             barragem: '',
 
             mode: Picker.MODE_DIALOG,
@@ -91,8 +93,21 @@ export default class Config extends Component {
     }
 
     render() {
-        let { nome_aplicador, nome_entrevistado, localidade, localizacao, loc_diferenciada, barragem } = this.state;
-        var make = UF_MUNICIPIO[this.state.selected_uf];
+        let localizacao = this.state.localizacao;
+        let loc_diferenciada = this.state.loc_diferenciada;
+        let make = UF_MUNICIPIO[this.state.selected_uf];
+
+        setLocalizacao = (value) => {
+            this.setState({
+                localizacao: value
+            });
+        }
+
+        setLocalizacaoDiferenciada = (value) => {
+            this.setState({
+                loc_diferenciada: value
+            });
+        }
 
         return (
             <Container style={styles.container}>
@@ -110,95 +125,156 @@ export default class Config extends Component {
                 </Header>
 
                 <Content>
-                    <View style={styles.view}>
-                        <TextField
-                            label={'Nome do aplicador'}
-                            value={nome_aplicador}
-                            labelColor={'#000000'}
-                            onChangeText={(value) => {
-                                this.state.nome_aplicador = value
-                            }}
-                            highlightColor={'#00BCD4'}
-                            dense={true}
-                        />
+                    <View style={styles.viewConfig}>
+                        <View style={styles.viewQuestaoConfig}>
+                            <Text style={styles.questaoConfig}>Nome do Aplicador</Text>
+                            <Sae
+                                label={''}
+                                value={this.state.nome_aplicador}
+                                iconClass={FontAwesomeIcon}
+                                iconName={'pencil'}
+                                iconColor={'#808080'}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                inputStyle={styles.respostaTextInput}
+                                onChangeText={(value) => {
+                                    this.state.nome_aplicador = value
+                                }}
+                                style={{paddingLeft: 20}}
+                            />
+                        </View>
 
-                        <TextField
-                            label={'Nome do entrevistado'}
-                            value={nome_entrevistado}
-                            labelColor={'#000000'}
-                            onChangeText={(value) => {
-                                this.state.nome_entrevistado = value
-                            }}
-                            highlightColor={'#00BCD4'}
-                            dense={true}
-                        />
+                        <View style={styles.viewQuestaoConfig}>
+                            <Text style={styles.questaoConfig}>Nome do Entrevistado</Text>
+                            <Sae
+                                label={''}
+                                value={this.state.nome_entrevistado}
+                                iconClass={FontAwesomeIcon}
+                                iconName={'pencil'}
+                                iconColor={'#808080'}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                inputStyle={styles.respostaTextInput}
+                                onChangeText={(value) => {
+                                    this.state.nome_entrevistado = value
+                                }}
+                            />
+                        </View>
 
-                        <Text style={styles.texttitle}>UF</Text>
-                        <Picker
-                            selectedValue={this.state.selected_uf}
-                            onValueChange={(selected_uf) => this.setState({selected_uf, selected_municipio: 0})}>
-                            {Object.keys(UF_MUNICIPIO).map((selected_uf) => (
-                                <Item
-                                    key={selected_uf}
-                                    value={selected_uf}
-                                    label={UF_MUNICIPIO[selected_uf].name}
-                                />
-                            ))}
-                        </Picker>
+                        <View style={styles.viewQuestaoConfig}>
+                            <Text style={styles.questaoConfig}>Estado</Text>
+                            <Picker
+                                selectedValue={this.state.selected_uf}
+                                onValueChange={(selected_uf) => this.setState({selected_uf, selected_municipio: 0})}>
+                                {Object.keys(UF_MUNICIPIO).map((selected_uf) => (
+                                    <Item
+                                        key={selected_uf}
+                                        value={selected_uf}
+                                        label={UF_MUNICIPIO[selected_uf].name}
+                                    />
+                                ))}
+                            </Picker>
+                        </View>
 
-                        <Text style={styles.texttitle}>Município</Text>
-                        <Picker
-                            selectedValue={this.state.selected_municipio}
-                            key={this.state.selected_uf}
-                            onValueChange={(selected_municipio) => this.setState({selected_municipio})}>
-                            {UF_MUNICIPIO[this.state.selected_uf].municipios.map((modelName, selected_municipio) => (
-                                <Item
-                                    key={this.state.selected_uf + '_' + selected_municipio}
-                                    value={selected_municipio}
-                                    label={modelName}
-                                />
-                            ))}
-                        </Picker>
+                        <View style={styles.viewQuestaoConfig}>
+                            <Text style={styles.questaoConfig}>Município</Text>
+                            <Picker
+                                selectedValue={this.state.selected_municipio}
+                                key={this.state.selected_uf}
+                                onValueChange={(selected_municipio) => this.setState({selected_municipio})}>
+                                {UF_MUNICIPIO[this.state.selected_uf].municipios.map((modelName, selected_municipio) => (
+                                    <Item
+                                        key={this.state.selected_uf + '_' + selected_municipio}
+                                        value={selected_municipio}
+                                        label={modelName}
+                                    />
+                                ))}
+                            </Picker>
+                        </View>
 
-                        <TextField
-                            label={'Localidade '}
-                            value={localidade}
-                            labelColor={'#000000'}
-                            onChangeText={ (localidade) => this.setState({localidade}) }
-                            highlightColor={'#00BCD4'}
-                            dense={true}
-                        />
+                        <View style={styles.viewQuestaoConfig}>
+                            <Text style={styles.questaoConfig}>Localidade</Text>
+                            <Sae
+                                label={''}
+                                value={this.state.localidade}
+                                iconClass={FontAwesomeIcon}
+                                iconName={'pencil'}
+                                iconColor={'#808080'}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                inputStyle={styles.respostaTextInput}
+                                onChangeText={(value) => {
+                                    this.state.localidade = value
+                                }}
+                            />
+                        </View>
 
-                        <Text style={styles.texttitle}>Localização/Zona</Text>
-                        <RadioForm
-                            radio_props={radio_localizacao}
-                            initial={null}
-                            buttonColor={'#000000'}
-                            buttonSize={8}
-                            labelStyle={styles.radioLabel}
-                            style={styles.radioForm}
-                            onPress={(localizacao) => {this.setState({localizacao})}}
-                        />
+                        <View style={styles.viewQuestaoConfig}>
+                            <Text style={styles.questaoConfig}>Localização/Zona</Text>
+                            <List style={{flex: 1, flexDirection:'column'}}>
+                                {radio_localizacao.map(function(item, i){
+                                    return(
+                                        <ListItem key={i} style={{paddingLeft: 20}}  onPress={() => {
+                                            this.setLocalizacao(item.value)
+                                        }}>
+                                            <View>
+                                                <Radio selected={localizacao === item.value} />
+                                            </View>
+                                            <View style={styles.opcaoView}>
+                                                <View>
+                                                    <Text style={styles.opcaoTexto}>{item.label}</Text>
+                                                </View>
+                                                <View>
+                                                    <Text note style={styles.opcaoObservacao}>{item.observacao}</Text>
+                                                </View>
+                                            </View>
+                                        </ListItem>
+                                    );
+                                })}
+                            </List>
+                        </View>
 
-                        <Text style={styles.texttitle}>Localização diferenciada</Text>
-                        <RadioForm
-                            radio_props={radio_loc_diferenciada}
-                            initial={null}
-                            buttonColor={'#000000'}
-                            buttonSize={8}
-                            labelStyle={styles.radioLabel}
-                            style={styles.radioForm}
-                            onPress={(loc_diferenciada) => {this.setState({loc_diferenciada})}}
-                        />
+                        <View style={styles.viewQuestaoConfig}>
+                            <Text style={styles.questaoConfig}>Localização diferenciada</Text>
+                            <List style={{flex: 1, flexDirection:'column'}}>
+                                {radio_loc_diferenciada.map(function(item, i){
+                                    return(
+                                        <ListItem key={i} style={{paddingLeft: 20}}  onPress={() => {
+                                            this.setLocalizacaoDiferenciada(item.value)
+                                        }}>
+                                            <View>
+                                                <Radio selected={loc_diferenciada === item.value} />
+                                            </View>
+                                            <View style={styles.opcaoView}>
+                                                <View>
+                                                    <Text style={styles.opcaoTexto}>{item.label}</Text>
+                                                </View>
+                                                <View>
+                                                    <Text note style={styles.opcaoObservacao}>{item.observacao}</Text>
+                                                </View>
+                                            </View>
+                                        </ListItem>
+                                    );
+                                })}
+                            </List>
+                        </View>
 
-                        <TextField
-                            label={'Barragem'}
-                            value={barragem}
-                            labelColor={'#000000'}
-                            onChangeText={ (barragem) => this.setState({barragem}) }
-                            highlightColor={'#00BCD4'}
-                            dense={true}
-                        />
+                        <View style={styles.viewQuestaoConfig}>
+                            <Text style={styles.questaoConfig}>Barragem</Text>
+                            <Sae
+                                label={''}
+                                value={this.state.barragem}
+                                iconClass={FontAwesomeIcon}
+                                iconName={'pencil'}
+                                iconColor={'#808080'}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                inputStyle={styles.respostaTextInput}
+                                onChangeText={(value) => {
+                                    this.state.barragem = value
+                                }}
+                            />
+                        </View>
                     </View>
                 </Content>
             </Container>

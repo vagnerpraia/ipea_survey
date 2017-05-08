@@ -691,16 +691,16 @@ export const UF_MUNICIPIO = {
   },
 };
 
-export const radio_localizacao = [
-  {label: 'Urbana', value: 'Urbana' },
-  {label: 'Rural', value: 'Rural' }
-];
+    export const radio_localizacao = [
+        {label: 'Urbana', value: 0},
+        {label: 'Rural', value: 1}
+    ];
 
-export const radio_loc_diferenciada = [
-  {label: 'Não se aplica', value: 'Não se aplica' },
-  {label: 'Reassentamento coletivo', value: 'Reassentamento coletivo' },
-  {label: 'Assentamento de reforma agrária', value: 'Assentamento de reforma agrária' },
-  {label: 'Área remanescente de quilombos', value: 'Área remanescente de quilombos' },
-  {label: 'Terra indígena', value: 'Terra indígena' },
-  {label: 'Fundo de Pasto', value: 'Fundo de Pasto' },
-];
+    export const radio_loc_diferenciada = [
+        {label: 'Não se aplica', value: 0},
+        {label: 'Reassentamento coletivo', value: 1},
+        {label: 'Assentamento de reforma agrária', value: 2},
+        {label: 'Área remanescente de quilombos', value: 3},
+        {label: 'Terra indígena', value: 4},
+        {label: 'Fundo de Pasto', value: 5},
+    ];

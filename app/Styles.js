@@ -104,6 +104,26 @@ export const styles = {
         fontSize: 24,
         fontWeight: 'bold',
     },
+    questaoConfig: {
+        fontSize: 24,
+        color: '#000000',
+        fontWeight: 'normal',
+    },
+    respostaTextInput: {
+        fontSize: 20,
+        color: '#000000',
+        fontWeight: 'normal',
+        paddingLeft: 20,
+    },
+    viewConfig: {
+        paddingTop: 0,
+        paddingBottom: 40,
+    },
+    viewQuestaoConfig: {
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingRight: 10,
+    },
     questao_secundaria:{
         fontSize: 22,
         paddingLeft: 20,

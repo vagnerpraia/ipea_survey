@@ -107,7 +107,7 @@ export const styles = {
     questaoConfig: {
         fontSize: 24,
         color: '#000000',
-        fontWeight: 'normal',
+        fontWeight: 'bold',
     },
     respostaTextInput: {
         fontSize: 20,

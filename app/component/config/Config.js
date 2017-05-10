@@ -23,13 +23,13 @@ export default class Config extends Component {
         super(props);
 
         this.state = {
-            nome_aplicador: '',
-            nome_entrevistado: '',
-            selected_uf: 'ac',
-            selected_municipio: 0,
+            nomeAplicador: '',
+            nomeEntrevistado: '',
+            estado: 'ac',
+            municipio: 0,
             localidade: '',
             localizacao: null,
-            loc_diferenciada: null,
+            localizacaoDiferenciada: null,
             barragem: '',
 
             mode: Picker.MODE_DIALOG,
@@ -43,17 +43,17 @@ export default class Config extends Component {
                 fs.readFile(file_path, 'utf8').then((data) => {
                     let json = JSON.parse(data);
 
-                    this.state.nome_aplicador = json.nome_aplicador;
-                    this.state.nome_entrevistado = json.nome_entrevistado;
-                    this.state.selected_uf = json.selected_uf;
-                    this.state.selected_municipio = json.selected_municipio;
+                    this.state.nomeAplicador = json.nomeAplicador;
+                    this.state.nomeEntrevistado = json.nomeEntrevistado;
+                    this.state.estado = json.estado;
+                    this.state.municipio = json.municipio;
                     this.state.localidade = json.localidade;
                     this.state.localizacao = json.localizacao;
-                    this.state.loc_diferenciada = json.loc_diferenciada;
+                    this.state.localizacaoDiferenciada = json.localizacaoDiferenciada;
                     this.state.barragem = json.barragem;
 
-                    if(this.state.selected_uf == undefined) this.state.selected_uf = 'ac';
-                    if(this.state.selected_municipio == undefined) this.state.selected_municipio = 0;
+                    if(this.state.estado == undefined) this.state.estado = 'ac';
+                    if(this.state.municipio == undefined) this.state.municipio = 0;
 
                     this.forceUpdate();
                 });
@@ -63,13 +63,13 @@ export default class Config extends Component {
 
     voltar(){
         let content = {
-            "nome_aplicador": this.state.nome_aplicador,
-            "nome_entrevistado": this.state.nome_entrevistado,
-            "uf": this.state.selected_uf,
-            "municipio": this.state.selected_municipio,
+            "nomeAplicador": this.state.nomeAplicador,
+            "nomeEntrevistado": this.state.nomeEntrevistado,
+            "estado": this.state.estado,
+            "municipio": this.state.municipio,
             "localidade": this.state.localidade,
             "localizacao": this.state.localizacao,
-            "loc_diferenciada": this.state.loc_diferenciada,
+            "localizacaoDiferenciada": this.state.localizacaoDiferenciada,
             "barragem": this.state.barragem
         };
 
@@ -94,8 +94,7 @@ export default class Config extends Component {
 
     render() {
         let localizacao = this.state.localizacao;
-        let loc_diferenciada = this.state.loc_diferenciada;
-        let make = UF_MUNICIPIO[this.state.selected_uf];
+        let localizacaoDiferenciada = this.state.localizacaoDiferenciada;
 
         setLocalizacao = (value) => {
             this.setState({
@@ -105,7 +104,7 @@ export default class Config extends Component {
 
         setLocalizacaoDiferenciada = (value) => {
             this.setState({
-                loc_diferenciada: value
+                localizacaoDiferenciada: value
             });
         }
 
@@ -119,7 +118,7 @@ export default class Config extends Component {
                     </Left>
                     <Body style={styles.bodyHeader}>
                         <View>
-                            <Title>Questionário</Title>
+                            <Title>Configuração</Title>
                         </View>
                     </Body>
                 </Header>
@@ -130,7 +129,7 @@ export default class Config extends Component {
                             <Text style={styles.questaoConfig}>Nome do Aplicador</Text>
                             <Sae
                                 label={''}
-                                value={this.state.nome_aplicador}
+                                value={this.state.nomeAplicador}
                                 iconClass={FontAwesomeIcon}
                                 iconName={'pencil'}
                                 iconColor={'#808080'}
@@ -138,7 +137,7 @@ export default class Config extends Component {
                                 autoCorrect={false}
                                 inputStyle={styles.respostaTextInput}
                                 onChangeText={(value) => {
-                                    this.state.nome_aplicador = value
+                                    this.state.nomeAplicador = value
                                 }}
                                 style={{paddingLeft: 20}}
                             />
@@ -148,7 +147,7 @@ export default class Config extends Component {
                             <Text style={styles.questaoConfig}>Nome do Entrevistado</Text>
                             <Sae
                                 label={''}
-                                value={this.state.nome_entrevistado}
+                                value={this.state.nomeEntrevistado}
                                 iconClass={FontAwesomeIcon}
                                 iconName={'pencil'}
                                 iconColor={'#808080'}
@@ -156,7 +155,7 @@ export default class Config extends Component {
                                 autoCorrect={false}
                                 inputStyle={styles.respostaTextInput}
                                 onChangeText={(value) => {
-                                    this.state.nome_entrevistado = value
+                                    this.state.nomeEntrevistado = value
                                 }}
                             />
                         </View>
@@ -164,13 +163,13 @@ export default class Config extends Component {
                         <View style={styles.viewQuestaoConfig}>
                             <Text style={styles.questaoConfig}>Estado</Text>
                             <Picker
-                                selectedValue={this.state.selected_uf}
-                                onValueChange={(selected_uf) => this.setState({selected_uf, selected_municipio: 0})}>
-                                {Object.keys(UF_MUNICIPIO).map((selected_uf) => (
+                                selectedValue={this.state.estado}
+                                onValueChange={(estado) => this.setState({estado, municipio: 0})}>
+                                {Object.keys(UF_MUNICIPIO).map((estado) => (
                                     <Item
-                                        key={selected_uf}
-                                        value={selected_uf}
-                                        label={UF_MUNICIPIO[selected_uf].name}
+                                        key={estado}
+                                        value={estado}
+                                        label={UF_MUNICIPIO[estado].name}
                                     />
                                 ))}
                             </Picker>
@@ -179,13 +178,13 @@ export default class Config extends Component {
                         <View style={styles.viewQuestaoConfig}>
                             <Text style={styles.questaoConfig}>Município</Text>
                             <Picker
-                                selectedValue={this.state.selected_municipio}
-                                key={this.state.selected_uf}
-                                onValueChange={(selected_municipio) => this.setState({selected_municipio})}>
-                                {UF_MUNICIPIO[this.state.selected_uf].municipios.map((modelName, selected_municipio) => (
+                                selectedValue={this.state.municipio}
+                                key={this.state.estado}
+                                onValueChange={(municipio) => this.setState({municipio})}>
+                                {UF_MUNICIPIO[this.state.estado].municipios.map((modelName, municipio) => (
                                     <Item
-                                        key={this.state.selected_uf + '_' + selected_municipio}
-                                        value={selected_municipio}
+                                        key={this.state.estado + '_' + municipio}
+                                        value={municipio}
                                         label={modelName}
                                     />
                                 ))}
@@ -243,7 +242,7 @@ export default class Config extends Component {
                                             this.setLocalizacaoDiferenciada(item.value)
                                         }}>
                                             <View>
-                                                <Radio selected={loc_diferenciada === item.value} />
+                                                <Radio selected={localizacaoDiferenciada === item.value} />
                                             </View>
                                             <View style={styles.opcaoView}>
                                                 <View>

@@ -37,6 +37,14 @@ export default class FileStore {
         });
     };
 
+    static saveFileIdentificacao(quiz) {
+        let data = JSON.stringify(quiz);
+        let file_path = dirFile + quiz.id + '/identificacao.json';
+        fs.writeFile(file_path, data, 'utf8').then(() => {
+            console.log('Arquivo atualizado');
+        });
+    };
+
     static saveFileDomicilio(quiz) {
         let data = JSON.stringify(quiz);
         let file_path = dirFile + quiz.id + '/quiz.json';

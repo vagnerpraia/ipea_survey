@@ -10,12 +10,21 @@ const window = Dimensions.get('window');
 export default class ReplyRadio extends Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             admin: this.props.admin,
             quiz: this.props.quiz,
             questao: this.props.questao,
-            selected: this.props.quiz.domicilio['questao_' + this.props.questao.id],
+            selected: null,
+        }
+    }
+
+    componentWillMount(){
+        if(this.props.tipo == 'domicilio'){
+            this.state.selected = this.props.quiz.domicilio['questao_' + this.props.questao.id];
+        }
+        else if(this.props.tipo == 'moradores'){
+            this.state.selected = this.props.quiz.moradores['questao_' + this.props.questao.id];
         }
     }
 

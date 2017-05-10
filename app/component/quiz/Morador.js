@@ -161,15 +161,15 @@ export default class Morador extends Component {
 
                             <CardItem cardBody style={{justifyContent: 'center'}}>
                                 {renderIf(questao.tipo === 'input_numeric',
-                                    <ReplyInputNumeric admin={admin} quiz={quiz} questao={questao} />
+                                    <ReplyInputNumeric admin={admin} quiz={quiz} questao={questao} tipo={'moradores'} />
                                 )}
 
                                 {renderIf(questao.tipo === 'multiple',
-                                    <ReplyMultiSelect admin={admin} quiz={quiz} questao={questao} />
+                                    <ReplyMultiSelect admin={admin} quiz={quiz} questao={questao} tipo={'moradores'} />
                                 )}
 
                                 {renderIf(questao.tipo === 'radio',
-                                    <ReplyRadio admin={admin} quiz={quiz} questao={questao} />
+                                    <ReplyRadio admin={admin} quiz={quiz} questao={questao} tipo={'moradores'} />
                                 )}
                             </CardItem>
 

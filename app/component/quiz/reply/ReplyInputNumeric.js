@@ -21,10 +21,10 @@ export default class ReplyInputNumeric extends Component {
         let idQuestao = 'questao_' + this.state.questao.id;
         let numeroQuestao = Number(this.state.questao.id.replace(/\D/g,''));
 
-        if(quiz.domicilio[idQuestao] === -1){
+        if(quiz[idQuestao] === -1){
             ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
         }else{
-            quiz.domicilio[idQuestao] = value;
+            quiz[idQuestao] = value;
             admin.maxQuestion = numeroQuestao + 1;
 
             for(key in passQuestion){
@@ -33,9 +33,9 @@ export default class ReplyInputNumeric extends Component {
                     if(item.opcao.indexOf(value) >= 0){
                         admin.maxQuestion = item.passe;
                         for (i = numeroQuestao + 1; i < item.passe; i++) {
-                            for(key in quiz.domicilio){
+                            for(key in quiz){
                                 if(key.replace(/\D/g,'') == i){
-                                    quiz.domicilio[key] = -1;
+                                    quiz[key] = -1;
                                 }
                             }
                         }

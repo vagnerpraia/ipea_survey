@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Body, Button, Container, Content, Header, Left, List, ListItem, Text, Icon, Title } from 'native-base';
+import { Body, Button, Container, Content, Header, Left, List, ListItem, Right, Text, Icon, Title } from 'native-base';
 
 import FileStore from './../../FileStore';
 import AdminData from './../../data/AdminData';
@@ -12,7 +12,6 @@ export default class ListaMoradores extends Component {
         super(props);
 
         this.state = {
-            id: this.props.id,
             admin: this.props.admin,
             quiz: this.props.quiz,
             moradoresList: new Array()
@@ -20,20 +19,28 @@ export default class ListaMoradores extends Component {
     }
 
     componentWillMount(){
-        FileStore.getMoradoresList(this.state.id, (result) => {
-            this.state.moradoresList = result;
-            this.forceUpdate();
+        FileStore.getMoradoresList(this.state.admin.id, (result) => {
+            if(result){
+                this.state.moradoresList = result;
+                this.forceUpdate();
+            }
         });
+
+        this.state.admin = new AdminData(this.state.admin.id);
     }
 
     popScreen(){
         this.props.navigator.replacePreviousAndPop({
-            name: 'home'
+            name: 'quiz',
+            admin: this.state.admin,
+            quiz: this.state.quiz,
+            isOpen: false
         });
     }
 
-    pushScreen(){
+    addMorador(){
         this.props.navigator.push({
+            id: null,
             name: 'morador',
             admin: this.state.admin,
             quiz: this.state.quiz
@@ -41,6 +48,34 @@ export default class ListaMoradores extends Component {
     }
 
     render() {
+        let admin = this.state.admin;
+        let quiz = this.state.quiz;
+        let navigator = this.props.navigator;
+
+        function openMorador(id){
+            navigator.push({
+                id: id,
+                name: 'morador',
+                admin: admin,
+                quiz: quiz
+            });
+        }
+
+        function deleteMorador(id){
+            for(key in quiz.moradores){
+                if(quiz.moradores[key].id === id){
+                    quiz.moradores.splice(key, 1);
+                }
+            }
+            FileStore.saveFileMoradores(admin.id, quiz.moradores);
+            navigator.replacePreviousAndPop({
+                name: 'lista_moradores',
+                admin: admin,
+                quiz: quiz,
+                isOpen: false
+            });
+        }
+
         return (
             <Container style={styles.container}>
                 <Header style={styles.header}>
@@ -63,10 +98,12 @@ export default class ListaMoradores extends Component {
                         return(
                             <ListItem key={i}>
                                 <Body>
-                                    <Text>{object}</Text>
+                                    <Text onPress={() => {openMorador(object.id)}}>
+                                        {object.id}
+                                    </Text>
                                 </Body>
                                 <Right>
-                                    <Button dark transparent onPress={() => {}}>
+                                    <Button dark transparent onPress={() => {deleteMorador(object.id)}}>
                                         <Icon name='md-trash' />
                                     </Button>
                                 </Right>
@@ -74,7 +111,7 @@ export default class ListaMoradores extends Component {
                         );
                     })}
                     <View style={styles.viewAddMorador}>
-                        <Button style={styles.buttonAddMorador} onPress={() => {this.pushScreen()}}>
+                        <Button style={styles.buttonAddMorador} onPress={() => {this.addMorador()}}>
                             <Icon style={{fontSize: 30}} name='md-add' />
                             <Text style={{fontSize: 20}}>Adicionar Morador</Text>
                         </Button>

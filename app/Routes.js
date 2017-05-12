@@ -34,7 +34,7 @@ export default class Routes extends Component {
                 break;
 
             case 'morador':
-                return <Morador navigator={navigator} admin={route.admin} quiz={route.quiz} />
+                return <Morador navigator={navigator} admin={route.admin} quiz={route.quiz} id={route.id} />
                 break;
 
             case 'edit':

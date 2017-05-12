@@ -47,16 +47,15 @@ export default class FileStore {
 
     static saveFileDomicilio(quiz) {
         let data = JSON.stringify(quiz);
-        let file_path = dirFile + quiz.id + '/quiz.json';
+        let file_path = dirFile + quiz.id + '/domicilio.json';
         fs.writeFile(file_path, data, 'utf8').then(() => {
             console.log('Arquivo atualizado');
         });
     };
 
-    static saveFileMorador(idQuiz, idMorador, quiz) {
+    static saveFileMoradores(id, quiz) {
         let data = JSON.stringify(quiz);
-        let file_path = dirFile + idQuiz + '/' + idMorador + '.json';
-        console.log(file_path);
+        let file_path = dirFile + id + '/moradores.json';
         fs.writeFile(file_path, data, 'utf8').then(() => {
             console.log('Arquivo atualizado');
         });
@@ -72,7 +71,7 @@ export default class FileStore {
     };
 
     static deleteMorador(idQuiz, idMorador) {
-        let file_path = dirFile + idQuiz + 'moradores/' + idMorador + '.json';
+        let file_path = dirFile + idQuiz + '/moradores.json';
         fs.unlink(file_path).then(() => {
             console.log('Arquivo deletado');
         }).catch((error) => {
@@ -89,8 +88,18 @@ export default class FileStore {
     }
 
     static getMoradoresList(id, callback){
-        fs.ls(dirFile + id + '/moradores').then((files) => {
-            callback(files);
+        let file_path = dirFile + id + '/moradores.json';
+        fs.exists(file_path).then((exist) => {
+            if(exist){
+                fs.readFile(file_path, 'utf8').then((data) => {
+                    var json = JSON.parse(data);
+                    return callback(json);
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }else{
+                return callback(null);
+            }
         }).catch((error) => {
             console.log(error);
         });

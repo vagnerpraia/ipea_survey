@@ -37,7 +37,7 @@ export default class Domicilio extends Component {
     }
 
     popQuizScreen(){
-        if(this.state.admin.indexPage === 0){
+        if(this.state.admin.indexPage === 0 && this.state.quiz['questao_1'] === null){
             this.state.quiz.domicilio = null;
             FileStore.deleteDomicilio(this.state.admin.id);
         };
@@ -67,9 +67,9 @@ export default class Domicilio extends Component {
             if(Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
                 this.state.admin.indexPage = Number(this.state.admin.indexPage) + 1;
 
+                FileStore.saveFileDomicilio(this.state.quiz.domicilio);
                 if(this.state.admin.indexPage >= questoes.length){
                     ToastAndroid.showWithGravity('Questionário Finalizado\nNão há como avançar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                    FileStore.saveFileDomicilio(this.state.quiz.domicilio);
                 }else{
                     this.props.navigator.push({
                         name: 'domicilio',
@@ -151,15 +151,15 @@ export default class Domicilio extends Component {
 
                             <CardItem cardBody style={{justifyContent: 'center'}}>
                                 {renderIf(questao.tipo === 'input_numeric',
-                                    <ReplyInputNumeric admin={admin} quiz={quiz} questao={questao} tipo={'domicilio'} />
+                                    <ReplyInputNumeric admin={admin} quiz={quiz.domicilio} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'multiple',
-                                    <ReplyMultiSelect admin={admin} quiz={quiz} questao={questao} tipo={'domicilio'} />
+                                    <ReplyMultiSelect admin={admin} quiz={quiz.domicilio} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'radio',
-                                    <ReplyRadio admin={admin} quiz={quiz} questao={questao} tipo={'domicilio'} />
+                                    <ReplyRadio admin={admin} quiz={quiz.domicilio} questao={questao} />
                                 )}
                             </CardItem>
 

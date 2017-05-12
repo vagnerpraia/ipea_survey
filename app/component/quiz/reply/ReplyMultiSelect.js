@@ -20,7 +20,7 @@ export default class ReplyMultiSelect extends Component {
             admin: this.props.admin,
             quiz: this.props.quiz,
             questao: this.props.questao,
-            selected: this.props.quiz.domicilio['questao_' + this.props.questao.id],
+            selected: this.props.quiz['questao_' + this.props.questao.id],
         }
     }
 
@@ -37,7 +37,7 @@ export default class ReplyMultiSelect extends Component {
         }
 
         setQuestion = (value) => {
-            if(this.state.quiz.domicilio[idQuestao] === -1){
+            if(this.state.quiz[idQuestao] === -1){
                 ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }else{
                 if(selected.indexOf(value) >= 0){
@@ -64,7 +64,7 @@ export default class ReplyMultiSelect extends Component {
                     selected: selected
                 });
 
-                quiz.domicilio[idQuestao] = selected;
+                quiz[idQuestao] = selected;
                 admin.maxQuestion = numeroQuestao + 1;
 
                 for(keyPass in passQuestion){
@@ -73,9 +73,9 @@ export default class ReplyMultiSelect extends Component {
                         if(item.opcao.indexOf(value) >= 0){
                             admin.maxQuestion = item.passe;
                             for (i = numeroQuestao + 1; i < item.passe; i++) {
-                                for(keyQuiz in quiz.domicilio){
+                                for(keyQuiz in quiz){
                                     if(keyQuiz.replace(/\D/g,'') == i){
-                                        quiz.domicilio[key] = -1;
+                                        quiz[key] = -1;
                                     }
                                 }
                             }

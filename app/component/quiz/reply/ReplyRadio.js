@@ -10,7 +10,7 @@ const window = Dimensions.get('window');
 export default class ReplyRadio extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             admin: this.props.admin,
             quiz: this.props.quiz,
@@ -20,12 +20,7 @@ export default class ReplyRadio extends Component {
     }
 
     componentWillMount(){
-        if(this.props.tipo == 'domicilio'){
-            this.state.selected = this.props.quiz.domicilio['questao_' + this.props.questao.id];
-        }
-        else if(this.props.tipo == 'moradores'){
-            this.state.selected = this.props.quiz.moradores['questao_' + this.props.questao.id];
-        }
+        this.state.selected = this.props.quiz['questao_' + this.props.questao.id];
     }
 
     render() {
@@ -36,14 +31,14 @@ export default class ReplyRadio extends Component {
         let idQuestao = 'questao_' + questao.id;
 
         setQuestion = (value) => {
-            if(quiz.domicilio[idQuestao] === -1){
+            if(quiz[idQuestao] === -1){
                 ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }else{
                 this.setState({
                     selected: value
                 });
 
-                quiz.domicilio[idQuestao] = value;
+                quiz[idQuestao] = value;
 
                 let numeroQuestao = Number(questao.id.replace(/\D/g,''));
                 admin.maxQuestion = numeroQuestao + 1;
@@ -55,9 +50,9 @@ export default class ReplyRadio extends Component {
                             if(item.opcao.indexOf(value) >= 0){
                                 admin.maxQuestion = item.passe;
                                 for (i = numeroQuestao + 1; i < item.passe; i++) {
-                                    for(key in quiz.domicilio){
+                                    for(key in quiz){
                                         if(key.replace(/\D/g,'') == i){
-                                            quiz.domicilio[key] = -1;
+                                            quiz[key] = -1;
                                         }
                                     }
                                 }

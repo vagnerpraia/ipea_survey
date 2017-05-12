@@ -22,37 +22,38 @@ export default class Morador extends Component {
         this.state = {
             id: this.props.id,
             admin: this.props.admin,
-            quiz: this.props.quiz
+            quiz: this.props.quiz,
         };
     }
 
     componentWillMount(){
         if(this.state.quiz.moradores === null){
-            this.state.quiz.moradores = [new MoradorData(0)];
+            this.state.id = 0;
+            this.state.quiz.moradores = [new MoradorData(this.state.id)];
         }else if(this.state.id === null){
-            let id = 0;
-            FileStore.getMoradoresList(this.state.quiz.id, function(listFile) {
-                listFile.forEach(function(idFile) {
-                    if(idFile > id) id = idFile;
-                });
-            });
-            this.state.id = id;
-            this.state.quiz.moradores.push(new MoradorData(id));
+            this.state.id = this.state.quiz.moradores.length;
+            this.state.quiz.moradores.push(new MoradorData(this.state.id));
         }
 
-        FileStore.saveFileMorador(this.state.quiz.id, this.state.id, this.state.quiz.moradores);
+        FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
 
         idQuestao = 'questao_' + questoes[this.state.admin.indexPage].id;
         numeroQuestao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
     }
 
     popQuizScreen(){
-        if(this.state.admin.indexPage === 0){
-            this.state.quiz.moradores = null;
-            FileStore.deleteMorador(this.state.quiz.id, this.state.id);
+        if(this.state.admin.indexPage === 0 && this.state.quiz['questao_1'] === null){
+            for(key in this.state.quiz.moradores){
+                if(this.state.quiz.moradores[key].id === this.state.id){
+                    this.state.quiz.moradores.splice(key, 1);
+                }
+            }
+
+            if(this.state.quiz.moradores.length === 0) FileStore.deleteMorador(this.state.admin.id);
+            else FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
         };
         this.props.navigator.replacePreviousAndPop({
-            name: 'quiz',
+            name: 'lista_moradores',
             admin: this.state.admin,
             quiz: this.state.quiz,
             isOpen: false
@@ -63,6 +64,7 @@ export default class Morador extends Component {
         if(this.state.admin.indexPage > 0){
             this.state.admin.indexPage = Number(this.state.admin.indexPage) - 1;
             this.props.navigator.replacePreviousAndPop({
+                id: this.state.id,
                 name: 'morador',
                 admin: this.state.admin,
                 quiz: this.state.quiz
@@ -73,15 +75,16 @@ export default class Morador extends Component {
     }
 
     pushScreen(){
-        if(this.state.quiz.moradores[idQuestao] != null){
+        if(this.state.quiz.moradores[this.state.id][idQuestao] != null){
             if(Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
                 this.state.admin.indexPage = Number(this.state.admin.indexPage) + 1;
 
+                FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
                 if(this.state.admin.indexPage >= questoes.length){
                     ToastAndroid.showWithGravity('Questionário Finalizado\nNão há como avançar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                    FileStore.saveFileMorador(this.state.quiz.id, this.state.id, this.state.quiz.moradores);
                 }else{
                     this.props.navigator.push({
+                        id: this.state.id,
                         name: 'morador',
                         admin: this.state.admin,
                         quiz: this.state.quiz
@@ -112,6 +115,13 @@ export default class Morador extends Component {
         let admin = this.state.admin;
         let quiz = this.state.quiz;
         let questao = questoes[admin.indexPage];
+
+        let morador = null;
+        for(key in quiz.moradores){
+            if(quiz.moradores[key].id === this.state.id){
+                morador = quiz.moradores[key];
+            }
+        }
 
         const menu = <SideMenuQuiz admin={admin} quiz={quiz} navigator={this.props.navigator} />;
 
@@ -161,15 +171,15 @@ export default class Morador extends Component {
 
                             <CardItem cardBody style={{justifyContent: 'center'}}>
                                 {renderIf(questao.tipo === 'input_numeric',
-                                    <ReplyInputNumeric admin={admin} quiz={quiz} questao={questao} tipo={'moradores'} />
+                                    <ReplyInputNumeric admin={admin} quiz={morador} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'multiple',
-                                    <ReplyMultiSelect admin={admin} quiz={quiz} questao={questao} tipo={'moradores'} />
+                                    <ReplyMultiSelect admin={admin} quiz={morador} questao={questao} />
                                 )}
 
                                 {renderIf(questao.tipo === 'radio',
-                                    <ReplyRadio admin={admin} quiz={quiz} questao={questao} tipo={'moradores'} />
+                                    <ReplyRadio admin={admin} quiz={morador} questao={questao} />
                                 )}
                             </CardItem>
 
@@ -177,7 +187,7 @@ export default class Morador extends Component {
                                 <CardItem>
                                     <Sae
                                         label={questao.pergunta_extensao.pergunta}
-                                        defaultValue={quiz.moradores[idQuestao + '_secundaria']}
+                                        defaultValue={morador[idQuestao + '_secundaria']}
                                         iconClass={FontAwesomeIcon}
                                         iconName={'pencil'}
                                         iconColor={'black'}

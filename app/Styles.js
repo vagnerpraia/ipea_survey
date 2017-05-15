@@ -46,8 +46,8 @@ export const styles = {
         marginLeft: 40,
         marginRight: 40,
         height: 80,
-        borderWidth: 4,
-        borderColor:'#ff0000'
+        //borderWidth: 4,
+        //borderColor:'#ff0000'
     },
     buttonCompleto: {
         backgroundColor: '#005376',
@@ -57,8 +57,8 @@ export const styles = {
         marginLeft: 40,
         marginRight: 40,
         height: 80,
-        borderWidth: 4,
-        borderColor:'#00ff00'
+        //borderWidth: 4,
+        //borderColor:'#00ff00'
     },
     viewAddMorador: {
         flex: 1,

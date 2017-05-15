@@ -19,6 +19,7 @@ const fs = RNFetchBlob.fs;
 
 var dir_base = dirs.DownloadDir.substring(0, dirs.DownloadDir.lastIndexOf('/') + 1);
 var dir_file = dir_base + 'Ipea/IpeaSurvey/';
+var dir_quiz = dir_base + 'Ipea/IpeaSurvey/Quiz/';
 
 export default class Identificacao extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ export default class Identificacao extends Component {
         }
 
         let file_path_orign = dir_file + 'config.json';
-        let file_path_dest = dir_file + this.state.quiz.identificacao.id + '/identificacao.json';
+        let file_path_dest = dir_quiz + this.state.quiz.identificacao.id + '/identificacao.json';
 
         fs.exists(file_path_dest).then((exist) => {
             if(exist){
@@ -45,7 +46,7 @@ export default class Identificacao extends Component {
                     let json = JSON.parse(data);
 
                     this.state.quiz.identificacao.nomeAplicador = json.nomeAplicador;
-                    this.state.quiz.identificacao.nomeEntrevistado = json.nomeEntrevistado;
+                    //this.state.quiz.identificacao.nomeEntrevistado = json.nomeEntrevistado;
                     this.state.quiz.identificacao.estado = json.estado;
                     this.state.quiz.identificacao.municipio = json.municipio;
                     this.state.quiz.identificacao.localidade = json.localidade;

@@ -24,7 +24,6 @@ export default class Config extends Component {
 
         this.state = {
             nomeAplicador: '',
-            nomeEntrevistado: '',
             estado: 'ac',
             municipio: 0,
             localidade: '',
@@ -44,7 +43,6 @@ export default class Config extends Component {
                     let json = JSON.parse(data);
 
                     this.state.nomeAplicador = json.nomeAplicador;
-                    this.state.nomeEntrevistado = json.nomeEntrevistado;
                     this.state.estado = json.estado;
                     this.state.municipio = json.municipio;
                     this.state.localidade = json.localidade;
@@ -64,7 +62,6 @@ export default class Config extends Component {
     voltar(){
         let content = {
             "nomeAplicador": this.state.nomeAplicador,
-            "nomeEntrevistado": this.state.nomeEntrevistado,
             "estado": this.state.estado,
             "municipio": this.state.municipio,
             "localidade": this.state.localidade,
@@ -140,23 +137,6 @@ export default class Config extends Component {
                                     this.state.nomeAplicador = value
                                 }}
                                 style={{paddingLeft: 20}}
-                            />
-                        </View>
-
-                        <View style={styles.viewQuestaoConfig}>
-                            <Text style={styles.questaoConfig}>Nome do Entrevistado</Text>
-                            <Sae
-                                label={''}
-                                value={this.state.nomeEntrevistado}
-                                iconClass={FontAwesomeIcon}
-                                iconName={'pencil'}
-                                iconColor={'#808080'}
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                inputStyle={styles.respostaTextInput}
-                                onChangeText={(value) => {
-                                    this.state.nomeEntrevistado = value
-                                }}
                             />
                         </View>
 

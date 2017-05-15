@@ -98,13 +98,13 @@ export default class ListaMoradores extends Component {
                         return(
                             <ListItem key={i}>
                                 <Body>
-                                    <Text onPress={() => {openMorador(object.id)}}>
-                                        {object.id}
+                                    <Text style={{fontSize: 20}} onPress={() => {openMorador(object.id)}}>
+                                        {object.questao_1}
                                     </Text>
                                 </Body>
                                 <Right>
                                     <Button dark transparent onPress={() => {deleteMorador(object.id)}}>
-                                        <Icon name='md-trash' />
+                                        <Icon style={{fontSize: 35}} name='md-trash' />
                                     </Button>
                                 </Right>
                             </ListItem>

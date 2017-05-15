@@ -4,24 +4,33 @@ const fs = RNFetchBlob.fs;
 
 var dirBase = dirs.DownloadDir.substring(0, dirs.DownloadDir.lastIndexOf('/') + 1);
 var dirFile = dirBase + 'Ipea/IpeaSurvey/';
+var dirQuiz = dirBase + 'Ipea/IpeaSurvey/Quiz/';
 
 export default class FileStore {
     static createFile(quiz, type) {
-        let file_path = dirFile + quiz.id + '/' + type + '.json';
+        let file_path = dirQuiz + quiz.id + '/' + type + '.json';
         let data = JSON.stringify(quiz);
         fs.createFile(file_path, data, 'utf8');
     }
 
     static readQuiz(quiz, callback) {
-        let file_path = dirFile + quiz.id + '/domicilio.json';
-        fs.readFile(file_path, 'utf8').then((data) => {
-            /*
-             *  ====================================================================================================
-             *  TODO: Fazer leitura dos moradores e agrupar a data
-             *  ====================================================================================================
-             */
-            let json = JSON.parse(data);
-            return callback(json);
+        let dir_file_path = dirQuiz + quiz.id;
+        fs.readFile(dir_file_path + '/identificacao.json', 'utf8').then((identificacao) => {
+            quiz.identificacao = JSON.parse(identificacao);
+
+            fs.readFile(dir_file_path + '/domicilio.json', 'utf8').then((domicilio) => {
+                quiz.domicilio = JSON.parse(domicilio);
+
+                fs.readFile(dir_file_path + '/moradores.json', 'utf8').then((moradores) => {
+                    quiz.moradores = JSON.parse(moradores);
+
+                    return callback(quiz);
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }).catch((err) => {
+                console.log(err);
+            });
         }).catch((err) => {
             console.log(err);
         });
@@ -39,7 +48,7 @@ export default class FileStore {
 
     static saveFileIdentificacao(quiz) {
         let data = JSON.stringify(quiz);
-        let file_path = dirFile + quiz.id + '/identificacao.json';
+        let file_path = dirQuiz + quiz.id + '/identificacao.json';
         fs.writeFile(file_path, data, 'utf8').then(() => {
             console.log('Arquivo atualizado');
         });
@@ -47,7 +56,7 @@ export default class FileStore {
 
     static saveFileDomicilio(quiz) {
         let data = JSON.stringify(quiz);
-        let file_path = dirFile + quiz.id + '/domicilio.json';
+        let file_path = dirQuiz + quiz.id + '/domicilio.json';
         fs.writeFile(file_path, data, 'utf8').then(() => {
             console.log('Arquivo atualizado');
         });
@@ -55,14 +64,14 @@ export default class FileStore {
 
     static saveFileMoradores(id, quiz) {
         let data = JSON.stringify(quiz);
-        let file_path = dirFile + id + '/moradores.json';
+        let file_path = dirQuiz + id + '/moradores.json';
         fs.writeFile(file_path, data, 'utf8').then(() => {
             console.log('Arquivo atualizado');
         });
     };
 
     static deleteDomicilio(idQuiz) {
-        let file_path = dirFile + idQuiz + '/quiz.json';
+        let file_path = dirQuiz + idQuiz + '/quiz.json';
         fs.unlink(file_path).then(() => {
             console.log('Arquivo deletado');
         }).catch((error) => {
@@ -71,7 +80,16 @@ export default class FileStore {
     };
 
     static deleteMorador(idQuiz, idMorador) {
-        let file_path = dirFile + idQuiz + '/moradores.json';
+        let file_path = dirQuiz + idQuiz + '/moradores.json';
+        fs.unlink(file_path).then(() => {
+            console.log('Arquivo deletado');
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    static deleteQuiz(idQuiz) {
+        let file_path = dirQuiz + idQuiz;
         fs.unlink(file_path).then(() => {
             console.log('Arquivo deletado');
         }).catch((error) => {
@@ -80,7 +98,7 @@ export default class FileStore {
     };
 
     static getQuizList(callback){
-        fs.ls(dirFile).then((files) => {
+        fs.ls(dirQuiz).then((files) => {
             callback(files);
         }).catch((error) => {
             console.log(error);
@@ -88,7 +106,7 @@ export default class FileStore {
     }
 
     static getMoradoresList(id, callback){
-        let file_path = dirFile + id + '/moradores.json';
+        let file_path = dirQuiz + id + '/moradores.json';
         fs.exists(file_path).then((exist) => {
             if(exist){
                 fs.readFile(file_path, 'utf8').then((data) => {

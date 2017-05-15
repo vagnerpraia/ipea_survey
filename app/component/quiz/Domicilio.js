@@ -5,11 +5,13 @@ import SideMenu from 'react-native-side-menu';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
-import SideMenuQuiz from './SideMenuQuiz';
+import SideMenuDomicilio from './SideMenuDomicilio';
 import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
+import ReplyText from './reply/ReplyText';
 
+import { passQuestion } from './business/PassQuestion';
 import FileStore from './../../FileStore';
 import DomicilioData from './../../data/DomicilioData';
 import { questoes } from './../../data/QuestoesDomicilio';
@@ -31,6 +33,33 @@ export default class Domicilio extends Component {
         }
 
         FileStore.saveFileDomicilio(this.state.quiz.domicilio);
+
+        let questao;
+        for(key in this.state.quiz.domicilio){
+            if(this.state.quiz.domicilio[key] != null){
+                questao = key;
+            }
+        }
+        questao = Number(key.replace(/\D/g,''));
+        this.state.admin.maxQuestion = questao + 1;
+
+        for(key in passQuestion){
+            let item = passQuestion[key];
+            if(item){
+                if(questao == item.questao){
+                    if(item.opcao.indexOf(value) >= 0){
+                        this.state.admin.maxQuestion = item.passe;
+                        for (i = questao + 1; i < item.passe; i++) {
+                            for(key in quiz){
+                                if(key.replace(/\D/g,'') == i){
+                                    quiz[key] = -1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         idQuestao = 'questao_' + questoes[this.state.admin.indexPage].id;
         numeroQuestao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
@@ -103,7 +132,7 @@ export default class Domicilio extends Component {
         let quiz = this.state.quiz;
         let questao = questoes[admin.indexPage];
 
-        const menu = <SideMenuQuiz admin={admin} quiz={quiz} navigator={this.props.navigator} />;
+        const menu = <SideMenuDomicilio admin={admin} quiz={quiz} navigator={this.props.navigator} />;
 
         function renderIf(condition, contentIf, contentElse = null) {
             if (condition) {
@@ -160,6 +189,10 @@ export default class Domicilio extends Component {
 
                                 {renderIf(questao.tipo === 'radio',
                                     <ReplyRadio admin={admin} quiz={quiz.domicilio} questao={questao} />
+                                )}
+
+                                {renderIf(questao.tipo === 'text',
+                                    <ReplyText admin={admin} quiz={quiz.domicilio} questao={questao} />
                                 )}
                             </CardItem>
 

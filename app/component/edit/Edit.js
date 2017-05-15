@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { Body, Button, Container, Content, Header, Left, List, ListItem, Icon, Right, Text, Title } from 'native-base';
 
 import FileStore from './../../FileStore';
+import AdminData from './../../data/AdminData';
 import { styles } from './../../Styles';
 import { exitApp } from '../../Util';
 
@@ -29,6 +30,22 @@ export default class Edit extends Component {
     }
 
     render() {
+        let navigator = this.props.navigator;
+
+        function openMorador(id){
+            navigator.push({
+                name: 'quiz',
+                admin: new AdminData(id)
+            });
+        }
+
+        function deleteMorador(id){
+            FileStore.deleteQuiz(id);
+            navigator.replacePreviousAndPop({
+                name: 'edit'
+            });
+        }
+
         return (
             <Container style={styles.container}>
                 <Header style={styles.header}>
@@ -39,7 +56,7 @@ export default class Edit extends Component {
                     </Left>
                     <Body style={styles.bodyHeader}>
                         <View>
-                            <Title>Configuração</Title>
+                            <Title>Editar</Title>
                         </View>
                     </Body>
                 </Header>
@@ -51,11 +68,13 @@ export default class Edit extends Component {
                         return(
                             <ListItem key={i}>
                                 <Body>
-                                    <Text>{object}</Text>
+                                    <Text style={{fontSize: 20}} onPress={() => {openMorador(object)}}>
+                                        {object}
+                                    </Text>
                                 </Body>
                                 <Right>
-                                    <Button dark transparent onPress={() => {}}>
-                                        <Icon name='md-trash' />
+                                    <Button dark transparent onPress={() => {deleteMorador(object)}}>
+                                        <Icon style={{fontSize: 35}} name='md-trash' />
                                     </Button>
                                 </Right>
                             </ListItem>

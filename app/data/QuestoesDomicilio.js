@@ -817,6 +817,7 @@ export const questoes = [
     },
     {
         id: '21',
+        titulo: 'Características do domicílio',
         pergunta: 'Neste domicílio existe energia elétrica?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -829,6 +830,7 @@ export const questoes = [
     },
     {
         id: '22',
+        titulo: 'Características do domicílio',
         pergunta: 'Qual a origem (fonte) desta energia?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -847,6 +849,7 @@ export const questoes = [
     },
     {
         id: '23',
+        titulo: 'Características do domicílio',
         pergunta: 'Em relação ao abastecimento e à qualidade da energia elétrica no seu domicílio, a situação é:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -861,6 +864,7 @@ export const questoes = [
     },
     {
         id: '24',
+        titulo: 'Características do domicílio',
         pergunta: 'O domicílio recebe conta de luz?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -874,6 +878,7 @@ export const questoes = [
     },
     {
         id: '25',
+        titulo: 'Características do domicílio',
         pergunta: 'O valor da tarifa de energia elétrica paga é:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -890,15 +895,17 @@ export const questoes = [
     },
     {
         id: '26',
+        titulo: 'Características do domicílio',
         pergunta: 'Qual o valor da última conta de luz recebida?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: '',
         pergunta_extensao: '',
-        tipo: 'input_money'
+        tipo: 'input_numeric'
     },
     {
         id: '27',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Como está a condição do transporte coletivo que atende à comunidade onde o domicílio está localizado?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -916,6 +923,7 @@ export const questoes = [
     },
     {
         id: '28',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'O tempo de caminhada que é preciso fazer do local do domicílio até o local do ponto de ônibus é:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -932,6 +940,7 @@ export const questoes = [
     },
     {
         id: '29',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Qual a condição das estradas utilizadas pelos moradores para se deslocarem a partir do domicílio?',
         observacao_pergunta: 'Somente para quem mora na zona rural',
         pergunta_secundaria: '',
@@ -949,6 +958,7 @@ export const questoes = [
     },
     {
         id: '30a',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -968,6 +978,7 @@ export const questoes = [
     },
     {
         id: '30b',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -987,6 +998,7 @@ export const questoes = [
     },
     {
         id: '30c',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1006,6 +1018,7 @@ export const questoes = [
     },
     {
         id: '30d',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1025,6 +1038,7 @@ export const questoes = [
     },
     {
         id: '30e',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1044,6 +1058,7 @@ export const questoes = [
     },
     {
         id: '30f',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à educação, qual a avaliação sobre os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1063,6 +1078,7 @@ export const questoes = [
     },
     {
         id: '31',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Existem postos de saúde em funcionamento próximos ao domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1076,6 +1092,7 @@ export const questoes = [
     },
     {
         id: '32',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Existem hospitais em funcionamento próximos ao domicílio?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1089,6 +1106,7 @@ export const questoes = [
     },
     {
         id: '33',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Quando você vai a um posto de saúde ou a um hospital, encontra médico?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1106,6 +1124,7 @@ export const questoes = [
     },
     {
         id: '34',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Nos últimos 12 meses, com que frequência o seu domicílio recebeu uma visita de algum agente de endemias?',
         observacao_pergunta: 'como a dengue, por exemplo',
         pergunta_secundaria: '',
@@ -1119,6 +1138,7 @@ export const questoes = [
     },
     {
         id: '35',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Nos últimos 12 meses, com que frequência o domicílio recebeu a visita da equipe do programa de saúde da família (PSF) e/ou de agentes de saúde?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1137,6 +1157,7 @@ export const questoes = [
     },
     {
         id: '36',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Como você e os moradores do domicílio avaliam a atuação da equipe do programa saúde da família (PSF) ou dos agentes de saúde',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1153,6 +1174,7 @@ export const questoes = [
     },
     {
         id: '37',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Alguém do domicílio possui algum plano de saúde particular/privado?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1166,6 +1188,7 @@ export const questoes = [
     },
     {
         id: '38a',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1185,6 +1208,7 @@ export const questoes = [
     },
     {
         id: '38b',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1204,6 +1228,7 @@ export const questoes = [
     },
     {
         id: '38c',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1223,6 +1248,7 @@ export const questoes = [
     },
     {
         id: '38d',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1242,6 +1268,7 @@ export const questoes = [
     },
     {
         id: '38e',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à saúde pública, avalie os itens a seguir:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1261,6 +1288,7 @@ export const questoes = [
     },
     {
         id: '39',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Alguém deste domicílio recebe Bolsa Família atualmente?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1274,6 +1302,7 @@ export const questoes = [
     },
     {
         id: '40',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Alguém deste domicílio recebe aposentadoria, benefício previdenciário, ou pensão do INSS ou do governo estadual/municipal?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1287,6 +1316,7 @@ export const questoes = [
     },
     {
         id: '41',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Há quanto tempo mora, sem interrupção, nesta região atingida por barragem?',
         observacao_pergunta: 'No caso de menos de 1 (um) ano de moradia, informe 0 (zero)',
         pergunta_secundaria: '',
@@ -1296,6 +1326,7 @@ export const questoes = [
     },
     {
         id: '42',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, de que forma você e sua família foram atingidos?',
         observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar E o que mais? E apenas após esgotar as opções passar para as seguintes',
         pergunta_secundaria: '',
@@ -1324,6 +1355,7 @@ export const questoes = [
     },
     {
         id: '43',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à pesca, após a construção da barragem, quais as maiores dificuldades encontradas?',
         observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar: E o que mais?',
         pergunta_secundaria: '',
@@ -1346,6 +1378,7 @@ export const questoes = [
     },
     {
         id: '44',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'A empresa construtora da barragem reconheceu sua família como atingida?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1360,6 +1393,7 @@ export const questoes = [
     },
     {
         id: '45',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'O reconhecimento pela empresa construtora como atingido por barragem ocorreu:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1374,7 +1408,8 @@ export const questoes = [
     },
     {
         id: '46',
-        pergunta: '. O reconhecimento da família, ou de parte da família, como atingida por barragem aconteceu:',
+        titulo: 'Transporte e políticas sociais',
+        pergunta: 'O reconhecimento da família, ou de parte da família, como atingida por barragem aconteceu:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
@@ -1388,6 +1423,7 @@ export const questoes = [
     },
     {
         id: '47',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, sua família precisou se mudar?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1405,6 +1441,7 @@ export const questoes = [
     },
     {
         id: '48',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No novo local, a moradia foi:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1422,6 +1459,7 @@ export const questoes = [
     },
     {
         id: '49a',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1441,6 +1479,7 @@ export const questoes = [
     },
     {
         id: '49b',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1460,6 +1499,7 @@ export const questoes = [
     },
     {
         id: '49c',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1479,6 +1519,7 @@ export const questoes = [
     },
     {
         id: '49d',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1498,6 +1539,7 @@ export const questoes = [
     },
     {
         id: '49e',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1517,6 +1559,7 @@ export const questoes = [
     },
     {
         id: '49f',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1536,6 +1579,7 @@ export const questoes = [
     },
     {
         id: '49g',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1555,6 +1599,7 @@ export const questoes = [
     },
     {
         id: '49h',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, a distância entre o domicílio atual com:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1574,6 +1619,7 @@ export const questoes = [
     },
     {
         id: '50',
+        titulo: 'Transporte e políticas sociais',
         pergunta: '. Com a construção da barragem, as formas de reparação recebida pela família foram:',
         observacao_pergunta: 'permite mais de uma opção',
         pergunta_secundaria: '',
@@ -1597,6 +1643,7 @@ export const questoes = [
     },
     {
         id: '51a',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
@@ -1613,6 +1660,7 @@ export const questoes = [
     },
     {
         id: '51b',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
@@ -1629,6 +1677,7 @@ export const questoes = [
     },
     {
         id: '51c',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
@@ -1645,6 +1694,7 @@ export const questoes = [
     },
     {
         id: '51d',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
@@ -1661,6 +1711,7 @@ export const questoes = [
     },
     {
         id: '51e',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
@@ -1677,6 +1728,7 @@ export const questoes = [
     },
     {
         id: '51f',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
@@ -1693,6 +1745,7 @@ export const questoes = [
     },
     {
         id: '51g',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
@@ -1709,6 +1762,7 @@ export const questoes = [
     },
     {
         id: '51h',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
         observacao_pergunta: 'após responder passar para questão 56',
         pergunta_secundaria: {
@@ -1725,15 +1779,17 @@ export const questoes = [
     },
     {
         id: '52',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Qual o valor da indenização (em dinheiro) ou da carta de crédito recebida?',
         observacao_pergunta: '(registrar o valor de acordo com a moeda que o entrevistado informar – real, cruzado, cruzado novo, cruzeiro etc.',
         pergunta_secundaria: '',
         opcoes: '',
         pergunta_extensao: '',
-        tipo: 'input_money'
+        tipo: 'input_numeric'
     },
     {
         id: '53',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Em que ano foi recebida a indenização (em dinheiro) ou a carta de crédito?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1743,6 +1799,7 @@ export const questoes = [
     },
     {
         id: '54',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, a família adquiriu:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1758,6 +1815,7 @@ export const questoes = [
     },
     {
         id: '55a',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
@@ -1774,6 +1832,7 @@ export const questoes = [
     },
     {
         id: '55b',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'após responder passar para questão 57',
         pergunta_secundaria: {
@@ -1790,6 +1849,7 @@ export const questoes = [
     },
     {
         id: '55c',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
@@ -1806,6 +1866,7 @@ export const questoes = [
     },
     {
         id: '55d',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
@@ -1822,6 +1883,7 @@ export const questoes = [
     },
     {
         id: '55e',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
@@ -1838,6 +1900,7 @@ export const questoes = [
     },
     {
         id: '55f',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
         observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
@@ -1854,6 +1917,7 @@ export const questoes = [
     },
     {
         id: '56',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'No caso de realocação, o novo imóvel foi:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1867,8 +1931,9 @@ export const questoes = [
     },
     {
         id: '57',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'Na escala em que 0 (zero) significa "insatisfeita" e 10 (dez) significa "satisfeita", como a família avalia a forma de reparação realizada pela empresa?',
-        observacao_pergunta: 'Todos devem responder.',
+        observacao_pergunta: 'Todos devem responder',
         pergunta_secundaria: '',
         opcoes: [
             {label: '0', observacao: '', value: 0},
@@ -1888,6 +1953,7 @@ export const questoes = [
     },
     {
         id: '58',
+        titulo: 'Transporte e políticas sociais',
         pergunta: 'A reparação mais importante que ainda é necessária é:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1912,6 +1978,7 @@ export const questoes = [
     },
     {
         id: '59',
+        titulo: 'Produção/Terra',
         pergunta: 'Você ou algum outro residente deste domicílio trabalha com alguma forma de produção abaixo:',
         observacao_pergunta: 'permite mais de uma opção',
         pergunta_secundaria: '',
@@ -1930,6 +1997,7 @@ export const questoes = [
     },
     {
         id: '60',
+        titulo: 'Produção/Terra',
         pergunta: 'A relação principal com a área utilizada para produção é:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -1952,6 +2020,7 @@ export const questoes = [
     },
     {
         id: '61',
+        titulo: 'Produção/Terra',
         pergunta: 'Qual o tamanho da área?',
         observacao_pergunta: 'registrar a medida do tamanho que o informante disser para depois fazer a conversão conforme orientação no Manual',
         pergunta_secundaria: '',
@@ -1961,6 +2030,7 @@ export const questoes = [
     },
     {
         id: '62a',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -1981,6 +2051,7 @@ export const questoes = [
     },
     {
         id: '62b',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2001,6 +2072,7 @@ export const questoes = [
     },
     {
         id: '62c',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2021,6 +2093,7 @@ export const questoes = [
     },
     {
         id: '62d',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2041,6 +2114,7 @@ export const questoes = [
     },
     {
         id: '62e',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2061,6 +2135,7 @@ export const questoes = [
     },
     {
         id: '62f',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2081,6 +2156,7 @@ export const questoes = [
     },
     {
         id: '62g',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2101,6 +2177,7 @@ export const questoes = [
     },
     {
         id: '62h',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2121,6 +2198,7 @@ export const questoes = [
     },
     {
         id: '62i',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2141,6 +2219,7 @@ export const questoes = [
     },
     {
         id: '62j',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2161,6 +2240,7 @@ export const questoes = [
     },
     {
         id: '62k',
+        titulo: 'Produção/Terra',
         pergunta: 'Em relação às condições gerais de produção, qual a sua avaliação sobre os itens a seguir?',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2181,6 +2261,7 @@ export const questoes = [
     },
     {
         id: '63a',
+        titulo: 'Produção/Terra',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2197,6 +2278,7 @@ export const questoes = [
     },
     {
         id: '63b',
+        titulo: 'Produção/Terra',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2213,6 +2295,7 @@ export const questoes = [
     },
     {
         id: '63c',
+        titulo: 'Produção/Terra',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2229,6 +2312,7 @@ export const questoes = [
     },
     {
         id: '63d',
+        titulo: 'Produção/Terra',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2245,6 +2329,7 @@ export const questoes = [
     },
     {
         id: '63e',
+        titulo: 'Produção/Terra',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2261,6 +2346,7 @@ export const questoes = [
     },
     {
         id: '63f',
+        titulo: 'Produção/Terra',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2277,6 +2363,7 @@ export const questoes = [
     },
     {
         id: '63g',
+        titulo: 'Produção/Terra',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2293,6 +2380,7 @@ export const questoes = [
     },
     {
         id: '63h',
+        titulo: 'Produção/Terra',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2309,6 +2397,7 @@ export const questoes = [
     },
     {
         id: '63i',
+        titulo: 'Produção/Terra',
         pergunta: 'Para a produção, a família possui:',
         observacao_pergunta: '',
         pergunta_secundaria: {
@@ -2325,6 +2414,7 @@ export const questoes = [
     },
     {
         id: '64',
+        titulo: 'Produção/Terra',
         pergunta: 'A principal forma utilizada para venda dos produtos é:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -2345,6 +2435,7 @@ export const questoes = [
     },
     {
         id: '65',
+        titulo: 'Produção/Terra',
         pergunta: 'Atualmente, a maior dificuldade enfrentada para a comercialização da produção é:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -2367,6 +2458,7 @@ export const questoes = [
     },
     {
         id: '66',
+        titulo: 'Produção/Terra',
         pergunta: 'A propriedade recebe a visita de algum técnico para acompanhar a lavoura ou os animais?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -2383,6 +2475,7 @@ export const questoes = [
     },
     {
         id: '67',
+        titulo: 'Produção/Terra',
         pergunta: 'O técnico que acompanha a produção tem vínculo com:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
@@ -2405,11 +2498,12 @@ export const questoes = [
     },
     {
         id: '68',
+        titulo: 'Produção/Terra',
         pergunta: 'Considerando apenas as atividades agrícola, pecuária, florestal, extrativista, aquícola ou pesqueira (ou delas derivadas diretamente), quanto a família obteve, mais ou menos, por mês no ano passado?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: '',
         pergunta_extensao: '',
-        tipo: 'input_money'
+        tipo: 'input_numeric'
     }
 ];

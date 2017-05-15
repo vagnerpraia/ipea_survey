@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { ToastAndroid, View } from 'react-native';
 import { Body, Button, Container, Content, Header, Left, Text, Icon, Title } from 'native-base';
 
 import AdminData from './../../data/AdminData';
+import FileStore from './../../FileStore';
 import QuizData from './../../data/QuizData';
 import { styles } from './../../Styles';
 
@@ -17,10 +18,17 @@ export default class Quiz extends Component {
     }
 
     componentWillMount(){
-        if(this.state.quiz === null){
+        if((this.state.quiz === undefined || this.state.quiz === null) && (this.state.admin === undefined || this.state.admin === null)){
             let id = new Date().getTime();
             this.state.admin = new AdminData(id);
             this.state.quiz = new QuizData(id);
+        }else if((this.state.quiz === undefined || this.state.quiz === null)){
+            this.state.admin = AdminData.object(this.props.admin);
+            this.state.quiz = new QuizData(this.state.admin.id)
+            FileStore.readQuiz(this.state.quiz, (result) => {
+                this.state.quiz = result;
+                this.forceUpdate();
+            });
         }else{
             this.state.admin = AdminData.object(this.props.admin);
         }

@@ -5,11 +5,13 @@ import SideMenu from 'react-native-side-menu';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
-import SideMenuQuiz from './SideMenuQuiz';
+import SideMenuMoradores from './SideMenuMoradores';
 import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
+import ReplyText from './reply/ReplyText';
 
+import { passQuestion } from './business/PassQuestion';
 import FileStore from './../../FileStore';
 import MoradorData from './../../data/MoradorData';
 import { questoes } from './../../data/QuestoesMorador';
@@ -36,6 +38,33 @@ export default class Morador extends Component {
         }
 
         FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
+
+        let questao;
+        for(key in this.state.quiz.domicilio){
+            if(this.state.quiz.domicilio[key] != null){
+                questao = key;
+            }
+        }
+        questao = String(questao).replace(/\D/g,'');
+        this.state.admin.maxQuestion = Number(questao) + 1;
+
+        for(key in passQuestion){
+            let item = passQuestion[key];
+            if(item){
+                if(questao == item.questao){
+                    if(item.opcao.indexOf(value) >= 0){
+                        this.state.admin.maxQuestion = item.passe;
+                        for (i = questao + 1; i < item.passe; i++) {
+                            for(key in quiz){
+                                if(key.replace(/\D/g,'') == i){
+                                    quiz[key] = -1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         idQuestao = 'questao_' + questoes[this.state.admin.indexPage].id;
         numeroQuestao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
@@ -79,7 +108,7 @@ export default class Morador extends Component {
             if(Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
                 this.state.admin.indexPage = Number(this.state.admin.indexPage) + 1;
 
-                FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
+                FileStore.saveFileMoradores(this.state.id, this.state.quiz.moradores);
                 if(this.state.admin.indexPage >= questoes.length){
                     ToastAndroid.showWithGravity('Questionário Finalizado\nNão há como avançar mais', ToastAndroid.SHORT, ToastAndroid.CENTER);
                 }else{
@@ -123,7 +152,7 @@ export default class Morador extends Component {
             }
         }
 
-        const menu = <SideMenuQuiz admin={admin} quiz={quiz} navigator={this.props.navigator} />;
+        const menu = <SideMenuMoradores admin={admin} quiz={quiz} navigator={this.props.navigator} />;
 
         function renderIf(condition, contentIf, contentElse = null) {
             if (condition) {
@@ -180,6 +209,10 @@ export default class Morador extends Component {
 
                                 {renderIf(questao.tipo === 'radio',
                                     <ReplyRadio admin={admin} quiz={morador} questao={questao} />
+                                )}
+
+                                {renderIf(questao.tipo === 'text',
+                                    <ReplyText admin={admin} quiz={morador} questao={questao} />
                                 )}
                             </CardItem>
 

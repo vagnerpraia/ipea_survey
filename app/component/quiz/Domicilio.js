@@ -143,7 +143,6 @@ export default class Domicilio extends Component {
         }
 
         return (
-            <SideMenu menu={menu} menuPosition={'right'} isOpen={isOpen} onChange={(isOpen) => {this.setMenuState(isOpen)}}>
                 <Container style={styles.container}>
                     <Header style={styles.header}>
                         <Left>
@@ -158,7 +157,7 @@ export default class Domicilio extends Component {
 
                         <Right>
                             <Button transparent onPress={() => {this.updateMenuState()}}>
-                                <Icon name='ios-menu' />
+                                <Text></Text>
                             </Button>
                         </Right>
                     </Header>
@@ -224,7 +223,6 @@ export default class Domicilio extends Component {
                         </FooterTab>
                     </Footer>
                 </Container>
-            </SideMenu>
         );
     }
 }

@@ -67,15 +67,23 @@ export default class ReplyMultiSelect extends Component {
                 quiz[idQuestao] = selected;
                 admin.maxQuestion = numeroQuestao + 1;
 
-                for(keyPass in passQuestion){
-                    let item = passQuestion[keyPass];
-                    if(numeroQuestao == item.questao){
-                        if(item.opcao.indexOf(value) >= 0){
-                            admin.maxQuestion = item.passe;
-                            for (i = numeroQuestao + 1; i < item.passe; i++) {
-                                for(keyQuiz in quiz){
-                                    if(keyQuiz.replace(/\D/g,'') == i){
-                                        quiz[key] = -1;
+                for(key in passQuestion){
+                    if(numeroQuestao == passQuestion[key].questao){
+                        let passe = passQuestion[key].passe;
+                        if(passQuestion[key].opcao.indexOf(value) > -1){
+                            this.state.admin.maxQuestion = passQuestion[key].passe;
+                            for (i = numeroQuestao + 1; i < passe; i++) {
+                                for(key in this.state.quiz){
+                                    if(key.replace(/\D/g,'') == i){
+                                        this.state.quiz[key] = -1;
+                                    }
+                                }
+                            }
+                        }else{
+                            for (i = numeroQuestao + 1; i < passe; i++) {
+                                for(key in this.state.quiz){
+                                    if(key.replace(/\D/g,'') == i){
+                                        this.state.quiz[key] = null;
                                     }
                                 }
                             }
@@ -86,11 +94,11 @@ export default class ReplyMultiSelect extends Component {
         }
 
         return (
-            <View>
+            <View style={{paddingLeft: 20}}>
                 {this.state.questao.opcoes.map(function(object, i){
                     return(
                         <ListItem key={i}>
-                            <CheckBox checked={selected.indexOf(object.value) >= 0} onPress={() => {this.setQuestion(object.value)}} />
+                            <CheckBox style={{borderColor: '#000000'}} checked={selected.indexOf(object.value) >= 0} onPress={() => {this.setQuestion(object.value)}} />
                             <View style={styles.opcaoView}>
                                 <View>
                                     <Text style={styles.opcaoTexto} onPress={() => {this.setQuestion(object.value)}}>{object.label}</Text>

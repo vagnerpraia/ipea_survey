@@ -6,6 +6,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
 import SideMenuMoradores from './SideMenuMoradores';
+import ReplyInputCurrency from './reply/ReplyInputCurrency';
 import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
@@ -39,27 +40,14 @@ export default class Morador extends Component {
 
         FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
 
-        let questao;
-        for(key in this.state.quiz.domicilio){
-            if(this.state.quiz.domicilio[key] != null){
-                questao = key;
-            }
-        }
-        questao = String(questao).replace(/\D/g,'');
-        this.state.admin.maxQuestion = Number(questao) + 1;
-
+        let questao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
         for(key in passQuestion){
-            let item = passQuestion[key];
-            if(item){
-                if(questao == item.questao){
-                    if(item.opcao.indexOf(value) >= 0){
-                        this.state.admin.maxQuestion = item.passe;
-                        for (i = questao + 1; i < item.passe; i++) {
-                            for(key in quiz){
-                                if(key.replace(/\D/g,'') == i){
-                                    quiz[key] = -1;
-                                }
-                            }
+            if(questao == passQuestion[key].questao){
+                this.state.admin.maxQuestion = passQuestion[key].passe;
+                for (i = questao + 1; i < passQuestion[key].passe; i++) {
+                    for(key in this.state.quiz){
+                        if(key.replace(/\D/g,'') == i){
+                            this.state.quiz[key] = -1;
                         }
                     }
                 }
@@ -198,6 +186,10 @@ export default class Morador extends Component {
                             )}
 
                             <CardItem cardBody style={{justifyContent: 'center'}}>
+                                {renderIf(questao.tipo === 'input_currency',
+                                    <ReplyInputCurrency admin={admin} quiz={quiz.domicilio} questao={questao} />
+                                )}
+                                
                                 {renderIf(questao.tipo === 'input_numeric',
                                     <ReplyInputNumeric admin={admin} quiz={morador} questao={questao} />
                                 )}

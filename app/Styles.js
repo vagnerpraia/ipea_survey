@@ -2,11 +2,11 @@ export const styles = {
     header: {
         backgroundColor: '#005376',
     },
+    footer: {
+        backgroundColor: '#005376',
+    },
     bodyHeader: {
         paddingLeft: 10,
-    },
-    header: {
-        backgroundColor: '#005376',
     },
     container: {
         backgroundColor: '#ffffff',
@@ -148,5 +148,11 @@ export const styles = {
     opcaoView: {
         alignItems: 'flex-start',
         paddingTop: 10
+    },
+    opcaoCurrency: {
+        fontSize: 20,
+        paddingLeft: 10,
+        paddingBottom: 18,
+        marginTop: 10,  
     }
 };

@@ -112,10 +112,6 @@ export default class Quiz extends Component {
                         <Icon name='md-contacts' />
                         <Text style={styles.textButtonContent}>Moradores</Text>
                     </Button>
-
-                    <View style={{alignItems: 'center', paddingTop: 20, paddingRight: 20}}>
-                        <Icon name='md-information-circle' style={{fontSize: 50, color: '#005376'}} />
-                    </View>
                 </Content>
             </Container>
         );

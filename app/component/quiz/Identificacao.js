@@ -39,14 +39,13 @@ export default class Identificacao extends Component {
 
         let file_path_orign = dir_file + 'config.json';
         let file_path_dest = dir_quiz + this.state.quiz.identificacao.id + '/identificacao.json';
-
+        
         fs.exists(file_path_dest).then((exist) => {
             if(exist){
                 fs.readFile(file_path_dest, 'utf8').then((data) => {
                     let json = JSON.parse(data);
 
                     this.state.quiz.identificacao.nomeAplicador = json.nomeAplicador;
-                    //this.state.quiz.identificacao.nomeEntrevistado = json.nomeEntrevistado;
                     this.state.quiz.identificacao.estado = json.estado;
                     this.state.quiz.identificacao.municipio = json.municipio;
                     this.state.quiz.identificacao.localidade = json.localidade;
@@ -89,9 +88,6 @@ export default class Identificacao extends Component {
     }
 
     voltar(){
-        let data = JSON.stringify(this.state.quiz.identificacao);
-
-        let file_path = dir_file + this.state.quiz.identificacao.id + 'config.json';
         FileStore.saveFileIdentificacao(this.state.quiz.identificacao);
 
         if(this.state.quiz.identificacao.nomeAplicador != null, this.state.quiz.identificacao.nomeEntrevistado != null,
@@ -157,7 +153,7 @@ export default class Identificacao extends Component {
                             <Text style={styles.questaoConfig}>Nome do Aplicador</Text>
                             <Sae
                                 label={''}
-                                value={this.state.quiz.identificacao.nomeAplicador}
+                                defaultValue={this.state.quiz.identificacao.nomeAplicador}
                                 iconClass={FontAwesomeIcon}
                                 iconName={'pencil'}
                                 iconColor={'#808080'}
@@ -165,7 +161,7 @@ export default class Identificacao extends Component {
                                 autoCorrect={false}
                                 inputStyle={styles.respostaTextInput}
                                 onChangeText={(value) => {
-                                    this.state.quiz.identificacao.nome_aplicador = value
+                                    this.state.quiz.identificacao.nomeAplicador = value
                                 }}
                                 style={{paddingLeft: 20}}
                             />
@@ -175,7 +171,7 @@ export default class Identificacao extends Component {
                             <Text style={styles.questaoConfig}>Nome do Entrevistado</Text>
                             <Sae
                                 label={''}
-                                value={this.state.quiz.identificacao.nomeEntrevistado}
+                                defaultValue={this.state.quiz.identificacao.nomeEntrevistado}
                                 iconClass={FontAwesomeIcon}
                                 iconName={'pencil'}
                                 iconColor={'#808080'}
@@ -223,7 +219,7 @@ export default class Identificacao extends Component {
                             <Text style={styles.questaoConfig}>Localidade</Text>
                             <Sae
                                 label={''}
-                                value={this.state.quiz.identificacao.localidade}
+                                defaultValue={this.state.quiz.identificacao.localidade}
                                 iconClass={FontAwesomeIcon}
                                 iconName={'pencil'}
                                 iconColor={'#808080'}
@@ -290,7 +286,7 @@ export default class Identificacao extends Component {
                             <Text style={styles.questaoConfig}>Barragem</Text>
                             <Sae
                                 label={''}
-                                value={this.state.quiz.identificacao.barragem}
+                                defaultValue={this.state.quiz.identificacao.barragem}
                                 iconClass={FontAwesomeIcon}
                                 iconName={'pencil'}
                                 iconColor={'#808080'}
@@ -308,29 +304,3 @@ export default class Identificacao extends Component {
         );
     }
 }
-
-const styles2 = StyleSheet.create({
-    container: {
-        backgroundColor: '#F5FCFF',
-    },
-    view: {
-        flex: 1,
-        flexDirection: 'column',
-        padding: 15,
-        marginTop: -15
-    },
-    texttitle: {
-        color: '#000000',
-        marginTop: 10,
-        fontSize: 13,
-    },
-    radioLabel: {
-        fontSize: 13,
-        color: '#000000',
-        paddingTop: 5,
-        paddingBottom: 5,
-    },
-    radioForm: {
-        paddingLeft: 10,
-    },
-});

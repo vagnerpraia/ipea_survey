@@ -6,6 +6,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
 import SideMenuDomicilio from './SideMenuDomicilio';
+import ReplyInputCurrency from './reply/ReplyInputCurrency';
 import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
@@ -34,27 +35,14 @@ export default class Domicilio extends Component {
 
         FileStore.saveFileDomicilio(this.state.quiz.domicilio);
 
-        let questao;
-        for(key in this.state.quiz.domicilio){
-            if(this.state.quiz.domicilio[key] != null){
-                questao = key;
-            }
-        }
-        questao = Number(key.replace(/\D/g,''));
-        this.state.admin.maxQuestion = questao + 1;
-
+        let questao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
         for(key in passQuestion){
-            let item = passQuestion[key];
-            if(item){
-                if(questao == item.questao){
-                    if(item.opcao.indexOf(value) >= 0){
-                        this.state.admin.maxQuestion = item.passe;
-                        for (i = questao + 1; i < item.passe; i++) {
-                            for(key in quiz){
-                                if(key.replace(/\D/g,'') == i){
-                                    quiz[key] = -1;
-                                }
-                            }
+            if(questao == passQuestion[key].questao){
+                this.state.admin.maxQuestion = passQuestion[key].passe;
+                for (i = questao + 1; i < passQuestion[key].passe; i++) {
+                    for(key in this.state.quiz){
+                        if(key.replace(/\D/g,'') == i){
+                            this.state.quiz[key] = -1;
                         }
                     }
                 }
@@ -178,6 +166,10 @@ export default class Domicilio extends Component {
                             )}
 
                             <CardItem cardBody style={{justifyContent: 'center'}}>
+                                {renderIf(questao.tipo === 'input_currency',
+                                    <ReplyInputCurrency admin={admin} quiz={quiz.domicilio} questao={questao} />
+                                )}
+
                                 {renderIf(questao.tipo === 'input_numeric',
                                     <ReplyInputNumeric admin={admin} quiz={quiz.domicilio} questao={questao} />
                                 )}
@@ -212,12 +204,12 @@ export default class Domicilio extends Component {
                             )}
                         </Card>
                     </Content>
-                    <Footer style={styles.footer}>
+                    <Footer>
                         <FooterTab>
-                            <Button onPress={() => {this.popScreen()}}>
+                            <Button style={{backgroundColor: '#005376'}} onPress={() => {this.popScreen()}}>
                                 <Icon name='ios-arrow-back' />
                             </Button>
-                            <Button onPress={() => {this.pushScreen()}}>
+                            <Button style={{backgroundColor: '#005376'}} onPress={() => {this.pushScreen()}}>
                                 <Icon name='ios-arrow-forward' />
                             </Button>
                         </FooterTab>

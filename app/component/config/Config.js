@@ -126,7 +126,7 @@ export default class Config extends Component {
                             <Text style={styles.questaoConfig}>Nome do Aplicador</Text>
                             <Sae
                                 label={''}
-                                value={this.state.nomeAplicador}
+                                defaultValue={this.state.nomeAplicador}
                                 iconClass={FontAwesomeIcon}
                                 iconName={'pencil'}
                                 iconColor={'#808080'}
@@ -175,7 +175,7 @@ export default class Config extends Component {
                             <Text style={styles.questaoConfig}>Localidade</Text>
                             <Sae
                                 label={''}
-                                value={this.state.localidade}
+                                defaultValue={this.state.localidade}
                                 iconClass={FontAwesomeIcon}
                                 iconName={'pencil'}
                                 iconColor={'#808080'}
@@ -242,7 +242,7 @@ export default class Config extends Component {
                             <Text style={styles.questaoConfig}>Barragem</Text>
                             <Sae
                                 label={''}
-                                value={this.state.barragem}
+                                defaultValue={this.state.barragem}
                                 iconClass={FontAwesomeIcon}
                                 iconName={'pencil'}
                                 iconColor={'#808080'}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, ToastAndroid, View } from 'react-native';
 import { Text } from 'native-base';
-
 import { passQuestion } from './../business/PassQuestion';
 import { styles } from './../../../Styles';
 
@@ -62,15 +61,20 @@ export default class ReplyInputNumeric extends Component {
 
     render() {
         return (
-            <TextInput
-                style={{width: 600, fontSize: 20}}
-                keyboardType = 'default'
-                onChangeText = {(value) => {
-                    this.setQuestion(value);
-                }}
-                defaultValue = {this.state.selected}
-                maxLength = {200}
-            />
+            <View style={styles.opcaoView}>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                    <Text style={styles.opcaoCurrency}>R$ </Text>
+                    <TextInput
+                        style={{width: 100, fontSize: 20}}
+                        keyboardType = 'numeric'
+                        onChangeText = {(value) => {
+                            this.setQuestion(value);
+                        }}
+                        defaultValue = {this.state.selected}
+                        maxLength = {10}
+                    />
+                </View>
+            </View>
         );
     }
 }

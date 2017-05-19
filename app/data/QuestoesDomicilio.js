@@ -901,7 +901,7 @@ export const questoes = [
         pergunta_secundaria: '',
         opcoes: '',
         pergunta_extensao: '',
-        tipo: 'input_numeric'
+        tipo: 'input_currency'
     },
     {
         id: '27',
@@ -1785,7 +1785,7 @@ export const questoes = [
         pergunta_secundaria: '',
         opcoes: '',
         pergunta_extensao: '',
-        tipo: 'input_numeric'
+        tipo: 'input_currency'
     },
     {
         id: '53',
@@ -2504,6 +2504,6 @@ export const questoes = [
         pergunta_secundaria: '',
         opcoes: '',
         pergunta_extensao: '',
-        tipo: 'input_numeric'
+        tipo: 'input_currency'
     }
 ];

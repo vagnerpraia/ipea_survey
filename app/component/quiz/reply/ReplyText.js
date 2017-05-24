@@ -14,19 +14,24 @@ export default class ReplyInputNumeric extends Component {
             quiz: this.props.quiz,
             questao: this.props.questao,
             selected: null,
+            numeroQuestao: 1
         }
     }
 
     componentWillMount(){
         this.state.selected = this.props.quiz['questao_' + this.props.questao.id];
-        this.state.quiz['questao_' + this.state.questao.id] = this.state.selected;
+        this.state.numeroQuestao = Number(this.state.questao.id.replace(/\D/g,''));
+
+        if(this.state.selected != null){
+            this.state.admin.maxQuestion = this.state.numeroQuestao + 1;
+        }
     }
 
     setQuestion(value){
         let admin = this.state.admin;
         let quiz = this.state.quiz;
         let idQuestao = 'questao_' + this.state.questao.id;
-        let numeroQuestao = Number(this.state.questao.id.replace(/\D/g,''));
+        let numeroQuestao = this.state.numeroQuestao;
 
         if(quiz[idQuestao] === -1){
             ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);

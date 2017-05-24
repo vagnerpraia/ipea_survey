@@ -16,11 +16,17 @@ export default class ReplyRadio extends Component {
             quiz: this.props.quiz,
             questao: this.props.questao,
             selected: null,
+            numeroQuestao: 1
         }
     }
 
     componentWillMount(){
-        this.state.selected = this.props.quiz['questao_' + this.props.questao.id];
+        this.state.selected = this.state.quiz['questao_' + this.state.questao.id];
+        this.state.numeroQuestao = Number(this.state.questao.id.replace(/\D/g,''));
+
+        if(this.state.selected != null){
+            this.state.admin.maxQuestion = this.state.numeroQuestao + 1;
+        }
     }
 
     render() {
@@ -29,6 +35,7 @@ export default class ReplyRadio extends Component {
         let quiz = this.state.quiz;
         let questao = this.state.questao;
         let idQuestao = 'questao_' + questao.id;
+        let numeroQuestao = this.state.numeroQuestao;
 
         setQuestion = (value) => {
             if(quiz[idQuestao] === -1){
@@ -40,7 +47,6 @@ export default class ReplyRadio extends Component {
 
                 quiz[idQuestao] = value;
 
-                let numeroQuestao = Number(questao.id.replace(/\D/g,''));
                 admin.maxQuestion = numeroQuestao + 1;
 
                 for(key in passQuestion){

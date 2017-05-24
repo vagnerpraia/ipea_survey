@@ -20,7 +20,17 @@ export default class ReplyMultiSelect extends Component {
             admin: this.props.admin,
             quiz: this.props.quiz,
             questao: this.props.questao,
-            selected: this.props.quiz['questao_' + this.props.questao.id],
+            selected: null,
+            numeroQuestao: 1
+        }
+    }
+
+    componentWillMount(){
+        this.state.selected = this.state.quiz['questao_' + this.state.questao.id];
+        this.state.numeroQuestao = Number(this.state.questao.id.replace(/\D/g,''));
+
+        if(this.state.selected != null){
+            this.state.admin.maxQuestion = this.state.numeroQuestao + 1;
         }
     }
 
@@ -30,7 +40,7 @@ export default class ReplyMultiSelect extends Component {
         let quiz = this.state.quiz;
         let questao = this.state.questao;
         let idQuestao = 'questao_' + questao.id;
-        let numeroQuestao = Number(questao.id.replace(/\D/g,''));
+        let numeroQuestao = this.state.numeroQuestao;
 
         if(!Array.isArray(selected)){
             selected = new Array();

@@ -93,7 +93,7 @@ export default class Identificacao extends Component {
         },(error) => {
             console.log(error.message);
         },
-            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+            {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
         );
     }
 

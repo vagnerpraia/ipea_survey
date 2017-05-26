@@ -67,13 +67,16 @@ export default class Quiz extends Component {
             });
         }else if((this.state.quiz === undefined || this.state.quiz === null)){
             this.state.admin = AdminData.object(this.props.admin);
-            this.state.quiz = new QuizData(this.state.admin.id)
+            this.state.quiz = new QuizData(this.state.admin.id);
+            this.state.id = this.state.admin.id;
             FileStore.readQuiz(this.state.quiz, (result) => {
                 this.state.quiz = result;
                 this.forceUpdate();
             });
         }else{
             this.state.admin = AdminData.object(this.props.admin);
+            this.state.id = this.state.admin.id;
+            this.forceUpdate();
         }
     }
 

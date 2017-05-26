@@ -46,6 +46,7 @@ export default class Identificacao extends Component {
                     let json = JSON.parse(data);
 
                     this.state.quiz.identificacao.nomeAplicador = json.nomeAplicador;
+                    this.state.quiz.identificacao.nomeEntrevistado = json.nomeEntrevistado;
                     this.state.quiz.identificacao.estado = json.estado;
                     this.state.quiz.identificacao.municipio = json.municipio;
                     this.state.quiz.identificacao.localidade = json.localidade;
@@ -68,7 +69,6 @@ export default class Identificacao extends Component {
                             let json = JSON.parse(data);
 
                             this.state.quiz.identificacao.nomeAplicador = json.nomeAplicador;
-                            this.state.quiz.identificacao.nomeEntrevistado = json.nomeEntrevistado;
                             this.state.quiz.identificacao.estado = json.estado;
                             this.state.quiz.identificacao.municipio = json.municipio;
                             this.state.quiz.identificacao.localidade = json.localidade;
@@ -85,6 +85,16 @@ export default class Identificacao extends Component {
                 });
             }
         });
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position);
+            let file_path_dest = dir_quiz + this.state.quiz.identificacao.id + '/gps.json';
+            fs.createFile(file_path, '{"position": ' + position + '}', 'utf8');
+        },(error) => {
+            console.log(error.message);
+        },
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        );
     }
 
     voltar(){

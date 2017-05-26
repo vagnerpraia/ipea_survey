@@ -7,21 +7,64 @@ import FileStore from './../../FileStore';
 import QuizData from './../../data/QuizData';
 import { styles } from './../../Styles';
 
+import RNFetchBlob from 'react-native-fetch-blob';
+
+const dirs = RNFetchBlob.fs.dirs;
+const fs = RNFetchBlob.fs;
+
+var dir_base = dirs.DownloadDir.substring(0, dirs.DownloadDir.lastIndexOf('/') + 1);
+var dir_file = dir_base + 'Ipea/IpeaSurvey/';
+
 export default class Quiz extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            id: 1,
             admin: this.props.admin,
             quiz: this.props.quiz
         };
     }
 
+    checkId(id){
+        let file_path = dir_file + 'Quiz/' + id;
+        fs.exists(file_path).then((exist) => {
+            if(exist){
+                id = id + 1;
+                this.checkId(id);
+            }else{
+                this.createId(id);
+            }
+        });
+    }
+
+    createId(id){
+        this.state.id = id;
+        let file_path = dir_file + 'admin.json';
+        fs.writeFile(file_path, '{"id": ' + id + '}', 'utf8').then(() => {
+            this.state.admin = new AdminData(this.state.id);
+            this.state.quiz = new QuizData(this.state.id);
+            this.forceUpdate();
+        });
+    }
+
     componentWillMount(){
         if((this.state.quiz === undefined || this.state.quiz === null) && (this.state.admin === undefined || this.state.admin === null)){
-            let id = new Date().getTime();
-            this.state.admin = new AdminData(id);
-            this.state.quiz = new QuizData(id);
+            let file_path = dir_file + 'admin.json';
+            fs.exists(file_path).then((exist) => {
+                if(exist){
+                    fs.readFile(file_path, 'utf8').then((data) => {
+                        let json = JSON.parse(data);
+                        json.id = Number(json.id) + 1;
+                        this.checkId(json.id);
+                    });
+                }else{
+                    let data = '{"id": ' + this.state.id + '}';
+                    fs.createFile(file_path, data, 'utf8');
+                    this.state.admin = new AdminData(this.state.id);
+                    this.state.quiz = new QuizData(this.state.id);
+                }
+            });
         }else if((this.state.quiz === undefined || this.state.quiz === null)){
             this.state.admin = AdminData.object(this.props.admin);
             this.state.quiz = new QuizData(this.state.admin.id)
@@ -35,9 +78,22 @@ export default class Quiz extends Component {
     }
 
     popScreen(){
-        this.props.navigator.replacePreviousAndPop({
-            name: 'home'
-        });
+        let quiz_path = dir_file + 'Quiz/' + this.state.id;
+        let admin_path = dir_file + 'admin.json';
+        fs.exists(quiz_path).then((exist) => {
+            if(exist){
+                this.props.navigator.replacePreviousAndPop({
+                    name: 'home'
+                });
+            }else{
+                let id = Number(this.state.id) - 1;
+                fs.writeFile(admin_path, '{"id": ' + id + '}', 'utf8').then(() => {
+                    this.props.navigator.replacePreviousAndPop({
+                        name: 'home'
+                    });
+                });
+            }
+        });        
     }
 
     pushScreen(route){
@@ -59,20 +115,22 @@ export default class Quiz extends Component {
 
     checkCompleto(segment){
         let result = styles.buttonIncompleto;
-        if(segment == 'identificacao'){
-            if(this.state.quiz.identificacao) if(this.state.quiz.identificacao.completo) result = styles.buttonCompleto;
-        }else if(segment == 'domicilio'){
-            if(this.state.quiz.domicilio) if(this.state.quiz.domicilio.completo) result = styles.buttonCompleto;
-        }else if(segment == 'morador'){
-            if(this.state.quiz.moradores){
-                let completo = true;
-                for(morador in this.state.quiz.moradores){
-                    if(morador.completo === false){
-                        completo = false;
-                        break;
+        if(this.state.quiz != null){
+            if(segment == 'identificacao'){
+                if(this.state.quiz.identificacao) if(this.state.quiz.identificacao.completo) result = styles.buttonCompleto;
+            }else if(segment == 'domicilio'){
+                if(this.state.quiz.domicilio) if(this.state.quiz.domicilio.completo) result = styles.buttonCompleto;
+            }else if(segment == 'morador'){
+                if(this.state.quiz.moradores){
+                    let completo = true;
+                    for(morador in this.state.quiz.moradores){
+                        if(morador.completo === false){
+                            completo = false;
+                            break;
+                        }
                     }
+                    if(completo) result = styles.buttonCompleto;
                 }
-                if(completo) result = styles.buttonCompleto;
             }
         }
         return result;
@@ -96,7 +154,7 @@ export default class Quiz extends Component {
                 <Content>
                     <View style={styles.viewContentQuestionario}>
                         <Text style={styles.texLabeltViewContent}>Número do questionário:</Text>
-                        <Text style={styles.textContentViewContent}>{this.state.admin.id}</Text>
+                        <Text style={styles.textContentViewContent}>{this.state.id}</Text>
                     </View>
                     <Button full style={this.checkCompleto('identificacao')} onPress={() => {this.pushScreen('identificacao')}}>
                         <Icon name='md-finger-print' />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ToastAndroid, View } from 'react-native';
+import { Alert, AsyncStorage, ToastAndroid, View } from 'react-native';
 import { Body, Button, Container, Content, Header, Left, Text, Icon, Title } from 'native-base';
 
 import AdminData from './../../data/AdminData';
@@ -22,30 +22,9 @@ export default class Quiz extends Component {
         this.state = {
             id: 1,
             admin: this.props.admin,
-            quiz: this.props.quiz
+            quiz: this.props.quiz,
+            position: ''
         };
-    }
-
-    checkId(id){
-        let file_path = dir_file + 'Quiz/' + id;
-        fs.exists(file_path).then((exist) => {
-            if(exist){
-                id = id + 1;
-                this.checkId(id);
-            }else{
-                this.createId(id);
-            }
-        });
-    }
-
-    createId(id){
-        this.state.id = id;
-        let file_path = dir_file + 'admin.json';
-        fs.writeFile(file_path, '{"id": ' + id + '}', 'utf8').then(() => {
-            this.state.admin = new AdminData(this.state.id);
-            this.state.quiz = new QuizData(this.state.id);
-            this.forceUpdate();
-        });
     }
 
     componentWillMount(){
@@ -80,6 +59,58 @@ export default class Quiz extends Component {
         }
     }
 
+    componentDidMount() {
+        let file_path = dir_file + 'Quiz/' + this.state.id + '/gps.json';
+        fs.exists(file_path).then((exist) => {
+            if(!exist){
+                AsyncStorage.setItem('@IpeaSurvey:screen', 'quiz', () => {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            try {
+                                let file_path = dir_file + 'Quiz/' + this.state.id + '/gps.json';
+                                AsyncStorage.getItem('@IpeaSurvey:screen', (err, result) => {
+                                    if(result == 'quiz'){
+                                        fs.writeFile(file_path, JSON.stringify(position), 'utf8').then(() => {
+                                            ToastAndroid.showWithGravity('Geolocalização capturada', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                                        });
+                                    }
+                                });
+                            } catch (error) {
+                                alert(JSON.stringify(error));
+                            }
+                        },
+                        (error) => alert(JSON.stringify(error)),
+                        {enableHighAccuracy: true, timeout: 50000, maximumAge: 1000}
+                    );
+                });
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    checkId(id){
+        let file_path = dir_file + 'Quiz/' + id;
+        fs.exists(file_path).then((exist) => {
+            if(exist){
+                id = id + 1;
+                this.checkId(id);
+            }else{
+                this.createId(id);
+            }
+        });
+    }
+
+    createId(id){
+        this.state.id = id;
+        let file_path = dir_file + 'admin.json';
+        fs.writeFile(file_path, '{"id": ' + id + '}', 'utf8').then(() => {
+            this.state.admin = new AdminData(this.state.id);
+            this.state.quiz = new QuizData(this.state.id);
+            this.forceUpdate();
+        });
+    }
+
     popScreen(){
         let quiz_path = dir_file + 'Quiz/' + this.state.id;
         let admin_path = dir_file + 'admin.json';
@@ -107,13 +138,45 @@ export default class Quiz extends Component {
         });
     }
 
+    cancelar(){
+        Alert.alert(
+            'Deseja cancelar este questionário?',
+            alertMessage,
+            [
+                {
+                    text: 'Sim', onPress: () => {
+                        ToastAndroid.showWithGravity('Sim', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                    },
+                },
+                {
+                    text: 'Não', onPress: () => {
+                        ToastAndroid.showWithGravity('Não', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                    }
+                }
+            ]
+        )
+    }
+
     voltar(){
-        /*
-         *  ====================================================================================================
-         *  TODO: Adicionar popup informando se deseja cancelar ou não o questionário
-         *  ====================================================================================================
-         */
-        this.popScreen();
+        let file_path = dir_file + 'Quiz/' + this.state.id;
+        fs.ls(file_path).then((files) => {
+            let flag_delete = true;
+            files.forEach(function(file) {
+                if(file != 'gps.json') flag_delete = false;
+            });
+
+            if(flag_delete){
+                let file_path = dir_file + 'Quiz/' + this.state.id;
+                fs.unlink(file_path).then(() => {
+                    this.popScreen();
+                }).catch((error) => {
+                    console.log(error);
+                    this.popScreen();
+                });
+            }
+
+            this.popScreen();
+        });
     }
 
     checkCompleto(segment){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, View } from 'react-native';
+import { AsyncStorage, Image, View } from 'react-native';
 import { Body, Button, Container, Content, Header, Left, Text, Icon, Title } from 'native-base';
 
 import AdminData from './../../data/AdminData';
@@ -23,6 +23,10 @@ export default class Main extends Component {
             admin: null,
             quiz: null,
         });
+    }
+
+    componentDidMount() {
+        AsyncStorage.setItem('@IpeaSurvey:screen', 'main', () => {});
     }
 
     render() {

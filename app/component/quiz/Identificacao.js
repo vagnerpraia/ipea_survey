@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, ToastAndroid, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import { Body, Button, Container, Content, Left, List, Header, Icon, ListItem, Picker, Radio, Text, Title } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button';
 import RNFetchBlob from 'react-native-fetch-blob';
@@ -85,16 +85,6 @@ export default class Identificacao extends Component {
                 });
             }
         });
-
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position);
-            let file_path_dest = dir_quiz + this.state.quiz.identificacao.id + '/gps.json';
-            fs.createFile(file_path, '{"position": ' + position + '}', 'utf8');
-        },(error) => {
-            console.log(error.message);
-        },
-            {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
-        );
     }
 
     voltar(){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, AsyncStorage, ToastAndroid, View } from 'react-native';
-import { Body, Button, Container, Content, Header, Left, Text, Icon, Title } from 'native-base';
+import { Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title } from 'native-base';
 
 import AdminData from './../../data/AdminData';
 import FileStore from './../../FileStore';
@@ -140,18 +140,23 @@ export default class Quiz extends Component {
 
     cancelar(){
         Alert.alert(
+            'Cancelar',
             'Deseja cancelar este questionário?',
-            alertMessage,
             [
+
                 {
-                    text: 'Sim', onPress: () => {
-                        ToastAndroid.showWithGravity('Sim', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                    },
+                    text: 'Não', onPress: () => {}
                 },
                 {
-                    text: 'Não', onPress: () => {
-                        ToastAndroid.showWithGravity('Não', ToastAndroid.SHORT, ToastAndroid.CENTER);
-                    }
+                    text: 'Sim', onPress: () => {
+                        let file_path = dir_file + 'Quiz/' + this.state.id;
+                        fs.unlink(file_path).then(() => {
+                            this.popScreen();
+                        }).catch((error) => {
+                            console.log(error);
+                            this.popScreen();
+                        });
+                    },
                 }
             ]
         )
@@ -216,6 +221,11 @@ export default class Quiz extends Component {
                             <Title>Questionário</Title>
                         </View>
                     </Body>
+                    <Right>
+                        <Button transparent onPress={() => {this.cancelar()}}>
+                            <Icon name='md-trash' />
+                        </Button>
+                    </Right>
                 </Header>
                 <Content>
                     <View style={styles.viewContentQuestionario}>

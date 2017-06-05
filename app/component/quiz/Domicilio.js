@@ -13,7 +13,8 @@ import ReplyRadio from './reply/ReplyRadio';
 import ReplyText from './reply/ReplyText';
 import ReplyTime from './reply/ReplyTime';
 
-import { passQuestion } from './business/PassQuestion';
+import { passQuestion } from './business/PassQuestionDomicilio';
+
 import FileStore from './../../FileStore';
 import DomicilioData from './../../data/DomicilioData';
 import { questoes } from './../../data/QuestoesDomicilio';
@@ -168,27 +169,27 @@ export default class Domicilio extends Component {
 
                             <CardItem cardBody style={{justifyContent: 'center'}}>
                                 {renderIf(questao.tipo === 'input_currency',
-                                    <ReplyInputCurrency admin={admin} quiz={quiz.domicilio} questao={questao} />
+                                    <ReplyInputCurrency admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
                                 )}
 
                                 {renderIf(questao.tipo === 'input_numeric',
-                                    <ReplyInputNumeric admin={admin} quiz={quiz.domicilio} questao={questao} />
+                                    <ReplyInputNumeric admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
                                 )}
 
                                 {renderIf(questao.tipo === 'multiple',
-                                    <ReplyMultiSelect admin={admin} quiz={quiz.domicilio} questao={questao} />
+                                    <ReplyMultiSelect admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
                                 )}
 
                                 {renderIf(questao.tipo === 'radio',
-                                    <ReplyRadio admin={admin} quiz={quiz.domicilio} questao={questao} />
+                                    <ReplyRadio admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
                                 )}
 
                                 {renderIf(questao.tipo === 'text',
-                                    <ReplyText admin={admin} quiz={quiz.domicilio} questao={questao} />
+                                    <ReplyText admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
                                 )}
 
                                 {renderIf(questao.tipo === 'input_time',
-                                    <ReplyTime admin={admin} quiz={morador} questao={questao} />
+                                    <ReplyTime admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
                                 )}
                             </CardItem>
 

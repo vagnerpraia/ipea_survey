@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, TextInput, ToastAndroid, View } from 'react-native';
 import { Text } from 'native-base';
 
-import { passQuestion } from './../business/PassQuestion';
 import { styles } from './../../../Styles';
 
 export default class ReplyTime extends Component {
@@ -28,6 +27,7 @@ export default class ReplyTime extends Component {
     }
 
     setHoras(value){
+        let passQuestion = this.props.passQuestion;
         let admin = this.state.admin;
         let quiz = this.state.quiz;
         let idQuestao = 'questao_' + this.state.questao.id;
@@ -68,6 +68,7 @@ export default class ReplyTime extends Component {
     }
 
     setMinutos(value){
+        let passQuestion = this.props.passQuestion;
         let admin = this.state.admin;
         let quiz = this.state.quiz;
         let idQuestao = 'questao_' + this.state.questao.id;

@@ -13,7 +13,8 @@ import ReplyRadio from './reply/ReplyRadio';
 import ReplyText from './reply/ReplyText';
 import ReplyTime from './reply/ReplyTime';
 
-import { passQuestionMorador } from './business/PassQuestionMorador';
+import { passQuestion } from './business/PassQuestionMorador';
+
 import FileStore from './../../FileStore';
 import MoradorData from './../../data/MoradorData';
 import { questoes } from './../../data/QuestoesMorador';
@@ -42,10 +43,10 @@ export default class Morador extends Component {
         FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
 
         let questao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
-        for(key in passQuestionMorador){
-            if(questao == passQuestionMorador[key].questao){
-                this.state.admin.maxQuestion = passQuestionMorador[key].passe;
-                for (i = questao + 1; i < passQuestionMorador[key].passe; i++) {
+        for(key in passQuestion){
+            if(questao == passQuestion[key].questao){
+                this.state.admin.maxQuestion = passQuestion[key].passe;
+                for (i = questao + 1; i < passQuestion[key].passe; i++) {
                     for(key in this.state.quiz){
                         if(key.replace(/\D/g,'') == i){
                             this.state.quiz[key] = -1;
@@ -188,27 +189,27 @@ export default class Morador extends Component {
 
                             <CardItem cardBody style={{justifyContent: 'center'}}>
                                 {renderIf(questao.tipo === 'input_currency',
-                                    <ReplyInputCurrency admin={admin} quiz={quiz.domicilio} questao={questao} />
+                                    <ReplyInputCurrency admin={admin} quiz={morador} questao={questao} passQuestion={passQuestion} />
                                 )}
                                 
                                 {renderIf(questao.tipo === 'input_numeric',
-                                    <ReplyInputNumeric admin={admin} quiz={morador} questao={questao} />
+                                    <ReplyInputNumeric admin={admin} quiz={morador} questao={questao} passQuestion={passQuestion} />
                                 )}
 
                                 {renderIf(questao.tipo === 'multiple',
-                                    <ReplyMultiSelect admin={admin} quiz={morador} questao={questao} />
+                                    <ReplyMultiSelect admin={admin} quiz={morador} questao={questao} passQuestion={passQuestion} />
                                 )}
 
                                 {renderIf(questao.tipo === 'radio',
-                                    <ReplyRadio admin={admin} quiz={morador} questao={questao} />
+                                    <ReplyRadio admin={admin} quiz={morador} questao={questao} passQuestion={passQuestion} />
                                 )}
 
                                 {renderIf(questao.tipo === 'text',
-                                    <ReplyText admin={admin} quiz={morador} questao={questao} />
+                                    <ReplyText admin={admin} quiz={morador} questao={questao} passQuestion={passQuestion} />
                                 )}
 
                                 {renderIf(questao.tipo === 'input_time',
-                                    <ReplyTime admin={admin} quiz={morador} questao={questao} />
+                                    <ReplyTime admin={admin} quiz={morador} questao={questao} passQuestion={passQuestion} />
                                 )}
                             </CardItem>
 
@@ -231,10 +232,10 @@ export default class Morador extends Component {
                     </Content>
                     <Footer style={styles.footer}>
                         <FooterTab>
-                            <Button onPress={() => {this.popScreen()}}>
+                            <Button style={{backgroundColor: '#005376'}} onPress={() => {this.popScreen()}}>
                                 <Icon name='ios-arrow-back' />
                             </Button>
-                            <Button onPress={() => {this.pushScreen()}}>
+                            <Button style={{backgroundColor: '#005376'}} onPress={() => {this.pushScreen()}}>
                                 <Icon name='ios-arrow-forward' />
                             </Button>
                         </FooterTab>

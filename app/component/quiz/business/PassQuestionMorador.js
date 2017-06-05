@@ -1,4 +1,4 @@
-export const passQuestionMorador = [
+export const passQuestion = [
     {
         questao: 75,
         opcao: [0, 1],

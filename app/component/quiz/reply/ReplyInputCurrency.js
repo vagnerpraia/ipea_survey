@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, ToastAndroid, View } from 'react-native';
 import { Text } from 'native-base';
-import { passQuestion } from './../business/PassQuestion';
+
 import { styles } from './../../../Styles';
 
 export default class ReplyInputNumeric extends Component {
@@ -27,6 +27,7 @@ export default class ReplyInputNumeric extends Component {
     }
 
     setQuestion(value){
+        let passQuestion = this.props.passQuestion;
         let admin = this.state.admin;
         let quiz = this.state.quiz;
         let idQuestao = 'questao_' + this.state.questao.id;

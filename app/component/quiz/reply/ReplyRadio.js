@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ToastAndroid, View } from 'react-native';
 import { List, ListItem, Radio, Text } from 'native-base';
 
-import { passQuestion } from './../business/PassQuestion';
 import { styles } from './../../../Styles';
 
 const Dimensions = require('Dimensions');
@@ -39,6 +38,8 @@ export default class ReplyRadio extends Component {
         let numeroQuestao = this.state.numeroQuestao;
 
         setQuestion = (value) => {
+            let passQuestion = this.props.passQuestion;
+
             if(quiz[idQuestao] === -1){
                 ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }else{

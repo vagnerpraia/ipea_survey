@@ -3,7 +3,6 @@ import { StyleSheet, ToastAndroid, View } from 'react-native';
 import { CheckBox, ListItem, Text } from 'native-base';
 
 import { businessQuestion } from './../business/BusinessQuestion';
-import { passQuestion } from './../business/PassQuestion';
 import { styles } from './../../../Styles';
 
 Array.prototype.remove = function(from, to) {
@@ -47,6 +46,7 @@ export default class ReplyMultiSelect extends Component {
         }
 
         setQuestion = (value) => {
+            let passQuestion = this.props.passQuestion;
             if(this.state.quiz[idQuestao] === -1){
                 ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
             }else{

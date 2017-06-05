@@ -15,25 +15,36 @@ export default class FileStore {
 
     static readQuiz(quiz, callback) {
         let dir_file_path = dirQuiz + quiz.id;
+
+        flag = 0;
+
         fs.readFile(dir_file_path + '/identificacao.json', 'utf8').then((identificacao) => {
             quiz.identificacao = JSON.parse(identificacao);
-
-            fs.readFile(dir_file_path + '/domicilio.json', 'utf8').then((domicilio) => {
-                quiz.domicilio = JSON.parse(domicilio);
-
-                fs.readFile(dir_file_path + '/moradores.json', 'utf8').then((moradores) => {
-                    quiz.moradores = JSON.parse(moradores);
-
-                    return callback(quiz);
-                }).catch((err) => {
-                    console.log(err);
-                });
-            }).catch((err) => {
-                console.log(err);
-            });
+            flag += 1;
         }).catch((err) => {
             console.log(err);
+            flag += 1;
         });
+        
+        fs.readFile(dir_file_path + '/domicilio.json', 'utf8').then((domicilio) => {
+            quiz.domicilio = JSON.parse(domicilio);
+            flag += 1;
+        }).catch((err) => {
+            console.log(err);
+            flag += 1;
+        });
+
+        fs.readFile(dir_file_path + '/moradores.json', 'utf8').then((moradores) => {
+            quiz.moradores = JSON.parse(moradores);
+            flag += 1;
+        }).catch((err) => {
+            console.log(err);
+            flag += 1;
+        });
+
+        if(flag === 3){
+            return callback(quiz);
+        }
     };
 
     static readConfig(callback) {

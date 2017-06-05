@@ -56,15 +56,19 @@ export default class ReplyMultiSelect extends Component {
                     selected.push(value);
                 }
 
-                for(keyBusiness in businessQuestion){
-                    let business = businessQuestion[keyBusiness];
-                    if(typeof business === 'object'){
-                        if(business.opcao.indexOf(value) >= 0){
-                            for(keyBloqueio in business.bloqueio){
-                                let bloqueio = business.bloqueio[keyBloqueio];
-                                if(selected.indexOf(bloqueio) >= 0){
-                                    selected.remove(selected.indexOf(bloqueio));
+                for(key_selected in selected){
+                    for(keyBusiness in businessQuestion){
+                        let business = businessQuestion[keyBusiness];
+
+                        if(business.questao == numeroQuestao){
+                            if(business.opcao.indexOf(selected[key_selected]) > -1){
+                                for(keyBloqueio in business.bloqueio){
+                                    let bloqueio = business.bloqueio[keyBloqueio];
+                                    if(selected.indexOf(bloqueio) > -1){
+                                        selected.remove(selected.indexOf(bloqueio));
+                                    }
                                 }
+                                break;
                             }
                         }
                     }
@@ -80,7 +84,7 @@ export default class ReplyMultiSelect extends Component {
                 for(key in passQuestion){
                     if(numeroQuestao == passQuestion[key].questao){
                         let passe = passQuestion[key].passe;
-                        if(passQuestion[key].opcao.indexOf(value) > -1){
+                        if(value != '' && passQuestion[key].opcao.indexOf(Number(value)) > -1){
                             this.state.admin.maxQuestion = passQuestion[key].passe;
                             for (i = numeroQuestao + 1; i < passe; i++) {
                                 for(key in this.state.quiz){
@@ -89,6 +93,7 @@ export default class ReplyMultiSelect extends Component {
                                     }
                                 }
                             }
+                            break;
                         }else{
                             for (i = numeroQuestao + 1; i < passe; i++) {
                                 for(key in this.state.quiz){
@@ -104,7 +109,7 @@ export default class ReplyMultiSelect extends Component {
         }
 
         return (
-            <View style={{paddingLeft: 20}}>
+            <View style={{paddingLeft: 20, flex: 1, flexDirection:'column'}}>
                 {this.state.questao.opcoes.map(function(object, i){
                     return(
                         <ListItem key={i}>

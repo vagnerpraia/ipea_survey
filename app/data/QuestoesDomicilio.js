@@ -736,7 +736,7 @@ export const questoes = [
         id: '16',
         titulo: 'Características do domicílio',
         pergunta: 'Qual a fonte de abastecimento de água utilizada neste domicílio?',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Permite mais de uma opção',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Rede pública de distribuição (inclusive redes isoladas da zona rural quando mantidas por concessionárias ou poder público)', value: 0, observacao: ''},
@@ -773,7 +773,7 @@ export const questoes = [
         id: '18',
         titulo: 'Características do domicílio',
         pergunta: 'Como os moradores do domicílio avaliam a qualidade da água que utiliza?',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Usar cartão 1',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Muito boa', value: 0, observacao: ''},
@@ -832,7 +832,7 @@ export const questoes = [
         id: '22',
         titulo: 'Características do domicílio',
         pergunta: 'Qual a origem (fonte) desta energia?',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Permite mais de uma opção',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Companhia distribuidora', observacao: '', value: 0},
@@ -851,7 +851,7 @@ export const questoes = [
         id: '23',
         titulo: 'Características do domicílio',
         pergunta: 'Em relação ao abastecimento e à qualidade da energia elétrica no seu domicílio, a situação é:',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Usar cartão 2',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Há disponibilidade de energia o ano todo em condições adequadas ao conforto da família', observacao: '', value: 0},
@@ -880,7 +880,7 @@ export const questoes = [
         id: '25',
         titulo: 'Características do domicílio',
         pergunta: 'O valor da tarifa de energia elétrica paga é:',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Usar cartão 3',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Muito alto', observacao: '', value: 0},
@@ -907,7 +907,7 @@ export const questoes = [
         id: '27',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'Como está a condição do transporte coletivo que atende à comunidade onde o domicílio está localizado?',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Usar cartão 1',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Muito boa', observacao: '', value: 0},
@@ -942,7 +942,7 @@ export const questoes = [
         id: '29',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'Qual a condição das estradas utilizadas pelos moradores para se deslocarem a partir do domicílio?',
-        observacao_pergunta: 'Somente para quem mora na zona rural',
+        observacao_pergunta: 'Somente para quem mora na zona rural / Usar cartão 1',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Muito boa', observacao: '', value: 0},
@@ -1108,7 +1108,7 @@ export const questoes = [
         id: '33',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'Quando você vai a um posto de saúde ou a um hospital, encontra médico?',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Usar cartão 4',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Sempre', observacao: '', value: 0},
@@ -1125,8 +1125,8 @@ export const questoes = [
     {
         id: '34',
         titulo: 'Transporte e políticas sociais',
-        pergunta: 'Nos últimos 12 meses, com que frequência o seu domicílio recebeu uma visita de algum agente de endemias?',
-        observacao_pergunta: 'como a dengue, por exemplo',
+        pergunta: 'Nos últimos 12 meses, o seu domicílio recebeu uma visita de algum agente de endemias?',
+        observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Sim', observacao: '', value: 0},
@@ -1139,7 +1139,7 @@ export const questoes = [
     {
         id: '35',
         titulo: 'Transporte e políticas sociais',
-        pergunta: 'Nos últimos 12 meses, com que frequência o domicílio recebeu a visita da equipe do programa de saúde da família (PSF) e/ou de agentes de saúde?',
+        pergunta: 'Nos últimos 12 meses, com que frequência o domicílio recebeu a visita de equipe e/ou de agentes de saúde?',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
@@ -1158,8 +1158,8 @@ export const questoes = [
     {
         id: '36',
         titulo: 'Transporte e políticas sociais',
-        pergunta: 'Como você e os moradores do domicílio avaliam a atuação da equipe do programa saúde da família (PSF) ou dos agentes de saúde',
-        observacao_pergunta: '',
+        pergunta: 'Como você e os moradores do domicílio avaliam a atuação da equipe e/ou dos agentes de saúde:',
+        observacao_pergunta: 'Usar cartão 1',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Muito boa', observacao: '', value: 0},
@@ -1328,17 +1328,17 @@ export const questoes = [
         id: '42',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a construção da barragem, de que forma você e sua família foram atingidos?',
-        observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar E o que mais? E apenas após esgotar as opções passar para as seguintes',
+        observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar: E o que mais? E apenas após esgotar as opções passar para as seguintes / Permite mais de uma opção',
         pergunta_secundaria: '',
         opcoes: [
-            {label: 'Perderam a propriedade ou a posse de área rural', observacao: 'Passe para a questão 44', value: 0},
-            {label: 'Perderam a propriedade ou a posse de área urbana', observacao: 'Passe para a questão 44', value: 1},
-            {label: 'Perderam a casa em que residiam', observacao: 'Passe para a questão 44', value: 2},
-            {label: 'Perderam benfeitorias ou outras casas de sua propriedade ou posse', observacao: 'Passe para a questão 44', value: 3},
-            {label: 'Sofreram danos (rachaduras, desmoronamentos) na casa ou em benfeitorias não desapropriadas', observacao: 'Passe para a questão 44', value: 4},
-            {label: 'Perderam sua fonte de renda ou o trabalho', observacao: 'Passe para a questão 44', value: 5},
-            {label: 'Perderam a capacidade produtiva das terras de parcela que sobrou do imóvel', observacao: 'Passe para a questão 44', value: 6},
-            {label: 'A pesca foi prejudicada', observacao: 'Passe para a questão 44', value: 7},
+            {label: 'A pesca foi prejudicada', observacao: '', value: 0},
+            {label: 'Perderam a propriedade ou a posse de área rural', observacao: 'Passe para a questão 44', value: 1},
+            {label: 'Perderam a propriedade ou a posse de área urbana', observacao: 'Passe para a questão 44', value: 2},
+            {label: 'Perderam a casa em que residiam', observacao: 'Passe para a questão 44', value: 3},
+            {label: 'Perderam benfeitorias ou outras casas de sua propriedade ou posse', observacao: 'Passe para a questão 44', value: 4},
+            {label: 'Sofreram danos (rachaduras, desmoronamentos) na casa ou em benfeitorias não desapropriadas', observacao: 'Passe para a questão 44', value: 5},
+            {label: 'Perderam sua fonte de renda ou o trabalho', observacao: 'Passe para a questão 44', value: 6},
+            {label: 'Perderam a capacidade produtiva das terras de parcela que sobrou do imóvel', observacao: 'Passe para a questão 44', value: 7},
             {label: 'Houve diminuição ou perderam acesso a outras áreas onde coletavam produtos que geravam renda', observacao: 'Passe para a questão 44', value: 8},
             {label: 'Houve diminuição ou perderam acesso a outras áreas onde coletavam produtos para o próprio consumo da família (inclusive lenha)', observacao: 'Passe para a questão 44', value: 9},
             {label: 'Tiveram estabelecimento comercial, de serviços ou industrial inviabilizado', observacao: 'Passe para a questão 44', value: 10},
@@ -1357,7 +1357,7 @@ export const questoes = [
         id: '43',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'Em relação à pesca, após a construção da barragem, quais as maiores dificuldades encontradas?',
-        observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar: E o que mais?',
+        observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar: E o que mais? / Permite mais de uma opção',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Diminuiu a quantidade de peixes', observacao: '', value: 0},
@@ -1621,7 +1621,7 @@ export const questoes = [
         id: '50',
         titulo: 'Transporte e políticas sociais',
         pergunta: '. Com a construção da barragem, as formas de reparação recebida pela família foram:',
-        observacao_pergunta: 'permite mais de uma opção',
+        observacao_pergunta: 'Permite mais de uma opção',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Reassentamento em área rural', observacao: '', value: 0},
@@ -1645,7 +1645,7 @@ export const questoes = [
         id: '51a',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
-        observacao_pergunta: 'após responder passar para questão 56',
+        observacao_pergunta: 'Após responder passar para questão 56',
         pergunta_secundaria: {
             pergunta: 'Casa para moradia da família',
             observacao_pergunta: '',
@@ -1662,7 +1662,7 @@ export const questoes = [
         id: '51b',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
-        observacao_pergunta: 'após responder passar para questão 56',
+        observacao_pergunta: 'Após responder passar para questão 56',
         pergunta_secundaria: {
             pergunta: 'Energia elétrica',
             observacao_pergunta: '',
@@ -1679,7 +1679,7 @@ export const questoes = [
         id: '51c',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
-        observacao_pergunta: 'após responder passar para questão 56',
+        observacao_pergunta: 'Após responder passar para questão 56',
         pergunta_secundaria: {
             pergunta: 'Água encanada suficiente para consumo e produção',
             observacao_pergunta: '',
@@ -1696,7 +1696,7 @@ export const questoes = [
         id: '51d',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
-        observacao_pergunta: 'após responder passar para questão 56',
+        observacao_pergunta: 'Após responder passar para questão 56',
         pergunta_secundaria: {
             pergunta: 'Galpão e instalações necessárias ao trabalho (benfeitorias)',
             observacao_pergunta: '',
@@ -1713,7 +1713,7 @@ export const questoes = [
         id: '51e',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
-        observacao_pergunta: 'após responder passar para questão 56',
+        observacao_pergunta: 'Após responder passar para questão 56',
         pergunta_secundaria: {
             pergunta: 'Estrada de acesso em boas condições',
             observacao_pergunta: '',
@@ -1730,7 +1730,7 @@ export const questoes = [
         id: '51f',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
-        observacao_pergunta: 'após responder passar para questão 56',
+        observacao_pergunta: 'Após responder passar para questão 56',
         pergunta_secundaria: {
             pergunta: 'Área de plantio ou pasto preparado',
             observacao_pergunta: '',
@@ -1747,7 +1747,7 @@ export const questoes = [
         id: '51g',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
-        observacao_pergunta: 'após responder passar para questão 56',
+        observacao_pergunta: 'Após responder passar para questão 56',
         pergunta_secundaria: {
             pergunta: 'Recursos para manutenção durante o período inicial da transição da produção (até a primeira colheita)',
             observacao_pergunta: '',
@@ -1764,7 +1764,7 @@ export const questoes = [
         id: '51h',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'No reassentamento em área rural, a área possuía ou foi fornecido(a):',
-        observacao_pergunta: 'após responder passar para questão 56',
+        observacao_pergunta: 'Após responder passar para questão 56',
         pergunta_secundaria: {
             pergunta: 'Assistência técnica',
             observacao_pergunta: '',
@@ -1781,11 +1781,11 @@ export const questoes = [
         id: '52',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'Qual o valor da indenização (em dinheiro) ou da carta de crédito recebida?',
-        observacao_pergunta: '(registrar o valor de acordo com a moeda que o entrevistado informar – real, cruzado, cruzado novo, cruzeiro etc.',
+        observacao_pergunta: 'Registrar o valor de acordo com a moeda que o entrevistado informar – real, cruzado, cruzado novo, cruzeiro etc.',
         pergunta_secundaria: '',
         opcoes: '',
         pergunta_extensao: '',
-        tipo: 'input_currency'
+        tipo: 'text'
     },
     {
         id: '53',
@@ -1834,7 +1834,7 @@ export const questoes = [
         id: '55b',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'Com a indenização (dinheiro recebido) ou carta de crédito, foi possível obter uma nova propriedade rural com:',
-        observacao_pergunta: 'após responder passar para questão 57',
+        observacao_pergunta: 'Após responder passar para questão 57',
         pergunta_secundaria: {
             pergunta: 'Energia elétrica',
             observacao_pergunta: '',
@@ -1933,7 +1933,7 @@ export const questoes = [
         id: '57',
         titulo: 'Transporte e políticas sociais',
         pergunta: 'Na escala em que 0 (zero) significa "insatisfeita" e 10 (dez) significa "satisfeita", como a família avalia a forma de reparação realizada pela empresa?',
-        observacao_pergunta: 'Todos devem responder',
+        observacao_pergunta: 'Todos devem responder / Usar o cartão 5',
         pergunta_secundaria: '',
         opcoes: [
             {label: '0', observacao: '', value: 0},
@@ -1980,7 +1980,7 @@ export const questoes = [
         id: '59',
         titulo: 'Produção/Terra',
         pergunta: 'Você ou algum outro residente deste domicílio trabalha com alguma forma de produção abaixo:',
-        observacao_pergunta: 'permite mais de uma opção',
+        observacao_pergunta: 'Permite mais de uma opção',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Agricultura (lavouras, fruticultura, floricultura, hortaliças...)', observacao: '', value: 0},
@@ -2022,11 +2022,11 @@ export const questoes = [
         id: '61',
         titulo: 'Produção/Terra',
         pergunta: 'Qual o tamanho da área?',
-        observacao_pergunta: 'registrar a medida do tamanho que o informante disser para depois fazer a conversão conforme orientação no Manual',
+        observacao_pergunta: 'Registrar a medida do tamanho que o informante disser para depois fazer a conversão conforme orientação no Manual',
         pergunta_secundaria: '',
         opcoes: '',
         pergunta_extensao: '',
-        tipo: 'input_numeric'
+        tipo: 'text'
     },
     {
         id: '62a',
@@ -2460,7 +2460,7 @@ export const questoes = [
         id: '66',
         titulo: 'Produção/Terra',
         pergunta: 'A propriedade recebe a visita de algum técnico para acompanhar a lavoura ou os animais?',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Usar cartão 4',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Sempre', observacao: '', value: 0},

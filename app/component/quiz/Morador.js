@@ -11,8 +11,9 @@ import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
 import ReplyText from './reply/ReplyText';
+import ReplyTime from './reply/ReplyTime';
 
-import { passQuestion } from './business/PassQuestion';
+import { passQuestionMorador } from './business/PassQuestionMorador';
 import FileStore from './../../FileStore';
 import MoradorData from './../../data/MoradorData';
 import { questoes } from './../../data/QuestoesMorador';
@@ -41,10 +42,10 @@ export default class Morador extends Component {
         FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
 
         let questao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
-        for(key in passQuestion){
-            if(questao == passQuestion[key].questao){
-                this.state.admin.maxQuestion = passQuestion[key].passe;
-                for (i = questao + 1; i < passQuestion[key].passe; i++) {
+        for(key in passQuestionMorador){
+            if(questao == passQuestionMorador[key].questao){
+                this.state.admin.maxQuestion = passQuestionMorador[key].passe;
+                for (i = questao + 1; i < passQuestionMorador[key].passe; i++) {
                     for(key in this.state.quiz){
                         if(key.replace(/\D/g,'') == i){
                             this.state.quiz[key] = -1;
@@ -204,6 +205,10 @@ export default class Morador extends Component {
 
                                 {renderIf(questao.tipo === 'text',
                                     <ReplyText admin={admin} quiz={morador} questao={questao} />
+                                )}
+
+                                {renderIf(questao.tipo === 'input_time',
+                                    <ReplyTime admin={admin} quiz={morador} questao={questao} />
                                 )}
                             </CardItem>
 

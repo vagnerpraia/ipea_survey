@@ -10,6 +10,16 @@ export const businessQuestion = [
         bloqueio: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     },
     {
+        questao: 22,
+        opcao: [0, 1, 2, 3, 4, 5, 6],
+        bloqueio: [7],
+    },
+    {
+        questao: 22,
+        opcao: [7],
+        bloqueio: [0, 1, 2, 3, 4, 5, 6],
+    },
+    {
         questao: 42,
         opcao: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         bloqueio: [13, 14],

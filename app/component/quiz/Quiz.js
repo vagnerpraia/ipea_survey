@@ -76,10 +76,10 @@ export default class Quiz extends Component {
                                     }
                                 });
                             } catch (error) {
-                                alert(JSON.stringify(error));
+                                console.log(JSON.stringify(error));
                             }
                         },
-                        (error) => alert(JSON.stringify(error)),
+                        (error) => console.log(JSON.stringify(error)),
                         {enableHighAccuracy: true, timeout: 50000, maximumAge: 1000}
                     );
                 });

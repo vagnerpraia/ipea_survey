@@ -11,6 +11,7 @@ import ReplyInputNumeric from './reply/ReplyInputNumeric';
 import ReplyMultiSelect from './reply/ReplyMultiSelect';
 import ReplyRadio from './reply/ReplyRadio';
 import ReplyText from './reply/ReplyText';
+import ReplyTime from './reply/ReplyTime';
 
 import { passQuestion } from './business/PassQuestion';
 import FileStore from './../../FileStore';
@@ -185,9 +186,13 @@ export default class Domicilio extends Component {
                                 {renderIf(questao.tipo === 'text',
                                     <ReplyText admin={admin} quiz={quiz.domicilio} questao={questao} />
                                 )}
+
+                                {renderIf(questao.tipo === 'input_time',
+                                    <ReplyTime admin={admin} quiz={morador} questao={questao} />
+                                )}
                             </CardItem>
 
-                            {renderIf(questao.pergunta_extensao !== '',
+                            {renderIf(questao.pergunta_extensao != '',
                                 <CardItem>
                                     <Sae
                                         label={questao.pergunta_extensao.pergunta}

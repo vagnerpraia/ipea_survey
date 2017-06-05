@@ -1,6 +1,6 @@
 export const questoes = [
     {
-        id: '1',
+        id: '0',
         titulo: 'Identificação do morador',
         pergunta: 'Nome do morador:',
         observacao_pergunta: '',
@@ -10,7 +10,7 @@ export const questoes = [
         tipo: 'text'
     },
     {
-        id: '2',
+        id: '69',
         titulo: 'Características do morador',
         pergunta: 'Qual é a relação de parentesco ou de convivência com a pessoa responsável pelo domicílio?',
         observacao_pergunta: '',
@@ -40,7 +40,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '3',
+        id: '70',
         titulo: 'Características do morador',
         pergunta: 'Qual é o mês e ano do seu nascimento?',
         observacao_pergunta: '',
@@ -50,7 +50,7 @@ export const questoes = [
         tipo: 'input_numeric'
     },
     {
-        id: '4',
+        id: '71',
         titulo: 'Características do morador',
         pergunta: 'Estado civil:',
         observacao_pergunta: 'Para pessoas de 10 anos ou mais idade',
@@ -68,7 +68,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '5',
+        id: '72',
         titulo: 'Características do morador',
         pergunta: 'Sua cor ou raça é:',
         observacao_pergunta: '',
@@ -85,7 +85,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '6',
+        id: '73',
         titulo: 'Características do morador',
         pergunta: 'Qual a sua religião ou culto?',
         observacao_pergunta: 'Não ler as opções, assinalar de acordo com a resposta do informante',
@@ -111,7 +111,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '7',
+        id: '74',
         titulo: 'Educação',
         pergunta: 'Sabe ler e escrever?',
         observacao_pergunta: 'Para pessoas de 5 anos ou mais idade',
@@ -125,7 +125,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '8',
+        id: '75',
         titulo: 'Educação',
         pergunta: 'Frequenta escola ou creche?',
         observacao_pergunta: 'Para todas as pessoas',
@@ -141,7 +141,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '9',
+        id: '76',
         titulo: 'Educação',
         pergunta: 'Qual é o curso que frequenta?',
         observacao_pergunta: 'Para pessoa que frequenta escola ou creche',
@@ -166,7 +166,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '10',
+        id: '77',
         titulo: 'Educação',
         pergunta: 'Qual é a série/ano que frequenta?',
         observacao_pergunta: 'Para quem cursa o ensino fundamental, após passar para questão 79',
@@ -188,7 +188,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '11',
+        id: '78',
         titulo: 'Educação',
         pergunta: 'Qual a série que frequenta?',
         observacao_pergunta: 'Para quem cursa o ensino médio ou técnico',
@@ -205,7 +205,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '12',
+        id: '79',
         titulo: 'Educação',
         pergunta: 'A creche, escola ou curso que frequenta está localizado em área:',
         observacao_pergunta: '',
@@ -219,7 +219,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '13',
+        id: '80',
         titulo: 'Educação',
         pergunta: 'A principal forma de locomoção utilizada para ir à creche/escola/curso é:',
         observacao_pergunta: '',
@@ -243,7 +243,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '14',
+        id: '81',
         titulo: 'Educação',
         pergunta: 'Quanto tempo leva, em média, para fazer o percurso (ida e volta) do domicílio para a creche/escola/curso?',
         observacao_pergunta: '',
@@ -253,10 +253,10 @@ export const questoes = [
         tipo: 'input_time'
     },
     {
-        id: '15',
+        id: '82',
         titulo: 'Educação',
         pergunta: 'Como você avalia a distância existente entre o domicílio e a creche/escola/curso que você frequenta?',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Usar o cartão 6',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Muito distante', observacao: 'Passe para a questão 85', value: 0},
@@ -270,7 +270,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '16',
+        id: '83',
         titulo: 'Educação',
         pergunta: 'Qual a sua escolaridade?',
         observacao_pergunta: 'Para pessoa que não frequenta escola ou creche, mas já frequentou',
@@ -296,7 +296,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '17',
+        id: '84',
         titulo: 'Educação',
         pergunta: 'Até qual série/ano completou com aprovação?',
         observacao_pergunta: '',
@@ -319,10 +319,10 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '18',
+        id: '85',
         titulo: 'Trabalho e renda',
         pergunta: 'Na semana passada o(a) Sr(a):',
-        observacao_pergunta: '',
+        observacao_pergunta: 'Permite mais de uma opção',
         pergunta_secundaria: '',
         opcoes: [
             {label: 'Tinha um trabalho remunerado (que gerou renda, ganhou dinheiro)', observacao: '', value: 0},
@@ -338,27 +338,27 @@ export const questoes = [
         tipo: 'multiple'
     },
     {
-        id: '19',
+        id: '86',
         titulo: 'Trabalho e renda',
         pergunta: 'No trabalho da semana passada, você era:',
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [
-            {label: 'Empregado com carteira assinada, fichado', observacao: 'Passe para a questão 93', value: 0},
-            {label: 'Trabalhador doméstico com carteira assinada, fichado', observacao: 'Passe para a questão 93', value: 1},
-            {label: 'Servidor público civil ou militar', observacao: 'Passe para a questão 93', value: 2},
-            {label: 'Empregado sem carteira assinada, não fichado', observacao: 'Passe para a questão 92', value: 3},
-            {label: 'Trabalhador doméstico sem carteira assinada, não fichado', observacao: 'Passe para a questão 92', value: 4},
-            {label: 'Trabalhador por conta própria ou autônomo', observacao: 'Passe para a questão 92', value: 5},
-            {label: 'Estagiário', observacao: 'Passe para a questão 92', value: 6},
-            {label: 'Empregador', observacao: 'Passe para a questão 90', value: 7},
-            {label: 'Não sabe', observacao: 'Não ler esta opção / Passe para a questão 92', value: 8},
+            {label: 'Empregado com carteira assinada (fichado)', observacao: 'Passe para a questão 90', value: 0},
+            {label: 'Trabalhador doméstico com carteira assinada (fichado)', observacao: 'Passe para a questão 90', value: 1},
+            {label: 'Servidor público civil ou militar', observacao: 'Passe para a questão 90', value: 2},
+            {label: 'Empregado sem carteira assinada (não fichado)', observacao: 'Passe para a questão 89', value: 3},
+            {label: 'Trabalhador doméstico sem carteira assinada (não fichado)', observacao: 'Passe para a questão 89', value: 4},
+            {label: 'Trabalhador por conta própria ou autônomo', observacao: 'Passe para a questão 89', value: 5},
+            {label: 'Estagiário', observacao: 'Passe para a questão 89', value: 6},
+            {label: 'Empregador', observacao: 'Passe para a questão 87', value: 7},
+            {label: 'Não sabe', observacao: 'Não ler esta opção / Passe para a questão 89', value: 8},
         ],
         pergunta_extensao: '',
         tipo: 'radio'
     },
     {
-        id: '20',
+        id: '87',
         titulo: 'Trabalho e renda',
         pergunta: 'Quantas pessoas empregava nesse trabalho?',
         observacao_pergunta: '',
@@ -375,7 +375,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '21',
+        id: '88',
         titulo: 'Trabalho e renda',
         pergunta: 'No mês passado procurou por trabalho remunerado?',
         observacao_pergunta: '',
@@ -389,7 +389,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '22',
+        id: '89',
         titulo: 'Trabalho e renda',
         pergunta: 'Era contribuinte de instituto de previdência oficial na semana passada?',
         observacao_pergunta: '',
@@ -403,7 +403,7 @@ export const questoes = [
         tipo: 'radio'
     },
     {
-        id: '23',
+        id: '90',
         titulo: 'Trabalho e renda',
         pergunta: 'Teve alguma renda no último mês? Se sim, qual foi o rendimento bruto total que obteve no último mês? ',
         observacao_pergunta: 'Incluindo todas as fontes de renda: salário, seguro-desemprego, aposentadoria, pensão, mesada, aluguel, retirada mensal, bicos, extras, bolsa família etc.',

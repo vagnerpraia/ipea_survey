@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ToastAndroid, View } from 'react-native';
 import { List, ListItem, Radio, Text } from 'native-base';
+
 import { passQuestion } from './../business/PassQuestion';
 import { styles } from './../../../Styles';
 
@@ -52,7 +53,7 @@ export default class ReplyRadio extends Component {
                 for(key in passQuestion){
                     if(numeroQuestao == passQuestion[key].questao){
                         let passe = passQuestion[key].passe;
-                        if(passQuestion[key].opcao.indexOf(value) > -1){
+                        if(value != '' && passQuestion[key].opcao.indexOf(Number(value)) > -1){
                             this.state.admin.maxQuestion = passQuestion[key].passe;
                             for (i = numeroQuestao + 1; i < passe; i++) {
                                 for(key in this.state.quiz){
@@ -61,6 +62,7 @@ export default class ReplyRadio extends Component {
                                     }
                                 }
                             }
+                            break;
                         }else{
                             for (i = numeroQuestao + 1; i < passe; i++) {
                                 for(key in this.state.quiz){

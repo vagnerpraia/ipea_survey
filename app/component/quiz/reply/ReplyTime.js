@@ -23,6 +23,33 @@ export default class ReplyTime extends Component {
 
         if(this.state.selected != null){
             this.state.admin.maxQuestion = this.state.numeroQuestao + 1;
+
+            let passQuestion = this.props.passQuestion;
+            let value = this.state.selected;
+            for(key in passQuestion){
+                if(numeroQuestao == passQuestion[key].questao){
+                    let passe = passQuestion[key].passe;
+                    if(value != '' && passQuestion[key].opcao.indexOf(Number(value)) > -1){
+                        this.state.admin.maxQuestion = passQuestion[key].passe;
+                        for (i = numeroQuestao + 1; i < passe; i++) {
+                            for(key in this.state.quiz){
+                                if(key.replace(/\D/g,'') == i){
+                                    this.state.quiz[key] = -1;
+                                }
+                            }
+                        }
+                        break;
+                    }else{
+                        for (i = numeroQuestao + 1; i < passe; i++) {
+                            for(key in this.state.quiz){
+                                if(key.replace(/\D/g,'') == i){
+                                    this.state.quiz[key] = null;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -37,7 +64,6 @@ export default class ReplyTime extends Component {
             ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
         }else{
             quiz[idQuestao] = value + ':' + quiz[idQuestao].split(':')[1];
-            console.log(quiz[idQuestao]);
             admin.maxQuestion = numeroQuestao + 1;
 
             for(key in passQuestion){
@@ -78,7 +104,6 @@ export default class ReplyTime extends Component {
             ToastAndroid.showWithGravity('Questão desativada\nPasse para a questão ' + admin.maxQuestion, ToastAndroid.SHORT, ToastAndroid.CENTER);
         }else{
             quiz[idQuestao] = quiz[idQuestao].split(':')[0] + ':' + value;
-            console.log(quiz[idQuestao]);
             admin.maxQuestion = numeroQuestao + 1;
 
             for(key in passQuestion){

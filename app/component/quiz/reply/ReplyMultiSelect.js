@@ -30,6 +30,35 @@ export default class ReplyMultiSelect extends Component {
 
         if(this.state.selected != null){
             this.state.admin.maxQuestion = this.state.numeroQuestao + 1;
+
+            let passQuestion = this.props.passQuestion;
+            for(k in this.state.selected){
+                let value = this.state.selected;
+                for(key in passQuestion){
+                    let passe = passQuestion[key];
+                    if(numeroQuestao == passe.questao){
+                        if(value != '' && passe.opcao.indexOf(Number(value)) > -1){
+                            this.state.admin.maxQuestion = passe.passe;
+                            for (i = numeroQuestao + 1; i < passe; i++) {
+                                for(key in this.state.quiz){
+                                    if(key.replace(/\D/g,'') == i){
+                                        this.state.quiz[key] = -1;
+                                    }
+                                }
+                            }
+                            break;
+                        }else{
+                            for (i = numeroQuestao + 1; i < passe; i++) {
+                                for(key in this.state.quiz){
+                                    if(key.replace(/\D/g,'') == i){
+                                        this.state.quiz[key] = null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -56,21 +85,16 @@ export default class ReplyMultiSelect extends Component {
                     selected.push(value);
                 }
 
-                for(key_selected in selected){
-                    for(keyBusiness in businessQuestion){
-                        let business = businessQuestion[keyBusiness];
-
-                        if(business.questao == numeroQuestao){
-                            if(business.opcao.indexOf(selected[key_selected]) > -1){
-                                for(keyBloqueio in business.bloqueio){
-                                    let bloqueio = business.bloqueio[keyBloqueio];
-                                    if(selected.indexOf(bloqueio) > -1){
-                                        selected.remove(selected.indexOf(bloqueio));
-                                    }
-                                }
-                                break;
+                for(key_question in businessQuestion){
+                    let business = businessQuestion[key_question];
+                    if(business.questao == questao.id && business.opcao.indexOf(value) > -1){
+                        for(key_business in business.bloqueio){
+                            let idx = selected.indexOf(business.bloqueio[key_business]);
+                            if(idx > -1){
+                                selected.remove(idx);
                             }
                         }
+                        break;
                     }
                 }
 
@@ -82,10 +106,10 @@ export default class ReplyMultiSelect extends Component {
                 admin.maxQuestion = numeroQuestao + 1;
 
                 for(key in passQuestion){
-                    if(numeroQuestao == passQuestion[key].questao){
-                        let passe = passQuestion[key].passe;
-                        if(value != '' && passQuestion[key].opcao.indexOf(Number(value)) > -1){
-                            this.state.admin.maxQuestion = passQuestion[key].passe;
+                    let passe = passQuestion[key];
+                    if(numeroQuestao == passe.questao){
+                        if(value != '' && passe.opcao.indexOf(Number(value)) > -1){
+                            this.state.admin.maxQuestion = passe.passe;
                             for (i = numeroQuestao + 1; i < passe; i++) {
                                 for(key in this.state.quiz){
                                     if(key.replace(/\D/g,'') == i){

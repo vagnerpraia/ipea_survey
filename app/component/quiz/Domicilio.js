@@ -20,6 +20,19 @@ import DomicilioData from './../../data/DomicilioData';
 import { questoes } from './../../data/QuestoesDomicilio';
 import { styles } from './../../Styles';
 
+var type = (function(global) {
+    var cache = {};
+    return function(obj) {
+        var key;
+        return obj === null ? 'null'
+            : obj === global ? 'global'
+            : (key = typeof obj) !== 'object' ? key
+            : obj.nodeType ? 'object'
+            : cache[key = ({}).toString.call(obj)]
+            || (cache[key] = key.slice(8, -1).toLowerCase());
+    };
+}(this));
+
 export default class Domicilio extends Component {
     constructor(props) {
         super(props);
@@ -40,7 +53,7 @@ export default class Domicilio extends Component {
         let questao = questoes[this.state.admin.indexPage].id.replace(/\D/g,'');
         for(key in passQuestion){
             if(questao == passQuestion[key].questao){
-                this.state.admin.maxQuestion = passQuestion[key].passe;
+                //this.state.admin.maxQuestion = passQuestion[key].passe;
                 for (i = questao + 1; i < passQuestion[key].passe; i++) {
                     for(key in this.state.quiz){
                         if(key.replace(/\D/g,'') == i){
@@ -48,6 +61,7 @@ export default class Domicilio extends Component {
                         }
                     }
                 }
+                break;
             }
         }
 
@@ -82,7 +96,18 @@ export default class Domicilio extends Component {
     }
 
     pushScreen(){
-        if(this.state.quiz.domicilio[idQuestao] != null){
+        let flagResponse = true;
+        if(type(this.state.quiz.domicilio[idQuestao]) == 'array'){
+            if(this.state.quiz.domicilio[idQuestao].length == 0){
+                flagResponse = false;
+            }
+        }else{
+            if(this.state.quiz.domicilio[idQuestao] == null){
+                flagResponse = false;
+            }
+        }
+
+        if(flagResponse || Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
             if(Number(numeroQuestao) + 1 <= this.state.admin.maxQuestion){
                 this.state.admin.indexPage = Number(this.state.admin.indexPage) + 1;
 

@@ -104,6 +104,17 @@ export const styles = {
         fontSize: 24,
         fontWeight: 'bold',
     },
+    viewId: {
+        flex: 1, 
+        flexDirection:'column', 
+        alignSelf: 'stretch', 
+        paddingBottom: 20,
+    },
+    questaoId: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        paddingTop: 30,
+    },
     questaoConfig: {
         fontSize: 24,
         color: '#000000',

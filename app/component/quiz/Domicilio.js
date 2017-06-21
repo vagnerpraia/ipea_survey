@@ -177,12 +177,10 @@ export default class Domicilio extends Component {
                 </Header>
                 <Content>
                     <Card>
-                        {renderIf(questoes.id !== 'id',
-                            <CardItem style={styles.cardItemQuestao}>
-                                <Text style={styles.questao}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
-                                <Text style={styles.observacaoQuestao}>{questao.observacao_pergunta}</Text>
-                            </CardItem>
-                        )}
+                        <CardItem style={styles.cardItemQuestao}>
+                            <Text style={styles.questao}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
+                            <Text style={styles.observacaoQuestao}>{questao.observacao_pergunta}</Text>
+                        </CardItem>
 
                         {renderIf(questao.pergunta_secundaria !== '',
                             <CardItem style={styles.pergunta_secundaria}>

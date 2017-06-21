@@ -1,13 +1,13 @@
 export const questoes = [
     {
-        id: '0',
+        id: 'id',
         titulo: 'Identificação do morador',
-        pergunta: 'Nome do morador:',
+        pergunta: ['Nome do morador:', 'Sexo:'],
         observacao_pergunta: '',
         pergunta_secundaria: '',
         opcoes: [],
         pergunta_extensao: '',
-        tipo: 'text'
+        tipo: ''
     },
     {
         id: '69',

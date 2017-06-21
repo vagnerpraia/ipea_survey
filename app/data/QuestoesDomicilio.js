@@ -1,34 +1,5 @@
 export const questoes = [
     {
-        id: '42',
-        titulo: 'Transporte e políticas sociais',
-        pergunta: 'Com a construção da barragem, de que forma você e sua família foram atingidos?',
-        observacao_pergunta: 'Não ler as opções. Após a primeira resposta, perguntar: E o que mais? E apenas após esgotar as opções passar para as seguintes / Permite mais de uma opção',
-        pergunta_secundaria: '',
-        opcoes: [
-            {label: 'A pesca foi prejudicada', observacao: '', value: 0},
-            {label: 'Perderam a propriedade ou a posse de área rural', observacao: 'Passe para a questão 44', value: 1},
-            {label: 'Perderam a propriedade ou a posse de área urbana', observacao: 'Passe para a questão 44', value: 2},
-            {label: 'Perderam a casa em que residiam', observacao: 'Passe para a questão 44', value: 3},
-            {label: 'Perderam benfeitorias ou outras casas de sua propriedade ou posse', observacao: 'Passe para a questão 44', value: 4},
-            {label: 'Sofreram danos (rachaduras, desmoronamentos) na casa ou em benfeitorias não desapropriadas', observacao: 'Passe para a questão 44', value: 5},
-            {label: 'Perderam sua fonte de renda ou o trabalho', observacao: 'Passe para a questão 44', value: 6},
-            {label: 'Perderam a capacidade produtiva das terras de parcela que sobrou do imóvel', observacao: 'Passe para a questão 44', value: 7},
-            {label: 'Houve diminuição ou perderam acesso a outras áreas onde coletavam produtos que geravam renda', observacao: 'Passe para a questão 44', value: 8},
-            {label: 'Houve diminuição ou perderam acesso a outras áreas onde coletavam produtos para o próprio consumo da família (inclusive lenha)', observacao: 'Passe para a questão 44', value: 9},
-            {label: 'Tiveram estabelecimento comercial, de serviços ou industrial inviabilizado', observacao: 'Passe para a questão 44', value: 10},
-            {label: 'Tiveram diminuição de renda', observacao: 'Passe para a questão 44', value: 11},
-            {label: 'Outra', observacao: 'Indique qual abaixo / Passe para a questão 44', value: 12},
-            {label: 'Não foram atingidos', observacao: 'Passe para a questão 47', value: 13},
-            {label: 'Não sabe', observacao: 'Não ler esta opção / Passe para a questão 47', value: 14},
-        ],
-        pergunta_extensao: {
-            pergunta: 'Se outra, indique qual:',
-            referencia: 12
-        },
-        tipo: 'multiple'
-    },
-    {
         id: '1',
         titulo: 'Identificação do domicílio',
         pergunta: 'Tipo de domicílio:',

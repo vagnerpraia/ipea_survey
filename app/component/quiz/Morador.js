@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { PanResponder, StyleSheet, ToastAndroid, View } from 'react-native';
 import { Body, Button, Card, CardItem, Container, Content, Footer, FooterTab, Header, Icon, Left, Right, Text, Title } from 'native-base';
 import SideMenu from 'react-native-side-menu';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Sae } from 'react-native-textinput-effects';
 
 import SideMenuMoradores from './SideMenuMoradores';
 import ReplyInputCurrency from './reply/ReplyInputCurrency';
@@ -159,6 +157,7 @@ export default class Morador extends Component {
         let admin = this.state.admin;
         let quiz = this.state.quiz;
         let questao = questoes[admin.indexPage];
+        let pergunta_extensao = questao.pergunta_extensao;
 
         let morador = null;
         for(key in quiz.moradores){
@@ -238,18 +237,23 @@ export default class Morador extends Component {
                                 )}
                             </CardItem>
 
-                            {renderIf(questao.pergunta_extensao !== '',
+                            {renderIf(pergunta_extensao !== '',
                                 <CardItem>
-                                    <Sae
-                                        label={questao.pergunta_extensao.pergunta}
-                                        defaultValue={morador[idQuestao + '_secundaria']}
-                                        iconClass={FontAwesomeIcon}
-                                        iconName={'pencil'}
-                                        iconColor={'black'}
-                                        autoCapitalize={'none'}
-                                        autoCorrect={false}
-                                        labelStyle={styles.textInput}
-                                        inputStyle={styles.textInput}
+                                    <Text style={styles.observacaoQuestao}>{pergunta_extensao.pergunta}</Text>
+                                    <TextInput
+                                        style={{width: 500, fontSize: 20}}
+                                        keyboardType = 'default'
+                                        onChangeText = {(value) => {
+                                            if(morador[idQuestao] != null){
+                                                if(morador[idQuestao] == pergunta_extensao.referencia){
+                                                    morador[idQuestao + '_secundaria'] = value;
+                                                }else if(morador[idQuestao].indexOf(Number(pergunta_extensao.referencia)) > -1){
+                                                    morador[idQuestao + '_secundaria'] = value;
+                                                }
+                                            }
+                                        }}
+                                        defaultValue = {morador[idQuestao + '_secundaria']}
+                                        maxLength = {500}
                                     />
                                 </CardItem>
                             )}

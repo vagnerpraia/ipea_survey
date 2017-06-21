@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { PanResponder, StyleSheet, ToastAndroid, View } from 'react-native';
+import { PanResponder, StyleSheet, TextInput, ToastAndroid, View } from 'react-native';
 import { Body, Button, Card, CardItem, Container, Content, Footer, FooterTab, Header, Icon, Left, Right, Text, Title } from 'native-base';
 import SideMenu from 'react-native-side-menu';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Sae } from 'react-native-textinput-effects';
 
 import SideMenuDomicilio from './SideMenuDomicilio';
 import ReplyInputCurrency from './reply/ReplyInputCurrency';
@@ -146,6 +144,7 @@ export default class Domicilio extends Component {
         let admin = this.state.admin;
         let quiz = this.state.quiz;
         let questao = questoes[admin.indexPage];
+        let pergunta_extensao = questao.pergunta_extensao;
 
         const menu = <SideMenuDomicilio admin={admin} quiz={quiz} navigator={this.props.navigator} />;
 
@@ -158,94 +157,99 @@ export default class Domicilio extends Component {
         }
 
         return (
-                <Container style={styles.container}>
-                    <Header style={styles.header}>
-                        <Left>
-                            <Button transparent onPress={() => {this.popQuizScreen()}}>
-                                <Icon name='ios-arrow-back' />
-                            </Button>
-                        </Left>
+            <Container style={styles.container}>
+                <Header style={styles.header}>
+                    <Left>
+                        <Button transparent onPress={() => {this.popQuizScreen()}}>
+                            <Icon name='ios-arrow-back' />
+                        </Button>
+                    </Left>
 
-                        <Body style={styles.bodyHeader}>
-                            <Title>{questao.titulo}</Title>
-                        </Body>
+                    <Body style={styles.bodyHeader}>
+                        <Title>{questao.titulo}</Title>
+                    </Body>
 
-                        <Right>
-                            <Button transparent onPress={() => {this.updateMenuState()}}>
-                                <Text></Text>
-                            </Button>
-                        </Right>
-                    </Header>
-                    <Content>
-                        <Card>
-                            {renderIf(questoes.id !== 'id',
-                                <CardItem style={styles.cardItemQuestao}>
-                                    <Text style={styles.questao}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
-                                    <Text style={styles.observacaoQuestao}>{questao.observacao_pergunta}</Text>
-                                </CardItem>
-                            )}
-
-                            {renderIf(questao.pergunta_secundaria !== '',
-                                <CardItem style={styles.pergunta_secundaria}>
-                                    <Text style={styles.questao_secundaria}>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
-                                    <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
-                                </CardItem>
-                            )}
-
-                            <CardItem cardBody style={{justifyContent: 'center'}}>
-                                {renderIf(questao.tipo === 'input_currency',
-                                    <ReplyInputCurrency admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
-                                )}
-
-                                {renderIf(questao.tipo === 'input_numeric',
-                                    <ReplyInputNumeric admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
-                                )}
-
-                                {renderIf(questao.tipo === 'multiple',
-                                    <ReplyMultiSelect admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
-                                )}
-
-                                {renderIf(questao.tipo === 'radio',
-                                    <ReplyRadio admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
-                                )}
-
-                                {renderIf(questao.tipo === 'text',
-                                    <ReplyText admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
-                                )}
-
-                                {renderIf(questao.tipo === 'input_time',
-                                    <ReplyTime admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
-                                )}
+                    <Right>
+                        <Button transparent onPress={() => {this.updateMenuState()}}>
+                            <Text></Text>
+                        </Button>
+                    </Right>
+                </Header>
+                <Content>
+                    <Card>
+                        {renderIf(questoes.id !== 'id',
+                            <CardItem style={styles.cardItemQuestao}>
+                                <Text style={styles.questao}>{questao.id.replace(/\D/g,'') + '. ' + questao.pergunta}</Text>
+                                <Text style={styles.observacaoQuestao}>{questao.observacao_pergunta}</Text>
                             </CardItem>
+                        )}
 
-                            {renderIf(questao.pergunta_extensao != '',
-                                <CardItem>
-                                    <Sae
-                                        label={questao.pergunta_extensao.pergunta}
-                                        defaultValue={quiz.domicilio[idQuestao + '_secundaria']}
-                                        iconClass={FontAwesomeIcon}
-                                        iconName={'pencil'}
-                                        iconColor={'black'}
-                                        autoCapitalize={'none'}
-                                        autoCorrect={false}
-                                        labelStyle={styles.textInput}
-                                        inputStyle={styles.textInput}
-                                    />
-                                </CardItem>
+                        {renderIf(questao.pergunta_secundaria !== '',
+                            <CardItem style={styles.pergunta_secundaria}>
+                                <Text style={styles.questao_secundaria}>{questao.id.replace(/[0-9]/g, '').toUpperCase() + ') ' + questao.pergunta_secundaria.pergunta}</Text>
+                                <Text note>{questao.pergunta_secundaria.observacao_pergunta}</Text>
+                            </CardItem>
+                        )}
+
+                        <CardItem cardBody style={{justifyContent: 'center'}}>
+                            {renderIf(questao.tipo === 'input_currency',
+                                <ReplyInputCurrency admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
                             )}
-                        </Card>
-                    </Content>
-                    <Footer>
-                        <FooterTab>
-                            <Button style={{backgroundColor: '#005376'}} onPress={() => {this.popScreen()}}>
-                                <Icon name='ios-arrow-back' />
-                            </Button>
-                            <Button style={{backgroundColor: '#005376'}} onPress={() => {this.pushScreen()}}>
-                                <Icon name='ios-arrow-forward' />
-                            </Button>
-                        </FooterTab>
-                    </Footer>
-                </Container>
+
+                            {renderIf(questao.tipo === 'input_numeric',
+                                <ReplyInputNumeric admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
+                            )}
+
+                            {renderIf(questao.tipo === 'multiple',
+                                <ReplyMultiSelect admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
+                            )}
+
+                            {renderIf(questao.tipo === 'radio',
+                                <ReplyRadio admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
+                            )}
+
+                            {renderIf(questao.tipo === 'text',
+                                <ReplyText admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
+                            )}
+
+                            {renderIf(questao.tipo === 'input_time',
+                                <ReplyTime admin={admin} quiz={quiz.domicilio} questao={questao} passQuestion={passQuestion} />
+                            )}
+                        </CardItem>
+
+                        {renderIf(pergunta_extensao != '',
+                            <CardItem>
+                                <Text style={styles.observacaoQuestao}>{pergunta_extensao.pergunta}</Text>
+                                <TextInput
+                                    style={{width: 500, fontSize: 20}}
+                                    keyboardType = 'default'
+                                    onChangeText = {(value) => {
+                                        if(quiz.domicilio[idQuestao] != null){
+                                            if(quiz.domicilio[idQuestao] == pergunta_extensao.referencia){
+                                                quiz.domicilio[idQuestao + '_secundaria'] = value;
+                                            }else if(quiz.domicilio[idQuestao].indexOf(Number(pergunta_extensao.referencia)) > -1){
+                                                quiz.domicilio[idQuestao + '_secundaria'] = value;
+                                            }
+                                        }
+                                    }}
+                                    defaultValue = {quiz.domicilio[idQuestao + '_secundaria']}
+                                    maxLength = {500}
+                                />
+                            </CardItem>
+                        )}
+                    </Card>
+                </Content>
+                <Footer>
+                    <FooterTab>
+                        <Button style={{backgroundColor: '#005376'}} onPress={() => {this.popScreen()}}>
+                            <Icon name='ios-arrow-back' />
+                        </Button>
+                        <Button style={{backgroundColor: '#005376'}} onPress={() => {this.pushScreen()}}>
+                            <Icon name='ios-arrow-forward' />
+                        </Button>
+                    </FooterTab>
+                </Footer>
+            </Container>
         );
     }
 }

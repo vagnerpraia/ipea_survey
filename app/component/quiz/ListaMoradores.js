@@ -99,7 +99,7 @@ export default class ListaMoradores extends Component {
                             <ListItem key={i}>
                                 <Body>
                                     <Text style={{fontSize: 20}} onPress={() => {openMorador(object.id)}}>
-                                        {object.questao_0}
+                                        {object.nome}
                                     </Text>
                                 </Body>
                                 <Right>

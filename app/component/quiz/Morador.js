@@ -208,31 +208,44 @@ export default class Morador extends Component {
                 </Header>
                 <Content>
                     <Card>
-                        {renderIf(questao.id == 'id',
+                        {renderIf(questao.id === 'id',
                             <CardItem style={styles.cardItemQuestao}>
-                                {
-                                    questao.pergunta.map(function(item, i){
-                                        return(
-                                            <View style={styles.viewId}>
-                                                <Text style={styles.questaoId}>{questao.pergunta[i]}</Text>
-                                                <Sae
-                                                    label={''}
-                                                    defaultValue={morador['id'][i]}
-                                                    iconClass={FontAwesomeIcon}
-                                                    iconName={'pencil'}
-                                                    iconColor={'#808080'}
-                                                    autoCapitalize={'none'}
-                                                    autoCorrect={false}
-                                                    inputStyle={styles.respostaTextInput}
-                                                    onChangeText={(value) => {
-                                                        morador['id'][i] = value
-                                                    }}
-                                                    style={{paddingLeft: 20}}
-                                                />
-                                            </View>
-                                        )
-                                    })
-                                }
+                                <View style={styles.viewId}>
+                                    <Text style={styles.questaoId}>Identificação do morador</Text>
+                                    <Sae
+                                        label={''}
+                                        defaultValue={morador['nome']}
+                                        iconClass={FontAwesomeIcon}
+                                        iconName={'pencil'}
+                                        iconColor={'#808080'}
+                                        autoCapitalize={'none'}
+                                        autoCorrect={false}
+                                        inputStyle={styles.respostaTextInput}
+                                        onChangeText={(value) => {
+                                            morador['nome'] = value;
+                                            FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
+                                        }}
+                                        style={{paddingLeft: 20}}
+                                    />
+                                </View>
+                                <View style={styles.viewId}>
+                                    <Text style={styles.questaoId}>Sexo:</Text>
+                                    <Sae
+                                        label={''}
+                                        defaultValue={morador['sexo']}
+                                        iconClass={FontAwesomeIcon}
+                                        iconName={'pencil'}
+                                        iconColor={'#808080'}
+                                        autoCapitalize={'none'}
+                                        autoCorrect={false}
+                                        inputStyle={styles.respostaTextInput}
+                                        onChangeText={(value) => {
+                                            morador['sexo'] = value;
+                                            FileStore.saveFileMoradores(this.state.admin.id, this.state.quiz.moradores);
+                                        }}
+                                        style={{paddingLeft: 20}}
+                                    />
+                                </View>
                             </CardItem>
                         )}
 
